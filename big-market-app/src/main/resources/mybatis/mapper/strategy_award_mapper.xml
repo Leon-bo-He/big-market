@@ -18,7 +18,7 @@
     </resultMap>
 
     <select id="queryStrategyAwardList" resultMap="dataMap">
-        SELECT strategy_id
+        SELECT strategy_id, award_title
         FROM strategy_award
         LIMIT 10
     </select>
