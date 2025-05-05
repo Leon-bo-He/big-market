@@ -69,7 +69,7 @@ public class StrategyArmory implements IStrategyArmory {
 
     @Override
     public Integer getRandomAwardId(Long strategyId) {
-        int precision = repository.getPrecision(strategyId);
-        return repository.getStrategyAwardAssemble(strategyId, new SecureRandom().nextInt(precision));
+        int rateRange = repository.getRateRange(strategyId);
+        return repository.getStrategyAwardAssemble(strategyId, new SecureRandom().nextInt(rateRange));
     }
 }

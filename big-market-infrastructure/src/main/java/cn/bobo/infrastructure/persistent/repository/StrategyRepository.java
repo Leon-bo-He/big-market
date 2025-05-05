@@ -52,15 +52,15 @@ public class StrategyRepository implements IStrategyRepository {
     }
 
     @Override
-    public void storeStrategyAwardRateSearchTable(Long strategyId, Integer precision,
-                                                  Map<Integer, Integer> shuffleStrategyAwardRateSearchTable) {
-        redisService.setValue(Constants.RedisKey.STRATEGY_RATE_RANGE_KEY + strategyId, precision);
+    public void storeStrategyAwardRateSearchTable(Long strategyId, Integer rateRange,
+                                                  Map<Integer, Integer> strategyAwardRateSearchTable) {
+        redisService.setValue(Constants.RedisKey.STRATEGY_RATE_RANGE_KEY + strategyId, rateRange);
         Map<Integer, Integer> cacheRateTable = redisService.getMap(Constants.RedisKey.STRATEGY_RATE_TABLE_KEY + strategyId);
-        cacheRateTable.putAll(shuffleStrategyAwardRateSearchTable);
+        cacheRateTable.putAll(strategyAwardRateSearchTable);
     }
 
     @Override
-    public int getPrecision(Long strategyId) {
+    public int getRateRange(Long strategyId) {
         return redisService.getValue(Constants.RedisKey.STRATEGY_RATE_RANGE_KEY + strategyId);
     }
 
@@ -68,6 +68,5 @@ public class StrategyRepository implements IStrategyRepository {
     public Integer getStrategyAwardAssemble(Long strategyId, int rateKey) {
         return redisService.getFromMap(Constants.RedisKey.STRATEGY_RATE_TABLE_KEY + strategyId, rateKey);
     }
-
 
 }

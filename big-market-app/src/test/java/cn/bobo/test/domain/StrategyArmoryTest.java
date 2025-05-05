@@ -31,8 +31,9 @@ public class StrategyArmoryTest {
 
     @Test
     public void test_getAssembleRandomVal() {
+        strategyArmory.assembleLotteryStrategy(100002L);
         for (int i = 0; i < 200; i++) {
-            log.info("Test Result：{} - returned award_id", strategyArmory.getRandomAwardId(100002L));
+            log.info("Test Result: returned award_id - {} ", strategyArmory.getRandomAwardId(100002L));
         }
     }
 }
