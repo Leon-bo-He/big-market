@@ -39,10 +39,10 @@
 
     <developers>
         <developer>
-            <name>xiaofuge</name>
-            <email>184172133@qq.com</email>
-            <organization>fuzhengwei</organization>
-            <organizationUrl>https://github.com/fuzhengwei</organizationUrl>
+            <name>bo</name>
+            <email>bohe.ch2@gmail.com</email>
+            <organization>hebo.life</organization>
+            <organizationUrl>https://github.com/Leon-bo-He</organizationUrl>
         </developer>
     </developers>
 
@@ -113,6 +113,11 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>1.15</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.23.4</version>
             </dependency>
 
             <!-- 工程模块 -->

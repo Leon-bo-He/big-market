@@ -5,9 +5,9 @@
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
-# Host: localhost (MySQL 8.0.37)
+# Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-05-03 02:34:14 +0000
+# Generation Time: 2025-05-05 15:43:49 +0000
 # ************************************************************
 
 
@@ -75,7 +75,8 @@ LOCK TABLES `strategy` WRITE;
 
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`)
 VALUES
-	(1,10001,'Strategy A',NULL,'2025-05-02 16:19:25','2025-05-02 16:19:25');
+	(1,100001,'Strategy A','rule_weight,rule_blacklist','2025-05-02 16:19:25','2025-05-05 08:33:54'),
+	(2,100002,'Strategy A','rule_weight,rule_blacklist','2025-05-02 16:19:25','2025-05-05 08:33:54');
 
 /*!40000 ALTER TABLE `strategy` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -107,15 +108,18 @@ LOCK TABLES `strategy_award` WRITE;
 
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`)
 VALUES
-	(1,10001,101,'Random Points',NULL,80000,80000,80.0000,'rule_random, rule_luck_award',1,'2025-05-02 17:36:47','2025-05-02 17:36:47'),
-	(2,10001,102,'5 Times Voucher',NULL,10000,10000,10.0000,'rule_luck_award',2,'2025-05-02 17:36:49','2025-05-02 17:36:49'),
-	(3,10001,103,'10 Times Voucher',NULL,5000,5000,5.0000,'rule_luck_award',3,'2025-05-02 17:36:49','2025-05-02 17:36:49'),
-	(4,10001,104,'20 Times Voucher',NULL,4000,4000,4.0000,'rule_luck_award',4,'2025-05-02 17:36:50','2025-05-02 17:36:50'),
-	(5,10001,105,'Unlock GPT-4 Model',NULL,600,600,0.6000,'rule_luck_award',5,'2025-05-02 17:36:51','2025-05-02 17:36:51'),
-	(6,10001,106,'Unlock dall-e-2 Model',NULL,200,200,0.2000,'rule_luck_award',6,'2025-05-02 17:36:52','2025-05-02 17:36:52'),
-	(7,10001,107,'Unlock dall-e-3 Model','Unlock after 3 times play',200,200,0.2000,'rule_luck_award, rule_lock',7,'2025-05-02 17:37:18','2025-05-02 17:37:18'),
-	(8,10001,108,'100 Times Voucher','Unlock after 5 times play',199,199,0.1999,'rule_luck_award, rule_lock',8,'2025-05-02 17:37:27','2025-05-02 17:37:27'),
-	(9,10001,109,'Unlock All Models','Unlock after 8 times play',1,1,0.0001,'rule_luck_award, rule_lock',9,'2025-05-02 17:37:29','2025-05-02 17:37:29');
+	(1,100001,101,'Random Points',NULL,80000,80000,80.0000,'rule_random, rule_luck_award',1,'2025-05-05 08:34:34','2025-05-05 08:34:34'),
+	(2,100001,102,'5 Times Voucher',NULL,10000,10000,10.0000,'rule_luck_award',2,'2025-05-05 08:34:38','2025-05-05 08:34:38'),
+	(3,100001,103,'10 Times Voucher',NULL,5000,5000,5.0000,'rule_luck_award',3,'2025-05-05 08:34:39','2025-05-05 08:34:39'),
+	(4,100001,104,'20 Times Voucher',NULL,4000,4000,4.0000,'rule_luck_award',4,'2025-05-05 08:34:40','2025-05-05 08:34:40'),
+	(5,100001,105,'Unlock GPT-4 Model',NULL,600,600,0.6000,'rule_luck_award',5,'2025-05-05 08:34:41','2025-05-05 08:34:41'),
+	(6,100001,106,'Unlock dall-e-2 Model',NULL,200,200,0.2000,'rule_luck_award',6,'2025-05-05 08:34:41','2025-05-05 08:34:41'),
+	(7,100001,107,'Unlock dall-e-3 Model','Unlock after 3 times play',200,200,0.2000,'rule_luck_award, rule_lock',7,'2025-05-05 08:34:42','2025-05-05 08:34:42'),
+	(8,100001,108,'100 Times Voucher','Unlock after 5 times play',199,199,0.1999,'rule_luck_award, rule_lock',8,'2025-05-05 08:34:43','2025-05-05 08:34:43'),
+	(9,100001,109,'Unlock All Models','Unlock after 8 times play',1,1,0.0001,'rule_luck_award, rule_lock',9,'2025-05-05 08:34:43','2025-05-05 08:34:43'),
+	(10,100002,101,'Random Points',NULL,1,1,0.5000,'rule_random,rule_luck_award',1,'2025-05-05 08:37:00','2025-05-05 08:37:00'),
+	(11,100002,102,'5 Times Voucher',NULL,1,1,0.1000,'rule_random,rule_luck_award',2,'2025-05-05 08:37:01','2025-05-05 08:37:01'),
+	(12,100002,106,'add...',NULL,1,1,0.0100,'rule_random,rule_luck_award',3,'2025-05-05 08:37:01','2025-05-05 08:37:01');
 
 /*!40000 ALTER TABLE `strategy_award` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -144,21 +148,21 @@ LOCK TABLES `strategy_rule` WRITE;
 
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`)
 VALUES
-	(1,10001,101,2,'rule_random','1,1000','Random point strategy(Deposit random value from rule_value to user account)','2025-05-02 16:46:06','2025-05-02 16:46:18'),
-	(2,10001,107,2,'rule_lock','3','unlock after 3 times play','2025-05-02 16:46:06','2025-05-02 17:39:21'),
-	(3,10001,108,2,'rule_lock','5','unlock after 5 times play','2025-05-02 16:46:06','2025-05-02 17:39:41'),
-	(4,10001,109,2,'rule_lock','8','unlock after 8 times play','2025-05-02 16:46:06','2025-05-02 17:39:55'),
-	(5,10001,107,2,'rule_luck_award','1,100','random points less than 100 - consolation prize','2025-05-02 17:46:16','2025-05-02 17:46:16'),
-	(6,10001,108,2,'rule_luck_award','1,100','random points less than 100 - consolation prize','2025-05-02 17:46:16','2025-05-02 17:46:16'),
-	(7,10001,109,2,'rule_luck_award','1,100','random points less than 100 - consolation prize','2025-05-02 17:46:16','2025-05-02 17:46:16'),
-	(8,10001,101,2,'rule_luck_award','1,10','random points less than 10 - consolation prize','2025-05-02 17:46:16','2025-05-02 17:46:16'),
-	(9,10001,102,2,'rule_luck_award','1,20','random points less than 20 - consolation prize','2025-05-02 17:46:16','2025-05-02 18:00:21'),
-	(10,10001,103,2,'rule_luck_award','1,30','random points less than 30 - consolation prize','2025-05-02 17:46:16','2025-05-02 18:00:21'),
-	(11,10001,104,2,'rule_luck_award','1,40','random points less than 40 - consolation prize','2025-05-02 17:46:16','2025-05-02 18:00:21'),
-	(12,10001,105,2,'rule_luck_award','1,50','random points less than 50 - consolation prize','2025-05-02 17:46:16','2025-05-02 18:00:21'),
-	(13,10001,106,2,'rule_luck_award','1,60','random points less than 60 - consolation prize','2025-05-02 17:46:16','2025-05-02 18:00:21'),
-	(14,10001,NULL,1,'rule_weight','6000,102,103,104,105,106,107,108,109','If used 6000 points, must choose one from these awards','2025-05-02 18:02:12','2025-05-02 18:02:12'),
-	(15,10001,NULL,1,'rule_blacklist','1','Blacklist user, 1 point for each round','2025-05-02 18:02:12','2025-05-02 18:02:53');
+	(1,100001,101,2,'rule_random','1,1000','Random point strategy(Deposit random value from rule_value to user account)','2025-05-02 16:46:06','2025-05-05 08:37:43'),
+	(2,100001,107,2,'rule_lock','3','unlock after 3 times play','2025-05-02 16:46:06','2025-05-05 08:37:46'),
+	(3,100001,108,2,'rule_lock','5','unlock after 5 times play','2025-05-02 16:46:06','2025-05-05 08:37:47'),
+	(4,100001,109,2,'rule_lock','8','unlock after 8 times play','2025-05-02 16:46:06','2025-05-05 08:37:48'),
+	(5,100001,107,2,'rule_luck_award','1,100','random points less than 100 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:48'),
+	(6,100001,108,2,'rule_luck_award','1,100','random points less than 100 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:49'),
+	(7,100001,109,2,'rule_luck_award','1,100','random points less than 100 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:50'),
+	(8,100001,101,2,'rule_luck_award','1,10','random points less than 10 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:50'),
+	(9,100001,102,2,'rule_luck_award','1,20','random points less than 20 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:51'),
+	(10,100001,103,2,'rule_luck_award','1,30','random points less than 30 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:52'),
+	(11,100001,104,2,'rule_luck_award','1,40','random points less than 40 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:53'),
+	(12,100001,105,2,'rule_luck_award','1,50','random points less than 50 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:57'),
+	(13,100001,106,2,'rule_luck_award','1,60','random points less than 60 - consolation prize','2025-05-02 17:46:16','2025-05-05 08:37:58'),
+	(14,100001,NULL,1,'rule_weight','6000,102,103,104,105,106,107,108,109','If used 6000 points, must choose one from these awards','2025-05-02 18:02:12','2025-05-05 08:38:00'),
+	(15,100001,NULL,1,'rule_blacklist','1','Blacklist user, 1 point for each round','2025-05-02 18:02:12','2025-05-05 08:38:01');
 
 /*!40000 ALTER TABLE `strategy_rule` ENABLE KEYS */;
 UNLOCK TABLES;

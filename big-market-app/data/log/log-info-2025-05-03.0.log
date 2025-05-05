@@ -1,0 +1,56 @@
+25-05-02.22:17:01.381 [main            ] INFO  AwardDaoTest           - Starting AwardDaoTest using Java 1.8.0_412 on Mac.lan with PID 79056 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-02.22:17:01.382 [main            ] INFO  AwardDaoTest           - The following 1 profile is active: "dev"
+25-05-02.22:17:02.257 [main            ] INFO  AwardDaoTest           - Started AwardDaoTest in 1.063 seconds (JVM running for 1.468)
+25-05-02.22:17:02.360 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-02.22:17:02.532 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-02.22:17:02.645 [main            ] INFO  AwardDaoTest           - Awards: [{"awardConfig":"1,100","awardDesc":"award user random points","awardId":101,"awardKey":"user_point_random"},{"awardConfig":"3","awardDesc":"add voucher","awardId":102,"awardKey":"openai_use_count"},{"awardConfig":"5","awardDesc":"add voucher","awardId":103,"awardKey":"openai_use_count"},{"awardConfig":"8","awardDesc":"add voucher","awardId":104,"awardKey":"openai_use_count"},{"awardConfig":"gpt-4","awardDesc":"unlock gpt-4 model","awardId":105,"awardKey":"openai_model"},{"awardConfig":"dall-e-2","awardDesc":"unlock dall-e-2 model","awardId":106,"awardKey":"openai_model"},{"awardConfig":"dall-e-3","awardDesc":"unlock dall-e-3 model","awardId":107,"awardKey":"openai_model"},{"awardConfig":"100","awardDesc":"add voucher","awardId":108,"awardKey":"openai_use_count"},{"awardConfig":"gpt-4, dall-e-2, dall-e-3","awardDesc":"unlock models","awardId":109,"awardKey":"openai_model"}]
+25-05-02.22:17:02.656 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-02.22:17:02.660 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-02.22:40:38.351 [main            ] INFO  StrategyAwardDaoTest   - Starting StrategyAwardDaoTest using Java 1.8.0_412 on Mac.lan with PID 80468 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-02.22:40:38.351 [main            ] INFO  StrategyAwardDaoTest   - The following 1 profile is active: "dev"
+25-05-02.22:40:39.240 [main            ] INFO  StrategyAwardDaoTest   - Started StrategyAwardDaoTest in 1.087 seconds (JVM running for 1.501)
+25-05-02.22:40:39.342 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-02.22:40:39.506 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-02.22:40:39.598 [main            ] INFO  StrategyAwardDaoTest   - StrategyAwards: [{"strategyId":10001},{"strategyId":10001},{"strategyId":10001},{"strategyId":10001},{"strategyId":10001},{"strategyId":10001},{"strategyId":10001},{"strategyId":10001},{"strategyId":10001}]
+25-05-02.22:40:39.603 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-02.22:40:39.605 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-02.22:42:14.638 [main            ] INFO  StrategyAwardDaoTest   - Starting StrategyAwardDaoTest using Java 1.8.0_412 on Mac.lan with PID 80589 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-02.22:42:14.638 [main            ] INFO  StrategyAwardDaoTest   - The following 1 profile is active: "dev"
+25-05-02.22:42:15.461 [main            ] INFO  StrategyAwardDaoTest   - Started StrategyAwardDaoTest in 1.004 seconds (JVM running for 1.379)
+25-05-02.22:42:15.559 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-02.22:42:15.722 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-02.22:42:15.815 [main            ] INFO  StrategyAwardDaoTest   - StrategyAwards: [{"awardTitle":"Random Points","strategyId":10001},{"awardTitle":"5 Times Voucher","strategyId":10001},{"awardTitle":"10 Times Voucher","strategyId":10001},{"awardTitle":"20 Times Voucher","strategyId":10001},{"awardTitle":"Unlock GPT-4 Model","strategyId":10001},{"awardTitle":"Unlock dall-e-2 Model","strategyId":10001},{"awardTitle":"Unlock dall-e-3 Model","strategyId":10001},{"awardTitle":"100 Times Voucher","strategyId":10001},{"awardTitle":"Unlock All Models","strategyId":10001}]
+25-05-02.22:42:15.820 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-02.22:42:15.821 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-03.10:39:45.731 [main            ] INFO  AwardDaoTest           - Starting AwardDaoTest using Java 1.8.0_412 on Mac.lan with PID 11250 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-03.10:39:45.732 [main            ] INFO  AwardDaoTest           - The following 1 profile is active: "dev"
+25-05-03.10:39:46.602 [main            ] INFO  AwardDaoTest           - Started AwardDaoTest in 1.069 seconds (JVM running for 1.578)
+25-05-03.10:39:46.711 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-03.10:39:46.899 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-03.10:39:46.995 [main            ] INFO  AwardDaoTest           - Awards: [{"awardConfig":"1,100","awardDesc":"award user random points","awardId":101,"awardKey":"user_point_random"},{"awardConfig":"3","awardDesc":"add voucher","awardId":102,"awardKey":"openai_use_count"},{"awardConfig":"5","awardDesc":"add voucher","awardId":103,"awardKey":"openai_use_count"},{"awardConfig":"8","awardDesc":"add voucher","awardId":104,"awardKey":"openai_use_count"},{"awardConfig":"gpt-4","awardDesc":"unlock gpt-4 model","awardId":105,"awardKey":"openai_model"},{"awardConfig":"dall-e-2","awardDesc":"unlock dall-e-2 model","awardId":106,"awardKey":"openai_model"},{"awardConfig":"dall-e-3","awardDesc":"unlock dall-e-3 model","awardId":107,"awardKey":"openai_model"},{"awardConfig":"100","awardDesc":"add voucher","awardId":108,"awardKey":"openai_use_count"},{"awardConfig":"gpt-4, dall-e-2, dall-e-3","awardDesc":"unlock models","awardId":109,"awardKey":"openai_model"}]
+25-05-03.10:39:47.000 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-03.10:39:47.003 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-03.12:12:42.385 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_412 on Mac.lan with PID 16682 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-03.12:12:42.385 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+25-05-03.12:12:42.716 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-03.12:12:42.718 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-03.12:12:42.728 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+25-05-03.12:12:43.117 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-03.12:12:43.142 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-03.12:12:43.235 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-03.12:12:43.244 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-03.12:12:44.002 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-03.12:12:44.033 [main            ] INFO  ApiTest                - Started ApiTest in 1.835 seconds (JVM running for 2.244)
+25-05-03.12:12:44.236 [main            ] INFO  ApiTest                - Test result: 101
+25-05-03.12:13:19.765 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_412 on Mac.lan with PID 16730 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-03.12:13:19.765 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+25-05-03.12:13:20.092 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-03.12:13:20.093 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-03.12:13:20.103 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+25-05-03.12:13:20.485 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-03.12:13:20.508 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-03.12:13:20.606 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-03.12:13:20.615 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-03.12:13:21.424 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-03.12:13:21.460 [main            ] INFO  ApiTest                - Started ApiTest in 1.871 seconds (JVM running for 2.235)
+25-05-03.12:13:21.654 [main            ] INFO  ApiTest                - Test result: 105
