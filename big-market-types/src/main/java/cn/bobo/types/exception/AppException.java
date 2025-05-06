@@ -9,10 +9,10 @@ public class AppException extends RuntimeException {
 
     private static final long serialVersionUID = 5317680961212299217L;
 
-    /** 异常码 */
+    /** Error Code */
     private String code;
 
-    /** 异常信息 */
+    /** Error Message */
     private String info;
 
     public AppException(String code) {

@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Getter
 public enum ResponseCode {
 
-    SUCCESS("0000", "成功"),
-    UN_ERROR("0001", "未知失败"),
-    ILLEGAL_PARAMETER("0002", "非法参数"),
+    SUCCESS("0000", "Success"),
+    UN_ERROR("0001", "Unknown error"),
+    ILLEGAL_PARAMETER("0002", "Illegal parameter"),
+    STRATEGY_RULE_WEIGHT_IS_NULL("ERR_BIZ_001", "Service error, rule_weight is active but not exist"),
     ;
 
     private String code;

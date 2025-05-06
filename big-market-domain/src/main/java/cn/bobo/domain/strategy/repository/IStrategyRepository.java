@@ -1,6 +1,8 @@
 package cn.bobo.domain.strategy.repository;
 
 import cn.bobo.domain.strategy.model.entity.StrategyAwardEntity;
+import cn.bobo.domain.strategy.model.entity.StrategyEntity;
+import cn.bobo.domain.strategy.model.entity.StrategyRuleEntity;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -11,9 +13,15 @@ public interface IStrategyRepository {
 
     List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId);
 
-    void storeStrategyAwardRateSearchTable(Long strategyId, Integer rateRange, Map<Integer, Integer> strategyAwardRateSearchTable);
+    void storeStrategyAwardRateSearchTable(String key, Integer rateRange, Map<Integer, Integer> strategyAwardRateSearchTable);
 
     int getRateRange(Long strategyId);
 
-    Integer getStrategyAwardAssemble(Long strategyId, int rateKey);
+    int getRateRange(String key);
+
+    Integer getStrategyAwardAssemble(String key, int rateKey);
+
+    StrategyEntity queryStrategyEntityByStrategyId(Long strategyId);
+
+    StrategyRuleEntity queryStrategyRule(Long strategyId, String ruleModel);
 }
