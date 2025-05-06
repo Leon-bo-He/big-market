@@ -36,7 +36,9 @@ public class StrategyArmoryDispatchTest {
 
     @Test
     public void test_getRandomAwardId() {
-        log.info("Test Result: returned award_id - {} ", strategyDispatch.getRandomAwardId(100001L));
+        for (int i = 0; i < 200 ; i++) {
+            log.info("Test Result: returned award_id - {} ", strategyDispatch.getRandomAwardId(100001L));
+        }
     }
 
     @Test
