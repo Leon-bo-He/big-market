@@ -49,9 +49,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
             assembleLotteryStrategy(String.valueOf(strategyId).concat("_").concat(key), strategyAwardEntitiesClone);
         }
 
-
         return true;
-
     }
 
     private boolean assembleLotteryStrategy(String key, List<StrategyAwardEntity> strategyAwardEntities) {

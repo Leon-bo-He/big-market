@@ -349,3 +349,631 @@
 25-05-06.12:52:12.628 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
 25-05-06.12:52:12.646 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 25-05-06.12:52:12.651 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-06.13:07:17.349 [main            ] INFO  StrategyArmoryDispatchTest - Starting StrategyArmoryDispatchTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 67828 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-06.13:07:17.349 [main            ] INFO  StrategyArmoryDispatchTest - The following 1 profile is active: "dev"
+25-05-06.13:07:17.690 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-06.13:07:17.691 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-06.13:07:17.702 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+25-05-06.13:07:18.355 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-06.13:07:18.371 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-06.13:07:18.452 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:07:18.462 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:07:19.205 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-06.13:07:19.235 [main            ] INFO  StrategyArmoryDispatchTest - Started StrategyArmoryDispatchTest in 2.076 seconds (JVM running for 2.505)
+25-05-06.13:07:19.355 [redisson-netty-2-2] ERROR CommandDecoder         - Unable to decode data. channel: [id: 0x35f7dc40, L:/127.0.0.1:50414 - R:127.0.0.1/127.0.0.1:16379], reply: ReplayingDecoderByteBuf(ridx=280, widx=280), command: (GET), promise: java.util.concurrent.CompletableFuture@8a6f771[Not completed, 1 dependents], params: [big_market_strategy_award_key_100001]
+com.fasterxml.jackson.core.JsonParseException: Illegal character ((CTRL-CHAR, code 1)): only regular white space (\r, \n, \t) is allowed between tokens
+ at [Source: (io.netty.buffer.ByteBufInputStream); line: 1, column: 2]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2391)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:735)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._throwInvalidSpace(ParserMinimalBase.java:713)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._skipWSOrEnd(ReaderBasedJsonParser.java:2461)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:698)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4761)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4667)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3666)
+	at org.redisson.codec.JsonJacksonCodec$2.decode(JsonJacksonCodec.java:99)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:394)
+	at org.redisson.client.handler.CommandDecoder.decodeCommand(CommandDecoder.java:205)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:144)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:120)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+	at io.netty.handler.codec.ReplayingDecoder.callDecode(ReplayingDecoder.java:366)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:750)
+25-05-06.13:07:19.360 [redisson-netty-2-2] ERROR ErrorsLoggingHandler   - Exception occured. Channel: [id: 0x35f7dc40, L:/127.0.0.1:50414 - R:127.0.0.1/127.0.0.1:16379]
+io.netty.handler.codec.DecoderException: com.fasterxml.jackson.core.JsonParseException: Illegal character ((CTRL-CHAR, code 1)): only regular white space (\r, \n, \t) is allowed between tokens
+ at [Source: (io.netty.buffer.ByteBufInputStream); line: 1, column: 2]
+	at io.netty.handler.codec.ReplayingDecoder.callDecode(ReplayingDecoder.java:421)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: com.fasterxml.jackson.core.JsonParseException: Illegal character ((CTRL-CHAR, code 1)): only regular white space (\r, \n, \t) is allowed between tokens
+ at [Source: (io.netty.buffer.ByteBufInputStream); line: 1, column: 2]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2391)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:735)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._throwInvalidSpace(ParserMinimalBase.java:713)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._skipWSOrEnd(ReaderBasedJsonParser.java:2461)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:698)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4761)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4667)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3666)
+	at org.redisson.codec.JsonJacksonCodec$2.decode(JsonJacksonCodec.java:99)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:394)
+	at org.redisson.client.handler.CommandDecoder.decodeCommand(CommandDecoder.java:205)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:144)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:120)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+	at io.netty.handler.codec.ReplayingDecoder.callDecode(ReplayingDecoder.java:366)
+	... 17 common frames omitted
+25-05-06.13:07:19.369 [redisson-netty-2-6] ERROR CommandDecoder         - Unable to decode data. channel: [id: 0x19202986, L:/127.0.0.1:50416 - R:127.0.0.1/127.0.0.1:16379], reply: ReplayingDecoderByteBuf(ridx=280, widx=280), command: (GET), promise: java.util.concurrent.CompletableFuture@395b3123[Not completed, 1 dependents], params: [big_market_strategy_award_key_100001]
+com.fasterxml.jackson.core.JsonParseException: Illegal character ((CTRL-CHAR, code 1)): only regular white space (\r, \n, \t) is allowed between tokens
+ at [Source: (io.netty.buffer.ByteBufInputStream); line: 1, column: 2]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2391)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:735)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._throwInvalidSpace(ParserMinimalBase.java:713)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._skipWSOrEnd(ReaderBasedJsonParser.java:2461)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:698)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4761)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4667)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3666)
+	at org.redisson.codec.JsonJacksonCodec$2.decode(JsonJacksonCodec.java:99)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:394)
+	at org.redisson.client.handler.CommandDecoder.decodeCommand(CommandDecoder.java:205)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:144)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:120)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+	at io.netty.handler.codec.ReplayingDecoder.callDecode(ReplayingDecoder.java:366)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:750)
+25-05-06.13:07:19.369 [redisson-netty-2-6] ERROR ErrorsLoggingHandler   - Exception occured. Channel: [id: 0x19202986, L:/127.0.0.1:50416 - R:127.0.0.1/127.0.0.1:16379]
+io.netty.handler.codec.DecoderException: com.fasterxml.jackson.core.JsonParseException: Illegal character ((CTRL-CHAR, code 1)): only regular white space (\r, \n, \t) is allowed between tokens
+ at [Source: (io.netty.buffer.ByteBufInputStream); line: 1, column: 2]
+	at io.netty.handler.codec.ReplayingDecoder.callDecode(ReplayingDecoder.java:421)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: com.fasterxml.jackson.core.JsonParseException: Illegal character ((CTRL-CHAR, code 1)): only regular white space (\r, \n, \t) is allowed between tokens
+ at [Source: (io.netty.buffer.ByteBufInputStream); line: 1, column: 2]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2391)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:735)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._throwInvalidSpace(ParserMinimalBase.java:713)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._skipWSOrEnd(ReaderBasedJsonParser.java:2461)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:698)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4761)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4667)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3666)
+	at org.redisson.codec.JsonJacksonCodec$2.decode(JsonJacksonCodec.java:99)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:394)
+	at org.redisson.client.handler.CommandDecoder.decodeCommand(CommandDecoder.java:205)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:144)
+	at org.redisson.client.handler.CommandDecoder.decode(CommandDecoder.java:120)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+	at io.netty.handler.codec.ReplayingDecoder.callDecode(ReplayingDecoder.java:366)
+	... 17 common frames omitted
+25-05-06.13:08:47.308 [main            ] INFO  StrategyArmoryDispatchTest - Starting StrategyArmoryDispatchTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 67917 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-06.13:08:47.308 [main            ] INFO  StrategyArmoryDispatchTest - The following 1 profile is active: "dev"
+25-05-06.13:08:47.645 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-06.13:08:47.646 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-06.13:08:47.656 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+25-05-06.13:08:48.261 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-06.13:08:48.273 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-06.13:08:48.354 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:08:48.363 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:08:49.069 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-06.13:08:49.095 [main            ] INFO  StrategyArmoryDispatchTest - Started StrategyArmoryDispatchTest in 1.972 seconds (JVM running for 2.44)
+25-05-06.13:08:49.214 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-06.13:08:49.393 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-06.13:08:49.541 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: true
+25-05-06.13:08:49.545 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.546 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.547 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.548 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.549 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.550 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.551 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.552 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.553 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.554 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.555 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.556 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.557 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.558 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.559 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.560 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.561 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.562 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.563 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.564 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.565 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.566 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.567 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.568 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.568 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.569 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.570 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.571 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.572 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.573 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.573 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.574 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.575 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.576 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.576 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.577 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.578 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.579 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.580 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.581 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.582 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.583 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.584 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.585 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.586 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.587 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.588 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.589 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.590 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.591 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.591 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.592 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.593 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.594 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.595 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.595 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.596 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.597 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.597 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.598 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.599 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.599 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.600 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.600 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.601 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.602 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.602 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.603 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.604 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.605 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.605 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.606 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.607 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.607 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.608 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.609 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.609 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.610 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.611 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.612 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.612 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.613 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.614 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.614 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.615 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.616 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.616 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.617 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.618 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.618 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.619 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.620 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.620 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 108 
+25-05-06.13:08:49.621 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.622 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.622 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.623 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.624 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.624 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.625 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.626 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.626 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.627 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.628 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.628 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.629 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.629 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.630 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.631 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.631 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.632 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.633 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.633 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.634 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.634 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.635 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.636 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.636 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.637 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.638 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.639 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.639 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.640 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.640 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.641 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.642 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.642 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.643 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.644 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.644 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.645 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.645 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.646 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.646 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.647 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.648 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.648 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.649 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.649 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.650 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.650 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.651 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.651 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.652 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.653 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.653 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.654 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.654 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.655 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.655 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.656 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.656 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.657 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.657 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.658 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.658 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.659 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.659 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.660 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.660 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.661 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.661 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.662 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.662 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.663 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.663 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.664 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.664 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.665 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.665 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.666 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.666 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.667 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.667 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.668 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:08:49.668 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.669 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.670 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.670 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.671 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.671 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.672 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.672 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.673 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.673 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.674 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.674 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.675 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.675 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.676 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:08:49.676 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:08:49.677 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.677 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:08:49.678 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.678 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:08:49.679 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.679 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.680 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.680 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:08:49.681 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:08:49.721 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: true
+25-05-06.13:08:49.722 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: rule_weight at 4000 - 102 
+25-05-06.13:08:49.722 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: rule_weight at 5000 - 103 
+25-05-06.13:08:49.723 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: rule_weight at 6000 - 103 
+25-05-06.13:08:49.738 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-06.13:08:49.742 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-06.13:13:10.453 [main            ] INFO  StrategyArmoryDispatchTest - Starting StrategyArmoryDispatchTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 68087 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-06.13:13:10.453 [main            ] INFO  StrategyArmoryDispatchTest - The following 1 profile is active: "dev"
+25-05-06.13:13:10.852 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-06.13:13:10.854 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-06.13:13:10.866 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+25-05-06.13:13:11.508 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-06.13:13:11.525 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-06.13:13:11.627 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:13:11.637 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:13:12.357 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-06.13:13:12.391 [main            ] INFO  StrategyArmoryDispatchTest - Started StrategyArmoryDispatchTest in 2.136 seconds (JVM running for 3.452)
+25-05-06.13:13:12.595 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-06.13:13:12.790 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-06.13:14:28.435 [HikariPool-1 housekeeper] WARN  HikariPool             - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m15s538ms).
+25-05-06.13:14:28.490 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: true
+25-05-06.13:14:29.540 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-06.13:14:29.555 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-06.13:23:22.043 [main            ] INFO  StrategyArmoryDispatchTest - Starting StrategyArmoryDispatchTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 68507 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-06.13:23:22.044 [main            ] INFO  StrategyArmoryDispatchTest - The following 1 profile is active: "dev"
+25-05-06.13:23:22.424 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-06.13:23:22.425 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-06.13:23:22.438 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+25-05-06.13:23:23.083 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-06.13:23:23.096 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-06.13:23:23.198 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:23:23.207 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:23:23.935 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-06.13:23:23.972 [main            ] INFO  StrategyArmoryDispatchTest - Started StrategyArmoryDispatchTest in 2.118 seconds (JVM running for 2.785)
+25-05-06.13:23:41.963 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-06.13:40:34.270 [main            ] INFO  StrategyArmoryDispatchTest - Starting StrategyArmoryDispatchTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 69178 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-06.13:40:34.270 [main            ] INFO  StrategyArmoryDispatchTest - The following 1 profile is active: "dev"
+25-05-06.13:40:34.607 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-06.13:40:34.608 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-06.13:40:34.619 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+25-05-06.13:40:35.231 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-06.13:40:35.242 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-06.13:40:35.323 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:40:35.333 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-06.13:40:36.028 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-06.13:40:36.054 [main            ] INFO  StrategyArmoryDispatchTest - Started StrategyArmoryDispatchTest in 1.968 seconds (JVM running for 2.372)
+25-05-06.13:40:36.261 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-06.13:40:36.431 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-06.13:40:36.479 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: true
+25-05-06.13:40:36.482 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.483 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.484 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.484 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.485 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.487 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.488 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.488 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.489 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.491 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.492 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.493 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.494 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.495 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.497 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.498 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.500 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.501 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.502 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.503 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.505 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.506 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.508 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.509 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.510 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.511 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.513 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.514 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.515 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.516 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.517 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.518 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.518 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.519 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.520 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.521 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.522 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.523 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 108 
+25-05-06.13:40:36.524 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.526 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.527 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.528 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.529 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.530 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.531 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.532 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.533 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.534 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.535 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.536 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.537 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.538 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.539 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.540 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.541 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.542 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.543 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.544 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.545 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.545 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.546 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.547 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.548 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.549 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.549 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.550 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.551 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.552 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:40:36.553 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.554 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:40:36.554 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.555 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.555 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.556 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.557 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.558 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.558 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.559 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.560 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.560 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.561 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.562 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.562 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.563 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.564 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.564 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.565 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.565 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.566 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.567 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.567 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.568 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.569 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.569 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.570 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.570 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:40:36.571 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.572 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.572 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.573 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.574 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.574 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.575 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.575 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.576 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:40:36.577 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.577 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.578 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.579 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.579 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.580 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.580 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.581 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.582 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.582 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.583 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.583 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.584 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.585 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.585 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.586 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.586 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.587 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.588 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.588 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.589 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.590 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.591 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.591 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.592 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.592 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.593 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.593 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.594 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.594 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.595 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.595 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.596 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.597 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.597 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.598 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.598 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.599 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.600 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.600 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.601 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.601 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.602 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.603 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.604 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.604 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.605 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:40:36.606 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.606 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.607 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.607 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.608 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.609 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.609 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.610 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.610 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.611 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.612 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.612 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.613 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.613 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.614 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.614 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.615 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.616 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.616 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.617 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.617 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.618 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.618 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.619 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.620 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.621 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.621 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.622 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.623 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.623 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.624 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.625 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.625 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.626 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.626 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.627 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 106 
+25-05-06.13:40:36.628 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 104 
+25-05-06.13:40:36.628 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.629 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 103 
+25-05-06.13:40:36.629 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 107 
+25-05-06.13:40:36.630 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.630 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.631 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.632 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 102 
+25-05-06.13:40:36.632 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.632 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.633 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 105 
+25-05-06.13:40:36.633 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: returned award_id - 101 
+25-05-06.13:40:36.664 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: true
+25-05-06.13:40:36.665 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: rule_weight at 4000 - 103 
+25-05-06.13:40:36.666 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: rule_weight at 5000 - 107 
+25-05-06.13:40:36.666 [main            ] INFO  StrategyArmoryDispatchTest - Test Result: rule_weight at 6000 - 102 
+25-05-06.13:40:36.681 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-06.13:40:36.685 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
