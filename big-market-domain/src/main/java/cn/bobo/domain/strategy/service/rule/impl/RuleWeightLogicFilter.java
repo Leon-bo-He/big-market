@@ -48,6 +48,7 @@ public class RuleWeightLogicFilter implements ILogicFilter<RuleActionEntity.Raff
         // 2. transform key value and sort
         List<Long> analyticalSortedKeys = new ArrayList<>(analyticalValueGroup.keySet());
         Collections.sort(analyticalSortedKeys);
+        Collections.reverse(analyticalSortedKeys);
 
         // 3. find the largest key less than or equal to userScore
         Long nextValue = analyticalSortedKeys.stream()
