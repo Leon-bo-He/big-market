@@ -38,12 +38,16 @@ public class DefaultLogicFactory {
     @AllArgsConstructor
     public enum LogicModel {
 
-        RULE_WIGHT("rule_weight","pre_draw rule, return awards key based on rule_weight"),
-        RULE_BLACKLIST("rule_blacklist","pre_draw rule, filter blacklist users, if exist return directly"),
+        RULE_WIGHT("rule_weight","pre_draw rule, return awards key based on rule_weight", "before"),
+        RULE_BLACKLIST("rule_blacklist","pre_draw rule, filter blacklist users, if exist return directly", "before"),
+        RULE_LOCK("rule_lock","in_draw rule, unlock awards after n times draw", "in"),
+        RULE_LOCK_AWARD("rule_lock_award","after_draw rule, consolation prize", "after"),
+
         ;
 
         private final String code;
         private final String info;
+        private final String type;
 
     }
 
