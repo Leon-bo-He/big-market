@@ -5,6 +5,7 @@ import cn.bobo.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.bobo.domain.strategy.model.entity.RuleActionEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyEntity;
 import cn.bobo.domain.strategy.model.vo.RuleLogicCheckTypeVO;
+import cn.bobo.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.IRaffleStrategy;
 import cn.bobo.domain.strategy.service.armory.IStrategyDispatch;
@@ -40,7 +41,10 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
         StrategyEntity strategy = repository.queryStrategyEntityByStrategyId(strategyId);
 
         // 3. pre-draw, rule logic check and filter
-        RuleActionEntity<RuleActionEntity.RaffleBeforeEntity> ruleActionEntity = this.doCheckRaffleBeforeLogic(RaffleFactorEntity.builder().userId(userId).strategyId(strategyId).build(), strategy.ruleModels());
+        RuleActionEntity<RuleActionEntity.RaffleBeforeEntity> ruleActionEntity = this.doCheckRaffleBeforeLogic(RaffleFactorEntity.builder()
+                .userId(userId)
+                .strategyId(strategyId)
+                .build(), strategy.ruleModels());
 
         if (RuleLogicCheckTypeVO.TAKE_OVER.getCode().equals(ruleActionEntity.getCode())) {
             if (DefaultLogicFactory.LogicModel.RULE_BLACKLIST.getCode().equals(ruleActionEntity.getRuleModel())) {
@@ -62,6 +66,24 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
         // 4. default draw
         Integer awardId = strategyDispatch.getRandomAwardId(strategyId);
 
+        // 5. query award rules [ in-draw: filter out the awardId based on some lock rule; after-draw: filter out awardId after
+        // deducting the prize inventory, If the prize is blocked during the draw or out of stock, return a fallback prize.]
+        StrategyAwardRuleModelVO strategyAwardRuleModelVO = repository.queryStrategyAwardRuleModel(strategyId, awardId);
+
+        // 6. in-draw, rule logic check and filter
+        RuleActionEntity<RuleActionEntity.RaffleInEntity> ruleActionEntityIn = this.doCheckRaffleInLogic(RaffleFactorEntity.builder()
+                .userId(userId)
+                .strategyId(strategyId)
+                .awardId(awardId)
+                .build(), strategyAwardRuleModelVO.inRaffleRuleModelList());
+
+        if (RuleLogicCheckTypeVO.TAKE_OVER.getCode().equals(ruleActionEntityIn.getCode())){
+            log.info("[temp log] in raffle rule intercept, fallback award through rule_luck_award.");
+            return RaffleAwardEntity.builder()
+                    .awardDesc("In raffle rule intercept, fallback award through rule_luck_award.")
+                    .build();
+        }
+
         return RaffleAwardEntity.builder()
                 .awardId(awardId)
                 .build();
@@ -70,4 +92,5 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
     }
 
     protected abstract RuleActionEntity<RuleActionEntity.RaffleBeforeEntity> doCheckRaffleBeforeLogic(RaffleFactorEntity raffleFactorEntity, String... logics);
+    protected abstract RuleActionEntity<RuleActionEntity.RaffleInEntity> doCheckRaffleInLogic(RaffleFactorEntity raffleFactorEntity, String... logics);
 }
