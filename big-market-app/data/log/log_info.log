@@ -1057,3 +1057,40 @@ Caused by: com.fasterxml.jackson.core.JsonParseException: Illegal character ((CT
 25-05-11.16:46:31.103 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardDesc":"In raffle rule intercept, fallback award through rule_luck_award."}
 25-05-11.16:46:31.118 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 25-05-11.16:46:31.125 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-11.17:29:07.202 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_412 on Mac.lan with PID 64901 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-11.17:29:07.202 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-05-11.17:29:07.569 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-11.17:29:07.571 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-11.17:29:07.584 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+25-05-11.17:29:08.242 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-11.17:29:08.256 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-11.17:29:08.339 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-11.17:29:08.348 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-11.17:29:09.067 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-11.17:29:09.095 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 2.094 seconds (JVM running for 2.594)
+25-05-11.17:29:09.219 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-11.17:29:09.408 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-11.17:29:09.548 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.554 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.560 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.572 [main            ] INFO  RuleBlackListLogicFilter - Rule filter-Blacklist; userId:user003 strategyId:100001 ruleModel:rule_blacklist
+25-05-11.17:29:09.664 [main            ] INFO  RaffleStrategyTest     - Request Parameters: {"strategyId":100001,"userId":"user003"}
+25-05-11.17:29:09.666 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardId":100}
+25-05-11.17:29:09.717 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.719 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.722 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.723 [main            ] INFO  RuleBlackListLogicFilter - Rule filter-Blacklist; userId:bobo001 strategyId:100001 ruleModel:rule_blacklist
+25-05-11.17:29:09.724 [main            ] INFO  RuleWeightLogicFilter  - Rule filter-Rule_weight; userId:bobo001 strategyId:100001 ruleModel:rule_weight
+25-05-11.17:29:09.725 [main            ] INFO  DefaultRaffleStrategy  - pre_draw rules filter userId: bobo001 ruleModel: rule_weight code: 0001 info: Take Over; The rule result will affect the follow-up logic
+25-05-11.17:29:09.727 [main            ] INFO  RaffleStrategyTest     - Request Parameters: {"strategyId":100001,"userId":"bobo001"}
+25-05-11.17:29:09.727 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardId":102}
+25-05-11.17:29:09.766 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.769 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.771 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-11.17:29:09.774 [main            ] INFO  RuleLockLogicFilter    - Filter Rule - raffle count lock; userId:bobo001 strategyId:100003 ruleModel:rule_lock
+25-05-11.17:29:09.775 [main            ] INFO  DefaultRaffleStrategy  - In draw rule filtered. userId: bobo001 ruleModel: rule_lock code: 0001 info: Take Over; The rule result will affect the follow-up logic
+25-05-11.17:29:09.775 [main            ] INFO  AbstractRaffleStrategy - [temp log] in raffle rule intercept, fallback award through rule_luck_award.
+25-05-11.17:29:09.775 [main            ] INFO  RaffleStrategyTest     - Request Parameters: {"strategyId":100003,"userId":"bobo001"}
+25-05-11.17:29:09.775 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardDesc":"In raffle rule intercept, fallback award through rule_luck_award."}
+25-05-11.17:29:09.793 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-11.17:29:09.800 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
