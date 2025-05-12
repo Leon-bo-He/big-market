@@ -40,34 +40,6 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
         }
 
-//        StrategyEntity strategy = repository.queryStrategyEntityByStrategyId(strategyId);
-//
-//        // 3. pre-draw, rule logic check and filter
-//        RuleActionEntity<RuleActionEntity.RaffleBeforeEntity> ruleActionEntity = this.doCheckRaffleBeforeLogic(RaffleFactorEntity.builder()
-//                .userId(userId)
-//                .strategyId(strategyId)
-//                .build(), strategy.ruleModels());
-//
-//        if (RuleLogicCheckTypeVO.TAKE_OVER.getCode().equals(ruleActionEntity.getCode())) {
-//            if (DefaultLogicFactory.LogicModel.RULE_BLACKLIST.getCode().equals(ruleActionEntity.getRuleModel())) {
-//                // blacklist user
-//                return RaffleAwardEntity.builder()
-//                        .awardId(ruleActionEntity.getData().getAwardId())
-//                        .build();
-//            } else if (DefaultLogicFactory.LogicModel.RULE_WIGHT.getCode().equals(ruleActionEntity.getRuleModel())) {
-//                // using rule_weight to filter
-//                RuleActionEntity.RaffleBeforeEntity raffleBeforeEntity = ruleActionEntity.getData();
-//                String ruleWeightValueKey = raffleBeforeEntity.getRuleWeightValueKey();
-//                Integer awardId = strategyDispatch.getRandomAwardId(strategyId, ruleWeightValueKey);
-//                return RaffleAwardEntity.builder()
-//                        .awardId(awardId)
-//                        .build();
-//            }
-//        }
-//
-//        // 4. default draw
-//        Integer awardId = strategyDispatch.getRandomAwardId(strategyId);
-
         // 2. chain of responsibility pattern to filter the strategy
         ILogicChain logicChain = defaultChainFactory.openLogicChain(strategyId);
         Integer awardId = logicChain.logic(userId, strategyId);
