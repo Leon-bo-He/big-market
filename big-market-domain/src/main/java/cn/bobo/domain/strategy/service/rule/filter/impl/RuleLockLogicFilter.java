@@ -1,12 +1,12 @@
-package cn.bobo.domain.strategy.service.rule.impl;
+package cn.bobo.domain.strategy.service.rule.filter.impl;
 
 import cn.bobo.domain.strategy.model.entity.RuleActionEntity;
 import cn.bobo.domain.strategy.model.entity.RuleMatterEntity;
 import cn.bobo.domain.strategy.model.vo.RuleLogicCheckTypeVO;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.annotation.LogicStrategy;
-import cn.bobo.domain.strategy.service.rule.ILogicFilter;
-import cn.bobo.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import cn.bobo.domain.strategy.service.rule.filter.ILogicFilter;
+import cn.bobo.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

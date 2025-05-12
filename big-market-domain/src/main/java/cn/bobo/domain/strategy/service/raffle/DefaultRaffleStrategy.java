@@ -5,9 +5,11 @@ import cn.bobo.domain.strategy.model.entity.RuleActionEntity;
 import cn.bobo.domain.strategy.model.entity.RuleMatterEntity;
 import cn.bobo.domain.strategy.model.vo.RuleLogicCheckTypeVO;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
+import cn.bobo.domain.strategy.service.AbstractRaffleStrategy;
 import cn.bobo.domain.strategy.service.armory.IStrategyDispatch;
-import cn.bobo.domain.strategy.service.rule.ILogicFilter;
-import cn.bobo.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import cn.bobo.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
+import cn.bobo.domain.strategy.service.rule.filter.ILogicFilter;
+import cn.bobo.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -29,8 +31,8 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
     @Resource
     private DefaultLogicFactory logicFactory;
 
-    public DefaultRaffleStrategy(IStrategyRepository repository, IStrategyDispatch strategyDispatch) {
-        super(repository, strategyDispatch);
+    public DefaultRaffleStrategy(IStrategyRepository repository, IStrategyDispatch strategyDispatch, DefaultChainFactory defaultChainFactory) {
+        super(repository, strategyDispatch, defaultChainFactory);
     }
 
     @Override

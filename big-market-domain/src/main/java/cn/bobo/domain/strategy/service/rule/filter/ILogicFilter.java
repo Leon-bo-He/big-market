@@ -1,4 +1,4 @@
-package cn.bobo.domain.strategy.service.rule;
+package cn.bobo.domain.strategy.service.rule.filter;
 
 import cn.bobo.domain.strategy.model.entity.RuleActionEntity;
 import cn.bobo.domain.strategy.model.entity.RuleMatterEntity;

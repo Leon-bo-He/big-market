@@ -1,6 +1,6 @@
 package cn.bobo.domain.strategy.model.vo;
 
-import cn.bobo.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import cn.bobo.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import cn.bobo.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
