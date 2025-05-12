@@ -21,7 +21,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
 
     @Override
     public Integer logic(String userId, Long strategyId) {
-        log.info("Ruffle chain of responsibility - blacklist \u001B[31mSTART\u001B[0m; userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
+        log.info("Ruffle chain of responsibility - blacklist {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_START, userId, strategyId, ruleModel());
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
         String[] splitRuleValue = ruleValue.split(Constants.COLON);
         Integer awardId = Integer.parseInt(splitRuleValue[0]);
@@ -30,12 +30,12 @@ public class BlackListLogicChain extends AbstractLogicChain {
         String[] userBlackIds = splitRuleValue[1].split(Constants.COMMA);
         for (String userBlackId : userBlackIds) {
             if (userId.equals(userBlackId)) {
-                log.info("Ruffle chain of responsibility - blacklist \u001B[31mTAKE_OVER\u001B[0m; userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
+                log.info("Ruffle chain of responsibility - blacklist {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_TAKE_OVER, userId, strategyId, ruleModel());
                 return awardId;
             }
         }
         // if userId is not in the blacklist, continue to the next logic chain
-        log.info("Ruffle chain of responsibility - blacklist \u001B[31mALLOW\u001B[0m; userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
+        log.info("Ruffle chain of responsibility - blacklist {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_ALLOW, userId, strategyId, ruleModel());
         return next().logic(userId, strategyId);
     }
 

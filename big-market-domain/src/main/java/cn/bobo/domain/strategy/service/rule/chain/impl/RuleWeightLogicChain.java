@@ -28,7 +28,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
 
     @Override
     public Integer logic(String userId, Long strategyId) {
-        log.info("Ruffle chain of responsibility - rule_weight \u001B[31mSTART\u001B[0m; userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
+        log.info("Ruffle chain of responsibility - rule_weight {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_START, userId, strategyId, ruleModel());
 
         // 1. query used points by user using userId
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
@@ -48,11 +48,11 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
 
         if (null != nextValue) {
             Integer awardId = strategyDispatch.getRandomAwardId(strategyId, analyticalValueGroup.get(nextValue));
-            log.info("Ruffle chain of responsibility - rule_weight \u001B[31mTAKE_OVER\u001B[0m; userId:{} strategyId:{} awardId:{}", userId, strategyId, awardId);
+            log.info("Ruffle chain of responsibility - rule_weight {}; userId:{} strategyId:{} awardId:{}", Constants.RED_TAKE_OVER, userId, strategyId, awardId);
             return awardId;
         }
 
-        log.info("Ruffle chain of responsibility - rule_weight \u001B[31mALLOW\u001B[0m; userId:{} strategyId:{}", userId, strategyId);
+        log.info("Ruffle chain of responsibility - rule_weight {}; userId:{} strategyId:{}", Constants.RED_ALLOW, userId, strategyId);
         return next().logic(userId, strategyId);
     }
 

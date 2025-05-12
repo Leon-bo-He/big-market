@@ -8,6 +8,10 @@ public class Constants {
     public final static String UNDERLINE = "_";
     public final static String RULE_WEIGHT = "rule_weight";
 
+    public static String RED_START = "\u001B[31mSTART\u001B[0m";
+    public static String RED_TAKE_OVER = "\u001B[31mTAKE_OVER\u001B[0m";
+    public static String RED_ALLOW = "\u001B[31mALLOW\u001B[0m";
+
     public static class RedisKey {
         public static String ACTIVITY_KEY = "big_market_activity_key_";
         public static String ACTIVITY_SKU_KEY = "big_market_activity_sku_key_";
@@ -28,7 +32,6 @@ public class Constants {
         public static String ACTIVITY_ACCOUNT_UPDATE_LOCK = "activity_account_update_lock_";
         public static String USER_CREDIT_ACCOUNT_LOCK = "user_credit_account_lock_";
         public static String STRATEGY_ARMORY_ALGORITHM_KEY = "strategy_armory_algorithm_key_";
-
     }
 
 

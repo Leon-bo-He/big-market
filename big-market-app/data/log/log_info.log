@@ -277,3 +277,79 @@
 25-05-12.00:16:13.966 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardId":105}
 25-05-12.00:16:13.984 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 25-05-12.00:16:13.991 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-12.00:27:37.322 [main            ] INFO  LogicChainTest         - Starting LogicChainTest using Java 1.8.0_412 on Mac.lan with PID 89761 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-12.00:27:37.322 [main            ] INFO  LogicChainTest         - The following 1 profile is active: "dev"
+25-05-12.00:27:37.703 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-12.00:27:37.704 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-12.00:27:37.718 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-12.00:27:38.359 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-12.00:27:38.373 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-12.00:27:38.457 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-12.00:27:38.467 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-12.00:27:39.221 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-12.00:27:39.250 [main            ] INFO  LogicChainTest         - Started LogicChainTest in 2.129 seconds (JVM running for 2.636)
+25-05-12.00:27:39.464 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-12.00:27:39.657 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-12.00:27:39.703 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.705 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.708 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.709 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mSTART[0m; userId:bobo001 strategyId:100001 ruleModel:rule_weight
+25-05-12.00:27:39.723 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mALLOW[0m; userId:bobo001 strategyId:100001
+25-05-12.00:27:39.723 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mSTART[0m; userId:bobo001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:27:39.724 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mALLOW[0m; userId:bobo001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:27:39.726 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo001 strategyId:100001 awardId:102
+25-05-12.00:27:39.726 [main            ] INFO  LogicChainTest         - Test Result: 102
+25-05-12.00:27:39.767 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.770 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.772 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.772 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mSTART[0m; userId:user001 strategyId:100001 ruleModel:rule_weight
+25-05-12.00:27:39.773 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mALLOW[0m; userId:user001 strategyId:100001
+25-05-12.00:27:39.774 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mSTART[0m; userId:user001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:27:39.774 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mTAKE_OVER[0m; userId:user001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:27:39.774 [main            ] INFO  LogicChainTest         - Test Result: 100
+25-05-12.00:27:39.806 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.808 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.810 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:27:39.811 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mSTART[0m; userId:bobo001 strategyId:100001 ruleModel:rule_weight
+25-05-12.00:27:39.814 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mTAKE_OVER[0m; userId:bobo001 strategyId:100001 awardId:102
+25-05-12.00:27:39.814 [main            ] INFO  LogicChainTest         - Test Result: 102
+25-05-12.00:27:39.829 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-12.00:27:39.833 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-12.00:31:56.700 [main            ] INFO  LogicChainTest         - Starting LogicChainTest using Java 1.8.0_412 on Mac.lan with PID 90031 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-12.00:31:56.701 [main            ] INFO  LogicChainTest         - The following 1 profile is active: "dev"
+25-05-12.00:31:57.039 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-12.00:31:57.040 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-12.00:31:57.053 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-12.00:31:57.659 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-12.00:31:57.673 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-12.00:31:57.756 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-12.00:31:57.765 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-12.00:31:58.507 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-12.00:31:58.534 [main            ] INFO  LogicChainTest         - Started LogicChainTest in 2.028 seconds (JVM running for 2.421)
+25-05-12.00:31:58.724 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-12.00:31:58.889 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-12.00:31:58.934 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:58.937 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:58.939 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:58.941 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mSTART[0m; userId:bobo001 strategyId:100001 ruleModel:rule_weight
+25-05-12.00:31:58.952 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mALLOW[0m; userId:bobo001 strategyId:100001
+25-05-12.00:31:58.952 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mSTART[0m; userId:bobo001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:31:58.953 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mALLOW[0m; userId:bobo001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:31:58.955 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo001 strategyId:100001 awardId:101
+25-05-12.00:31:58.955 [main            ] INFO  LogicChainTest         - Test Result: 101
+25-05-12.00:31:59.000 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:59.003 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:59.005 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:59.005 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mSTART[0m; userId:user001 strategyId:100001 ruleModel:rule_weight
+25-05-12.00:31:59.006 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mALLOW[0m; userId:user001 strategyId:100001
+25-05-12.00:31:59.006 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mSTART[0m; userId:user001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:31:59.007 [main            ] INFO  BlackListLogicChain    - Ruffle chain of responsibility - blacklist [31mTAKE_OVER[0m; userId:user001 strategyId:100001 ruleModel:rule_blacklist
+25-05-12.00:31:59.007 [main            ] INFO  LogicChainTest         - Test Result: 100
+25-05-12.00:31:59.046 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:59.048 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:59.051 [main            ] INFO  LogicChainTest         - Test Result: true
+25-05-12.00:31:59.052 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mSTART[0m; userId:bobo001 strategyId:100001 ruleModel:rule_weight
+25-05-12.00:31:59.056 [main            ] INFO  RuleWeightLogicChain   - Ruffle chain of responsibility - rule_weight [31mTAKE_OVER[0m; userId:bobo001 strategyId:100001 awardId:105
+25-05-12.00:31:59.056 [main            ] INFO  LogicChainTest         - Test Result: 105
+25-05-12.00:31:59.073 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-12.00:31:59.082 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
