@@ -7,9 +7,10 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-05-11 20:45:20 +0000
+# Generation Time: 2025-05-13 15:32:24 +0000
 # ************************************************************
 
+USE `big_market`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,7 +20,6 @@ SET NAMES utf8mb4;
 /*!40101 SET @OLD_SQL_MODE='NO_AUTO_VALUE_ON_ZERO', SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-USE `big_market`;
 
 # Dump of table award
 # ------------------------------------------------------------
@@ -54,6 +54,92 @@ VALUES
 	(10,100,'user_credit_blacklist','1','award blacklist user 1 point','2025-05-06 14:22:47','2025-05-06 14:22:47');
 
 /*!40000 ALTER TABLE `award` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table rule_tree
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rule_tree`;
+
+CREATE TABLE `rule_tree` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `tree_id` varchar(32) NOT NULL,
+  `tree_name` varchar(64) NOT NULL,
+  `tree_desc` varchar(128) DEFAULT NULL,
+  `tree_node_rule_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'rule_tree start node key value',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `rule_tree` WRITE;
+/*!40000 ALTER TABLE `rule_tree` DISABLE KEYS */;
+
+INSERT INTO `rule_tree` (`id`, `tree_id`, `tree_name`, `tree_desc`, `tree_node_rule_key`, `create_time`, `update_time`)
+VALUES
+	(1,'tree_lock','rule_tree','rule_tree','rule_lock','2025-05-13 08:20:48','2025-05-13 08:20:48');
+
+/*!40000 ALTER TABLE `rule_tree` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table rule_tree_node
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rule_tree_node`;
+
+CREATE TABLE `rule_tree_node` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tree_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rule_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rule_desc` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rule_value` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `rule_tree_node` WRITE;
+/*!40000 ALTER TABLE `rule_tree_node` DISABLE KEYS */;
+
+INSERT INTO `rule_tree_node` (`id`, `tree_id`, `rule_key`, `rule_desc`, `rule_value`, `create_time`, `update_time`)
+VALUES
+	(1,'tree_lock','rule_lock','unlock certain award as the user completes N times of lottery','1','2025-05-13 08:24:59','2025-05-13 08:24:59'),
+	(2,'tree_lock','rule_luck_award','random points - fallback prize','1,100','2025-05-13 08:25:05','2025-05-13 08:25:05'),
+	(3,'tree_lock','rule_stock','stock deducation rule',NULL,'2025-05-13 08:25:07','2025-05-13 08:25:07');
+
+/*!40000 ALTER TABLE `rule_tree_node` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table rule_tree_node_line
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rule_tree_node_line`;
+
+CREATE TABLE `rule_tree_node_line` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tree_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rule_node_from` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rule_node_to` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rule_limit_type` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '1:=;2:>;3:<;4:>=;5<=;6:enum;',
+  `rule_limit_value` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `rule_tree_node_line` WRITE;
+/*!40000 ALTER TABLE `rule_tree_node_line` DISABLE KEYS */;
+
+INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node_to`, `rule_limit_type`, `rule_limit_value`, `create_time`, `update_time`)
+VALUES
+	(1,'tree_lock','rule_lock','rule_stock','EQUAL','ALLOW','2025-05-13 08:28:07','2025-05-13 08:28:07'),
+	(2,'tree_lock','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-13 08:28:11','2025-05-13 08:28:11'),
+	(3,'tree_lock','rule_stock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-13 08:28:14','2025-05-13 08:28:14');
+
+/*!40000 ALTER TABLE `rule_tree_node_line` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
