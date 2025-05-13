@@ -504,3 +504,96 @@
 25-05-13.11:44:54.919 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [decision tree rule；add dall-e-3 draw model] treeId:100000001 node:rule_stock code:0001
 25-05-13.11:44:54.920 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [decision tree rule；add dall-e-3 draw model] treeId:100000001 node:rule_luck_award code:0001
 25-05-13.11:44:54.997 [main            ] INFO  LogicTreeTest          - Test Result: {"awardId":101,"awardRuleValue":"1,100"}
+25-05-13.12:36:39.567 [main            ] INFO  StrategyRepositoryTest - Starting StrategyRepositoryTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 31999 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.12:36:39.568 [main            ] INFO  StrategyRepositoryTest - The following 1 profile is active: "dev"
+25-05-13.12:36:39.988 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.12:36:39.990 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.12:36:40.003 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-13.12:36:40.684 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.12:36:40.703 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.12:36:40.795 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:36:40.803 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:36:41.558 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.12:36:41.593 [main            ] INFO  StrategyRepositoryTest - Started StrategyRepositoryTest in 2.234 seconds (JVM running for 3.424)
+25-05-13.12:36:41.813 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.12:36:42.015 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.12:36:42.096 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.12:36:42.098 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.12:37:18.485 [main            ] INFO  StrategyRepositoryTest - Starting StrategyRepositoryTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 32027 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.12:37:18.485 [main            ] INFO  StrategyRepositoryTest - The following 1 profile is active: "dev"
+25-05-13.12:37:18.874 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.12:37:18.876 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.12:37:18.891 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+25-05-13.12:37:19.569 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.12:37:19.583 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.12:37:19.683 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:37:19.692 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:37:20.431 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.12:37:20.462 [main            ] INFO  StrategyRepositoryTest - Started StrategyRepositoryTest in 2.185 seconds (JVM running for 2.83)
+25-05-13.12:37:20.659 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.12:37:20.832 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.12:37:20.899 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.12:37:20.901 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.12:38:09.116 [main            ] INFO  StrategyRepositoryTest - Starting StrategyRepositoryTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 32095 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.12:38:09.116 [main            ] INFO  StrategyRepositoryTest - The following 1 profile is active: "dev"
+25-05-13.12:38:09.539 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.12:38:09.540 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.12:38:09.553 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+25-05-13.12:38:10.227 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.12:38:10.241 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.12:38:10.338 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:38:10.346 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:38:11.094 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.12:38:11.125 [main            ] INFO  StrategyRepositoryTest - Started StrategyRepositoryTest in 2.209 seconds (JVM running for 2.927)
+25-05-13.12:38:11.347 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.12:38:11.537 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.12:38:11.612 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.12:38:11.615 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.12:38:57.208 [main            ] INFO  StrategyRepositoryTest - Starting StrategyRepositoryTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 32138 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.12:38:57.208 [main            ] INFO  StrategyRepositoryTest - The following 1 profile is active: "dev"
+25-05-13.12:38:57.622 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.12:38:57.623 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.12:38:57.638 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-13.12:38:58.353 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.12:38:58.369 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.12:38:58.465 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:38:58.474 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:38:59.241 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.12:38:59.273 [main            ] INFO  StrategyRepositoryTest - Started StrategyRepositoryTest in 2.262 seconds (JVM running for 2.98)
+25-05-13.12:38:59.494 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.12:38:59.698 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.12:40:18.666 [HikariPool-1 housekeeper] WARN  HikariPool             - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m48s968ms).
+25-05-13.12:40:18.723 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.12:40:18.735 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.12:41:16.969 [main            ] INFO  StrategyRepositoryTest - Starting StrategyRepositoryTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 32253 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.12:41:16.970 [main            ] INFO  StrategyRepositoryTest - The following 1 profile is active: "dev"
+25-05-13.12:41:17.385 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.12:41:17.386 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.12:41:17.400 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-13.12:41:18.119 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.12:41:18.134 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.12:41:18.231 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:41:18.240 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:41:19.010 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.12:41:19.041 [main            ] INFO  StrategyRepositoryTest - Started StrategyRepositoryTest in 2.272 seconds (JVM running for 2.993)
+25-05-13.12:41:19.258 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.12:41:19.451 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.12:42:06.889 [HikariPool-1 housekeeper] WARN  HikariPool             - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s354ms).
+25-05-13.12:42:06.955 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.12:42:06.963 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.12:52:46.907 [main            ] INFO  StrategyRepositoryTest - Starting StrategyRepositoryTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 32732 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.12:52:46.907 [main            ] INFO  StrategyRepositoryTest - The following 1 profile is active: "dev"
+25-05-13.12:52:47.265 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.12:52:47.266 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.12:52:47.280 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-13.12:52:47.933 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.12:52:47.947 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.12:52:48.030 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:52:48.039 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.12:52:48.756 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.12:52:48.782 [main            ] INFO  StrategyRepositoryTest - Started StrategyRepositoryTest in 2.072 seconds (JVM running for 2.497)
+25-05-13.12:52:48.901 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.12:52:49.077 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.12:52:49.207 [main            ] INFO  StrategyRepositoryTest - Test result: {"treeDesc":"rule_tree","treeId":"tree_lock","treeName":"rule_tree","treeNodeMap":{"rule_lock":{"ruleDesc":"unlock certain award as the user completes N times of lottery","ruleKey":"rule_lock","ruleValue":"1","treeId":"tree_lock","treeNodeLineVOList":[{"ruleLimitType":"EQUAL","ruleLimitValue":"ALLOW","ruleNodeFrom":"rule_lock","ruleNodeTo":"rule_stock","treeId":"tree_lock"},{"ruleLimitType":"EQUAL","ruleLimitValue":"TAKE_OVER","ruleNodeFrom":"rule_lock","ruleNodeTo":"rule_luck_award","treeId":"tree_lock"}]},"rule_stock":{"ruleDesc":"stock deducation rule","ruleKey":"rule_stock","treeId":"tree_lock","treeNodeLineVOList":[{"ruleLimitType":"EQUAL","ruleLimitValue":"TAKE_OVER","ruleNodeFrom":"rule_stock","ruleNodeTo":"rule_luck_award","treeId":"tree_lock"}]},"rule_luck_award":{"ruleDesc":"random points - fallback prize","ruleKey":"rule_luck_award","ruleValue":"1,100","treeId":"tree_lock"}},"treeRootRuleNode":"rule_lock"}
+25-05-13.12:52:49.231 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.12:52:49.235 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

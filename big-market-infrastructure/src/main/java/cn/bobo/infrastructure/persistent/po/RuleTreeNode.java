@@ -12,10 +12,10 @@ import java.util.Date;
 public class RuleTreeNode {
 
     private Long id;
-    private String tree_id;
-    private String rule_key;
-    private String rule_desc;
-    private String rule_value;
-    private Date create_time;
-    private Date update_time;
+    private String treeId;
+    private String ruleKey;
+    private String ruleDesc;
+    private String ruleValue;
+    private Date createTime;
+    private Date updateTime;
 }

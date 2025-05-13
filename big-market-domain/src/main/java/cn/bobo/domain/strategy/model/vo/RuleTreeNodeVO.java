@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RuleTreeNodeVO {
 
-    private int treeId;
+    private String treeId;
     private String ruleKey;
     private String ruleDesc;
     private String ruleValue;

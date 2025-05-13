@@ -18,7 +18,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class RuleTreeVO {
 
-    private int treeId;
+    private String treeId;
     private String treeName;
     private String treeDesc;
     private String treeRootRuleNode;

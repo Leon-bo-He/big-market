@@ -1,6 +1,8 @@
 package cn.bobo.infrastructure.persistent.po;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -12,11 +14,11 @@ import java.util.Date;
 public class RuleTreeNodeLine {
 
     private Long id;
-    private String tree_id;
-    private String rule_node_from;
-    private String rule_node_to;
-    private String rule_limit_type;
-    private String rule_limit_value;
-    private Date create_time;
-    private Date update_time;
+    private String treeId;
+    private String ruleNodeFrom;
+    private String ruleNodeTo;
+    private String ruleLimitType;
+    private String ruleLimitValue;
+    private Date createTime;
+    private Date updateTime;
 }
