@@ -18,8 +18,8 @@ import java.util.List;
 public class RuleTreeNodeVO {
 
     private int treeId;
-    private String treeKey;
-    private String treeDesc;
+    private String ruleKey;
+    private String ruleDesc;
     private String ruleValue;
     private List<RuleTreeNodeLineVO> treeNodeLineVOList;
 }
