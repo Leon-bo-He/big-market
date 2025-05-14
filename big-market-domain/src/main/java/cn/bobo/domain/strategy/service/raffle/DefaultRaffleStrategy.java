@@ -1,6 +1,7 @@
 package cn.bobo.domain.strategy.service.raffle;
 
 import cn.bobo.domain.strategy.model.vo.RuleTreeVO;
+import cn.bobo.domain.strategy.model.vo.StrategyAwardInventoryKeyVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.AbstractRaffleStrategy;
@@ -47,5 +48,15 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
         IDecisionTreeEngine treeEngine = defaultTreeFactory.openLogicTree(ruleTreeVO);
         return treeEngine.process(userId, strategyId, awardId);
 
+    }
+
+    @Override
+    public StrategyAwardInventoryKeyVO takeQueueValue() throws InterruptedException {
+         return repository.takeQueueValue();
+    }
+
+    @Override
+    public void updateStrategyAwardInventory(Long strategyId, Integer awardId) {
+        repository.updateStrategyAwardInventory(strategyId, awardId);
     }
 }

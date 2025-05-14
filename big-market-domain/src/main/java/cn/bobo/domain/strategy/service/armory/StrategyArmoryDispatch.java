@@ -4,6 +4,7 @@ import cn.bobo.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyRuleEntity;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
+import cn.bobo.types.common.Constants;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +28,19 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
 
         //  1. Query and assemble the strategy award list from the database
         List<StrategyAwardEntity> strategyAwardEntities = repository.queryStrategyAwardList(strategyId);
+
+        // 2. Cache the strategy award inventory in Redis - used for decr operation
+        for (StrategyAwardEntity strategyAward : strategyAwardEntities) {
+            Integer awardId = strategyAward.getAwardId();
+            Integer awardCount = strategyAward.getAwardCount();
+            cacheStrategyAwardInventory(strategyId, awardId, awardCount);
+        }
+
+
+        // 3.1 default strategy assembly
         assembleLotteryStrategy(String.valueOf(strategyId), strategyAwardEntities);
 
-        // 2. weight strategy assembly - different prizes based on rule_weight from the database
+        // 3.2. weight strategy assembly - different prizes based on rule_weight from the database
         StrategyEntity strategyEntity = repository.queryStrategyEntityByStrategyId(strategyId);
         String ruleWeight = strategyEntity.getRuleWeight();
         if (ruleWeight == null) return true;
@@ -50,6 +61,11 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         }
 
         return true;
+    }
+
+    private void cacheStrategyAwardInventory(Long strategyId, Integer awardId, Integer awardCount) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
+        repository.cacheStrategyAwardInventory(cacheKey, awardCount);
     }
 
     private boolean assembleLotteryStrategy(String key, List<StrategyAwardEntity> strategyAwardEntities) {
@@ -110,5 +126,11 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         String key = String.valueOf(strategyId).concat("_").concat(ruleWeightValue);
         int rateRange = repository.getRateRange(key);
         return repository.getStrategyAwardAssemble(key, new SecureRandom().nextInt(rateRange));
+    }
+
+    @Override
+    public Boolean subtractAwardInventory(Long strategyId, Integer awardId) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
+        return repository.subtractAwardInventory(cacheKey);
     }
 }

@@ -4,6 +4,7 @@ import cn.bobo.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyRuleEntity;
 import cn.bobo.domain.strategy.model.vo.RuleTreeVO;
+import cn.bobo.domain.strategy.model.vo.StrategyAwardInventoryKeyVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 
 import java.math.BigDecimal;
@@ -34,4 +35,14 @@ public interface IStrategyRepository {
     StrategyAwardRuleModelVO queryStrategyAwardRuleModelVO(Long strategyId, Integer awardId);
 
     RuleTreeVO queryRuleTreeVOByTreeId(String treeId);
+
+    void cacheStrategyAwardInventory(String cacheKey, Integer awardCount);
+
+    Boolean subtractAwardInventory(String cacheKey);
+
+    void awardStockConsumeSendQueue(StrategyAwardInventoryKeyVO strategyAwardInventoryKeyVO);
+
+    StrategyAwardInventoryKeyVO takeQueueValue();
+
+    void updateStrategyAwardInventory(Long strategyId, Integer awardId);
 }
