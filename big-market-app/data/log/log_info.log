@@ -597,3 +597,75 @@
 25-05-13.12:52:49.207 [main            ] INFO  StrategyRepositoryTest - Test result: {"treeDesc":"rule_tree","treeId":"tree_lock","treeName":"rule_tree","treeNodeMap":{"rule_lock":{"ruleDesc":"unlock certain award as the user completes N times of lottery","ruleKey":"rule_lock","ruleValue":"1","treeId":"tree_lock","treeNodeLineVOList":[{"ruleLimitType":"EQUAL","ruleLimitValue":"ALLOW","ruleNodeFrom":"rule_lock","ruleNodeTo":"rule_stock","treeId":"tree_lock"},{"ruleLimitType":"EQUAL","ruleLimitValue":"TAKE_OVER","ruleNodeFrom":"rule_lock","ruleNodeTo":"rule_luck_award","treeId":"tree_lock"}]},"rule_stock":{"ruleDesc":"stock deducation rule","ruleKey":"rule_stock","treeId":"tree_lock","treeNodeLineVOList":[{"ruleLimitType":"EQUAL","ruleLimitValue":"TAKE_OVER","ruleNodeFrom":"rule_stock","ruleNodeTo":"rule_luck_award","treeId":"tree_lock"}]},"rule_luck_award":{"ruleDesc":"random points - fallback prize","ruleKey":"rule_luck_award","ruleValue":"1,100","treeId":"tree_lock"}},"treeRootRuleNode":"rule_lock"}
 25-05-13.12:52:49.231 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 25-05-13.12:52:49.235 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.21:52:57.797 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_412 on Mac.lan with PID 44822 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.21:52:57.797 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-05-13.21:52:58.176 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.21:52:58.178 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.21:52:58.194 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+25-05-13.21:52:58.839 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.21:52:58.854 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.21:52:58.954 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.21:52:58.962 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.21:52:59.740 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.21:52:59.772 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 2.168 seconds (JVM running for 2.591)
+25-05-13.21:52:59.895 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.21:53:00.072 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.21:53:00.128 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-13.21:53:00.141 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo001 strategyId:100004 awardId:101
+25-05-13.21:53:00.141 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - chain raffle result: bobo001 100004 101 rule_default
+25-05-13.21:53:00.150 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_lock code:0000
+25-05-13.21:53:00.150 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_stock code:0001
+25-05-13.21:53:00.150 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_luck_award code:0001
+25-05-13.21:53:00.150 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - tree raffle result: bobo001 100004 101 1,100
+25-05-13.21:53:00.228 [main            ] INFO  RaffleStrategyTest     - Request Parameters: {"strategyId":100004,"userId":"bobo001"}
+25-05-13.21:53:00.230 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardConfig":"1,100","awardId":101}
+25-05-13.21:53:00.253 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.21:53:00.258 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.21:54:15.472 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_412 on Mac.lan with PID 44898 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.21:54:15.473 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-05-13.21:54:15.836 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.21:54:15.837 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.21:54:15.854 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+25-05-13.21:54:16.476 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.21:54:16.490 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.21:54:16.571 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.21:54:16.580 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.21:54:17.312 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.21:54:17.340 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 2.06 seconds (JVM running for 2.449)
+25-05-13.21:54:17.470 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-13.21:54:17.474 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo001 strategyId:100004 awardId:101
+25-05-13.21:54:17.475 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - chain raffle result: bobo001 100004 101 rule_default
+25-05-13.21:54:17.483 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.21:54:17.646 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.21:54:17.677 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_lock code:0000
+25-05-13.21:54:17.677 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_stock code:0001
+25-05-13.21:54:17.677 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_luck_award code:0001
+25-05-13.21:54:17.677 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - tree raffle result: bobo001 100004 101 1,100
+25-05-13.21:54:17.748 [main            ] INFO  RaffleStrategyTest     - Request Parameters: {"strategyId":100004,"userId":"bobo001"}
+25-05-13.21:54:17.750 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardConfig":"1,100","awardId":101}
+25-05-13.21:54:17.777 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.21:54:17.788 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-05-13.21:59:28.830 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_412 on Mac.lan with PID 45293 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-13.21:59:28.830 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-05-13.21:59:29.227 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-13.21:59:29.228 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-13.21:59:29.242 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+25-05-13.21:59:29.907 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-13.21:59:29.921 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-13.21:59:30.006 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.21:59:30.016 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-13.21:59:30.740 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-13.21:59:30.771 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 2.136 seconds (JVM running for 2.549)
+25-05-13.21:59:30.909 [main            ] INFO  RaffleStrategyTest     - Test Result: true
+25-05-13.21:59:30.912 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo001 strategyId:100004 awardId:101
+25-05-13.21:59:30.913 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - chain raffle result: bobo001 100004 101 rule_default
+25-05-13.21:59:30.921 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-05-13.21:59:31.115 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-05-13.21:59:31.153 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_lock code:0000
+25-05-13.21:59:31.153 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_stock code:0001
+25-05-13.21:59:31.153 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock node:rule_luck_award code:0001
+25-05-13.21:59:31.153 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - tree raffle result: bobo001 100004 101 1,100
+25-05-13.21:59:31.223 [main            ] INFO  RaffleStrategyTest     - Request Parameters: {"strategyId":100004,"userId":"bobo001"}
+25-05-13.21:59:31.225 [main            ] INFO  RaffleStrategyTest     - Test Result: {"awardConfig":"1,100","awardId":101}
+25-05-13.21:59:31.245 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-05-13.21:59:31.257 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

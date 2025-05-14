@@ -2,6 +2,7 @@ package cn.bobo.domain.strategy.service.rule.chain.impl;
 
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.rule.chain.AbstractLogicChain;
+import cn.bobo.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import cn.bobo.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
     private IStrategyRepository repository;
 
     @Override
-    public Integer logic(String userId, Long strategyId) {
+    public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
         log.info("Ruffle chain of responsibility - blacklist {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_START, userId, strategyId, ruleModel());
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
         String[] splitRuleValue = ruleValue.split(Constants.COLON);
@@ -31,7 +32,10 @@ public class BlackListLogicChain extends AbstractLogicChain {
         for (String userBlackId : userBlackIds) {
             if (userId.equals(userBlackId)) {
                 log.info("Ruffle chain of responsibility - blacklist {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_TAKE_OVER, userId, strategyId, ruleModel());
-                return awardId;
+                return DefaultChainFactory.StrategyAwardVO.builder()
+                        .awardId(awardId)
+                        .logicModel(ruleModel())
+                        .build();
             }
         }
         // if userId is not in the blacklist, continue to the next logic chain
@@ -41,6 +45,6 @@ public class BlackListLogicChain extends AbstractLogicChain {
 
     @Override
     protected String ruleModel() {
-        return "rule_blacklist";
+        return DefaultChainFactory.LogicModel.RULE_BLACKLIST.getCode();
     }
 }

@@ -3,6 +3,7 @@ package cn.bobo.domain.strategy.service.rule.chain.factory;
 import cn.bobo.domain.strategy.model.entity.StrategyEntity;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.rule.chain.ILogicChain;
+import lombok.*;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -41,5 +42,26 @@ public class DefaultChainFactory {
         return logicChain;
 
 
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class StrategyAwardVO {
+        private Integer awardId;
+        private String logicModel;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public enum LogicModel {
+        RULE_DEFAULT("rule_default", "default"),
+        RULE_BLACKLIST("rule_blacklist", "blacklist"),
+        RULE_WEIGHT("rule_weight", "weight"),
+        ;
+
+        private final String code;
+        private final String info;
     }
 }

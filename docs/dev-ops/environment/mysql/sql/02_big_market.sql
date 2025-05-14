@@ -7,10 +7,10 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-05-13 16:19:54 +0000
+# Generation Time: 2025-05-14 01:48:11 +0000
 # ************************************************************
 
-USE `big_market`;
+USE 'big_market';
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -165,7 +165,8 @@ INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `cr
 VALUES
 	(1,100001,'Strategy A','rule_weight,rule_blacklist','2025-05-02 16:19:25','2025-05-05 08:33:54'),
 	(2,100002,'Strategy B',NULL,'2025-05-02 16:19:25','2025-05-11 12:59:06'),
-	(3,100003,'Strategy C',NULL,'2025-05-02 16:19:25','2025-05-11 12:59:08');
+	(3,100003,'Strategy C',NULL,'2025-05-02 16:19:25','2025-05-11 12:59:08'),
+	(4,100004,'Rule Tree Strategy',NULL,'2025-05-13 18:46:09','2025-05-13 18:46:21');
 
 /*!40000 ALTER TABLE `strategy` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -211,7 +212,9 @@ VALUES
 	(12,100002,106,'add...',NULL,1,1,0.0100,'rule_random,rule_luck_award',3,'2025-05-05 08:37:01','2025-05-05 08:37:01'),
 	(14,100003,107,'Unlock dall-e-3 Model','Unlock after 3 times play',200,200,0.0400,'rule_luck_award,rule_lock',7,'2025-05-11 13:34:56','2025-05-11 13:34:56'),
 	(15,100003,108,'100 Times Voucher','Unlock after 5 times play',199,199,0.0099,'rule_luck_award,rule_lock',8,'2025-05-11 13:34:59','2025-05-11 13:34:59'),
-	(16,100003,109,'Unlock All Models','Unlock after 8 times play',1,1,0.0001,'rule_luck_award,rule_lock',9,'2025-05-11 13:35:04','2025-05-11 13:35:04');
+	(16,100003,109,'Unlock All Models','Unlock after 8 times play',1,1,0.0001,'rule_luck_award,rule_lock',9,'2025-05-11 13:35:04','2025-05-11 13:35:04'),
+	(17,100004,101,'Random Points',NULL,3,3,0.0300,'tree_lock',1,'2025-05-13 18:47:12','2025-05-13 18:47:12'),
+	(18,100005,102,'Random Points',NULL,97,97,0.9700,'tree_lock',1,'2025-05-13 18:47:12','2025-05-13 18:47:12');
 
 /*!40000 ALTER TABLE `strategy_award` ENABLE KEYS */;
 UNLOCK TABLES;

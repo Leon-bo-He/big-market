@@ -3,6 +3,7 @@ package cn.bobo.domain.strategy.service.rule.chain.impl;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.armory.IStrategyDispatch;
 import cn.bobo.domain.strategy.service.rule.chain.AbstractLogicChain;
+import cn.bobo.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import cn.bobo.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
 
 
     @Override
-    public Integer logic(String userId, Long strategyId) {
+    public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
         log.info("Ruffle chain of responsibility - rule_weight {}; userId:{} strategyId:{} ruleModel:{}", Constants.RED_START, userId, strategyId, ruleModel());
 
         // 1. query used points by user using userId
@@ -49,7 +50,10 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         if (null != nextValue) {
             Integer awardId = strategyDispatch.getRandomAwardId(strategyId, analyticalValueGroup.get(nextValue));
             log.info("Ruffle chain of responsibility - rule_weight {}; userId:{} strategyId:{} awardId:{}", Constants.RED_TAKE_OVER, userId, strategyId, awardId);
-            return awardId;
+            return DefaultChainFactory.StrategyAwardVO.builder()
+                    .awardId(awardId)
+                    .logicModel(ruleModel())
+                    .build();
         }
 
         log.info("Ruffle chain of responsibility - rule_weight {}; userId:{} strategyId:{}", Constants.RED_ALLOW, userId, strategyId);
@@ -58,7 +62,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
 
     @Override
     protected String ruleModel() {
-        return "rule_weight";
+        return DefaultChainFactory.LogicModel.RULE_WEIGHT.getCode();
     }
 
     private Map<Long, String> getAnalyticalValue(String ruleValue) {
