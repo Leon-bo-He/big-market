@@ -1,2 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `big_market` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `big_market`; 
+CREATE DATABASE IF NOT EXISTS `big_market_01` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `big_market_02` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `big_market`;
+USE `big_market_01`;
+USE `big_market_02`;

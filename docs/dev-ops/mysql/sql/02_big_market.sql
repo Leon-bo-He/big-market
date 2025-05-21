@@ -5,12 +5,11 @@
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
-# Host: localhost (MySQL 9.3.0)
+# Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-05-21 00:49:21 +0000
+# Generation Time: 2025-05-21 16:55:41 +0000
 # ************************************************************
 
-USE `big_market`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +19,7 @@ SET NAMES utf8mb4;
 /*!40101 SET @OLD_SQL_MODE='NO_AUTO_VALUE_ON_ZERO', SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+USE `big_market`;
 
 # Dump of table award
 # ------------------------------------------------------------
@@ -55,6 +55,52 @@ VALUES
 
 /*!40000 ALTER TABLE `award` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+# Dump of table raffle_activity
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `raffle_activity`;
+
+CREATE TABLE `raffle_activity` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` bigint NOT NULL,
+  `activity_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `activity_desc` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `begin_date_time` datetime NOT NULL COMMENT 'activity start data time',
+  `end_date_time` datetime NOT NULL COMMENT 'activity end data time',
+  `stock_count` int NOT NULL COMMENT 'activity participation inventory',
+  `stock_count_surplus` int NOT NULL,
+  `activity_count_id` bigint NOT NULL COMMENT 'activity participation inventory id - sync to other table, for convenience use',
+  `strategy_id` bigint NOT NULL,
+  `state` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'activity state',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_activity_id` (`activity_id`),
+  KEY `idx_begin_date_time` (`begin_date_time`),
+  KEY `idx_end_date_time` (`end_date_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+# Dump of table raffle_activity_count
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `raffle_activity_count`;
+
+CREATE TABLE `raffle_activity_count` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `activity_count_id` bigint NOT NULL,
+  `total_count` int NOT NULL COMMENT 'total activity limit',
+  `day_count` int NOT NULL COMMENT 'daily activity limit',
+  `month_count` int NOT NULL COMMENT 'monthly activity limit',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_activity_count_id` (`activity_count_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
 # Dump of table rule_tree
