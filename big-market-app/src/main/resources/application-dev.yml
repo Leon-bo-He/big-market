@@ -24,24 +24,217 @@ thread:
         policy: CallerRunsPolicy
 
 # 数据库配置；启动时配置数据库资源信息
-spring:
-  datasource:
-    username: root
-    password: password
-    url: jdbc:mysql://127.0.0.1:13306/big_market?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  hikari:
-    pool-name: Retail_HikariCP
-    minimum-idle: 15 #最小空闲连接数量
-    idle-timeout: 180000 #空闲连接存活最大时间，默认600000（10分钟）
-    maximum-pool-size: 25 #连接池最大连接数，默认是10
-    auto-commit: true  #此属性控制从池返回的连接的默认自动提交行为,默认值：true
-    max-lifetime: 1800000 #此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
-    connection-timeout: 30000 #数据库连接超时时间,默认30秒，即30000
-    connection-test-query: SELECT 1
-  type: com.zaxxer.hikari.HikariDataSource
+#spring:
+#  datasource:
+#    username: root
+#    password: password
+#    url: jdbc:mysql://127.0.0.1:13306/big_market?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  hikari:
+#    pool-name: Retail_HikariCP
+#    minimum-idle: 15 #最小空闲连接数量
+#    idle-timeout: 180000 #空闲连接存活最大时间，默认600000（10分钟）
+#    maximum-pool-size: 25 #连接池最大连接数，默认是10
+#    auto-commit: true  #此属性控制从池返回的连接的默认自动提交行为,默认值：true
+#    max-lifetime: 1800000 #此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+#    connection-timeout: 30000 #数据库连接超时时间,默认30秒，即30000
+#    connection-test-query: SELECT 1
+#  type: com.zaxxer.hikari.HikariDataSource
 
-# MyBatis 配置【如需使用记得打开】
+  spring:
+  shardingsphere:
+    # ShardingSphere configuration
+    props:
+      sql-show: true  # Enable SQL logging to facilitate debugging and viewing the actual executed SQL statements.
+    datasource:
+      # datasource configuration
+      # ds_0, ds_1 → sharded databases
+      # big_market → a standalone database
+      name: ds_0,ds_1,big_market  # datasource names, separated by commas
+
+      # data source ds_0 configuration
+      ds_0:
+        type: com.zaxxer.hikari.HikariDataSource  # using Hikari connection pool
+        driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC driver
+        jdbc-url: jdbc:mysql://127.0.0.1:13306/big_market_01?...  # database connection URL
+        username: root  # database username
+        password: password  # database password
+
+      # data source ds_1 configuration
+      ds_1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:13306/big_market_02?...  # database connection URL
+        username: root
+        password: password
+
+      # data source big_market configuration
+      big_market:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:13306/big_market?...  # database connection URL
+        username: root
+        password: password
+
+    rules:
+      sharding:
+        # database sharding strategy
+        tables:  # configuring sharding rules for tables
+
+          # raffle_activity_order table sharding configuration
+          raffle_activity_order:
+            actualDataNodes: ds_${0..1}.raffle_activity_order_00${0..3}
+            databaseStrategy:
+              standard:
+                shardingColumn: user_id  # database sharding column
+                shardingAlgorithmName: sys_user_db_alg  # database sharding algorithm
+            tableStrategy:
+              standard:
+                shardingColumn: user_id  # table sharding column
+                shardingAlgorithmName: raffle_activity_order_inline  # table sharding algorithm
+
+          # raffle_activity_account_flow table sharding configuration
+            raffle_activity_account_flow:
+              actualDataNodes: ds_${0..1}.raffle_activity_account_flow_00${0..3}
+              databaseStrategy:
+                standard:
+                    shardingColumn: user_id
+                    shardingAlgorithmName: sys_user_db_alg
+              tableStrategy:
+                standard:
+                    shardingColumn: user_id
+                    shardingAlgorithmName: raffle_activity_account_flow_inline
+
+          # sharding algorithms configuration
+            sharding-algorithms:
+              sys_user_db_alg:
+                type: INLINE
+                props:
+                  algorithm-expression: ds_$->{Math.abs(user_id.hashCode()) % 2}  # database sharding algorithm expression
+
+              raffle_activity_order_inline:
+                type: INLINE
+                props:
+                  algorithm-expression: raffle_activity_order_00$->{(user_id.hashCode() ^ (user_id.hashCode()) >>> 16) & (4 - 1)}  # table sharding algorithm expression
+
+              raffle_activity_account_flow_inline:
+                type: INLINE
+                props:
+                  algorithm-expression: raffle_activity_account_flow_00$->{(user_id.hashCode() ^ (user_id.hashCode()) >>> 16) & (4 - 1)}  # table sharding algorithm class
+
+
+#          # user_award_record table sharding configuration
+#          user_award_record:
+#            actualDataNodes: ds_${0..1}.user_award_record_00${0..3}
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#            tableStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_tbl_alg
+#
+#          # user_behavior_rebate_order table sharding configuration
+#          user_behavior_rebate_order:
+#            actualDataNodes: ds_${0..1}.user_behavior_rebate_order_00${0..3}
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#            tableStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_tbl_alg
+#
+#          # user_credit_order table sharding configuration
+#          user_credit_order:
+#            actualDataNodes: ds_${0..1}.user_credit_order_00${0..3}
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#            tableStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_tbl_alg
+#
+#          # user_raffle_order table sharding configuration
+#          user_raffle_order:
+#            actualDataNodes: ds_${0..1}.user_raffle_order_00${0..3}
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#            tableStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_tbl_alg
+#
+#          # raffle_activity_account table sharding configuration
+#          raffle_activity_account:
+#            actualDataNodes: ds_${0..1}.raffle_activity_account
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#
+#          # raffle_activity_account_day table sharding configuration
+#          raffle_activity_account_day:
+#            actualDataNodes: ds_${0..1}.raffle_activity_account_day
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#
+#          # raffle_activity_account_month table sharding configuration
+#          raffle_activity_account_month:
+#            actualDataNodes: ds_${0..1}.raffle_activity_account_month
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#
+#          # task table sharding configuration, using hint strategy
+#          task:
+#            actualDataNodes: ds_${0..1}.task
+#            databaseStrategy:
+#              hint:
+#                shardingAlgorithmName: sys_hint_db_alg
+#
+#          # user_credit_account table sharding configuration
+#          user_credit_account:
+#            actualDataNodes: ds_${0..1}.user_credit_account
+#            databaseStrategy:
+#              standard:
+#                shardingColumn: user_id
+#                shardingAlgorithmName: sys_user_db_alg
+#
+#        # sharding algorithms configuration
+#        sharding-algorithms:
+#          sys_hint_db_alg:
+#            type: CLASS_BASED
+#            props:
+#              strategy: hint
+#              algorithmClassName: org.example.types.common.MyHintDatabaseAlgorithm  # custom hint database sharding algorithm class
+#
+#          sys_user_db_alg:
+#            type: CLASS_BASED
+#            props:
+#              strategy: standard
+#              algorithmClassName: org.example.types.common.MyDatabaseAlgorithm  # database sharding algorithm class
+#
+#          sys_user_tbl_alg:
+#            type: CLASS_BASED
+#            props:
+#              strategy: standard
+#              algorithmClassName: org.example.types.common.MyTableAlgorithm  # table sharding algorithm class
+
+  main:
+    allow-bean-definition-overriding: true
+
+
+# MyBatis configuration
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
   config-location:  classpath:/mybatis/config/mybatis-config.xml
@@ -61,7 +254,7 @@ redis:
       ping-interval: 60000
       keep-alive: true
 
-# 日志
+# logging
 logging:
   level:
     root: info
