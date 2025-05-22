@@ -13,9 +13,9 @@
     </resultMap>
 
     <select id="queryRuleTreeNodeListByTreeId" parameterType="java.lang.String" resultMap="dataMap">
-        select tree_id, rule_key, rule_desc, rule_value
-        from rule_tree_node
-        where tree_id = #{treeId}
+        SELECT tree_id, rule_key, rule_desc, rule_value
+        FROM rule_tree_node
+        WHERE tree_id = #{treeId}
     </select>
 
 </mapper>

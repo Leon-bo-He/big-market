@@ -13,9 +13,9 @@
     </resultMap>
 
     <select id="queryAwardList" resultMap="dataMap">
-        select award_id, award_key, award_config, award_desc
-        from award
-        limit 10
+        SELECT award_id, award_key, award_config, award_desc
+        FROM award
+        LIMIT 10
     </select>
 
 </mapper>
