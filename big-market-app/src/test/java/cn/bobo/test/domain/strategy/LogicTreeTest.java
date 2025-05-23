@@ -1,4 +1,4 @@
-package cn.bobo.test.domain;
+package cn.bobo.test.domain.strategy;
 
 import cn.bobo.domain.strategy.model.vo.*;
 import cn.bobo.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;

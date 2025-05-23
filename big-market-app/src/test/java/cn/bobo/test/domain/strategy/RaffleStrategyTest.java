@@ -1,4 +1,4 @@
-package cn.bobo.test.domain;
+package cn.bobo.test.domain.strategy;
 
 import cn.bobo.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.bobo.domain.strategy.model.entity.RaffleFactorEntity;

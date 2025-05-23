@@ -16,7 +16,7 @@ Action:
 
 Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
 
-25-05-15.00:17:05.498 [main            ] ERROR TestContextManager     - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@20d525] to prepare test instance [cn.bobo.test.domain.RaffleStrategyTest@5cf0673d]
+25-05-15.00:17:05.498 [main            ] ERROR TestContextManager     - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@20d525] to prepare test instance [cn.bobo.test.domain.strategy.RaffleStrategyTest@5cf0673d]
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
