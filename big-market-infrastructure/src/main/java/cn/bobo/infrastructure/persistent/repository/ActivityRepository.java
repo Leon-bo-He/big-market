@@ -1,19 +1,24 @@
 package cn.bobo.infrastructure.persistent.repository;
 
+import cn.bobo.domain.activity.model.aggregate.CreateOrderAggregate;
 import cn.bobo.domain.activity.model.entity.ActivityCountEntity;
 import cn.bobo.domain.activity.model.entity.ActivityEntity;
+import cn.bobo.domain.activity.model.entity.ActivityOrderEntity;
 import cn.bobo.domain.activity.model.entity.ActivitySkuEntity;
 import cn.bobo.domain.activity.model.vo.ActivityStateVO;
 import cn.bobo.domain.activity.repository.IActivityRepository;
-import cn.bobo.infrastructure.persistent.dao.IRaffleActivityCountDao;
-import cn.bobo.infrastructure.persistent.dao.IRaffleActivityDao;
-import cn.bobo.infrastructure.persistent.dao.IRaffleActivitySkuDao;
-import cn.bobo.infrastructure.persistent.po.RaffleActivity;
-import cn.bobo.infrastructure.persistent.po.RaffleActivityCount;
-import cn.bobo.infrastructure.persistent.po.RaffleActivitySku;
+import cn.bobo.infrastructure.persistent.dao.*;
+import cn.bobo.infrastructure.persistent.po.*;
 import cn.bobo.infrastructure.persistent.redis.IRedisService;
 import cn.bobo.types.common.Constants;
+import cn.bobo.types.enums.ResponseCode;
+import cn.bobo.types.exception.AppException;
+import cn.bugstack.middleware.db.router.strategy.IDBRouterStrategy;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
 
@@ -21,6 +26,7 @@ import javax.annotation.Resource;
  * @author BO HE
  */
 
+@Slf4j
 @Repository
 public class ActivityRepository implements IActivityRepository {
 
@@ -32,6 +38,14 @@ public class ActivityRepository implements IActivityRepository {
     private IRaffleActivitySkuDao raffleActivitySkuDao;
     @Resource
     private IRaffleActivityCountDao raffleActivityCountDao;
+    @Resource
+    private IRaffleActivityOrderDao raffleActivityOrderDao;
+    @Resource
+    private IRaffleActivityAccountDao raffleActivityAccountDao;
+    @Resource
+    private TransactionTemplate transactionTemplate;
+    @Resource
+    private IDBRouterStrategy dbRouter;
 
     @Override
     public ActivitySkuEntity queryActivitySku(Long sku) {
@@ -85,5 +99,65 @@ public class ActivityRepository implements IActivityRepository {
                 .build();
         redisService.setValue(cacheKey, activityCountEntity);
         return activityCountEntity;
+    }
+
+    @Override
+    public void doSaveOrder(CreateOrderAggregate createOrderAggregate) {
+        try {
+            // order entity object
+            ActivityOrderEntity activityOrderEntity = createOrderAggregate.getActivityOrderEntity();
+            RaffleActivityOrder raffleActivityOrder = new RaffleActivityOrder();
+            raffleActivityOrder.setUserId(activityOrderEntity.getUserId());
+            raffleActivityOrder.setSku(activityOrderEntity.getSku());
+            raffleActivityOrder.setActivityId(activityOrderEntity.getActivityId());
+            raffleActivityOrder.setActivityName(activityOrderEntity.getActivityName());
+            raffleActivityOrder.setStrategyId(activityOrderEntity.getStrategyId());
+            raffleActivityOrder.setOrderId(activityOrderEntity.getOrderId());
+            raffleActivityOrder.setOrderTime(activityOrderEntity.getOrderTime());
+            raffleActivityOrder.setTotalCount(activityOrderEntity.getTotalCount());
+            raffleActivityOrder.setDayCount(activityOrderEntity.getDayCount());
+            raffleActivityOrder.setMonthCount(activityOrderEntity.getMonthCount());
+            raffleActivityOrder.setTotalCount(createOrderAggregate.getTotalCount());
+            raffleActivityOrder.setDayCount(createOrderAggregate.getDayCount());
+            raffleActivityOrder.setMonthCount(createOrderAggregate.getMonthCount());
+            raffleActivityOrder.setState(activityOrderEntity.getState().getCode());
+            raffleActivityOrder.setOutBusinessNo(activityOrderEntity.getOutBusinessNo());
+
+            // Account entity object
+            RaffleActivityAccount raffleActivityAccount = new RaffleActivityAccount();
+            raffleActivityAccount.setUserId(createOrderAggregate.getUserId());
+            raffleActivityAccount.setActivityId(createOrderAggregate.getActivityId());
+            raffleActivityAccount.setTotalCount(createOrderAggregate.getTotalCount());
+            raffleActivityAccount.setTotalCountSurplus(createOrderAggregate.getTotalCount());
+            raffleActivityAccount.setDayCount(createOrderAggregate.getDayCount());
+            raffleActivityAccount.setDayCountSurplus(createOrderAggregate.getDayCount());
+            raffleActivityAccount.setMonthCount(createOrderAggregate.getMonthCount());
+            raffleActivityAccount.setMonthCountSurplus(createOrderAggregate.getMonthCount());
+
+            // using userId as the sharding key, set the routing through doRouter [this ensures that the operations
+            // below are under the same link, thus ensuring the characteristics of the transaction]
+            dbRouter.doRouter(createOrderAggregate.getUserId());
+            // programmatic transaction
+            transactionTemplate.execute(status -> {
+                try {
+                    // 1. write order
+                    raffleActivityOrderDao.insert(raffleActivityOrder);
+                    // 2. update account
+                    int count = raffleActivityAccountDao.updateAccountQuota(raffleActivityAccount);
+                    // 3. create account - update to 0, then the account does not exist, create a new account.
+                    if (0 == count) {
+                        raffleActivityAccountDao.insert(raffleActivityAccount);
+                    }
+                    return 1;
+                } catch (DuplicateKeyException e) {
+                    status.setRollbackOnly();
+                    log.error("writing order record, unique index conflict userId: {} activityId: {} sku: {}",
+                            activityOrderEntity.getUserId(), activityOrderEntity.getActivityId(), activityOrderEntity.getSku(), e);
+                    throw new AppException(ResponseCode.INDEX_DUP.getCode());
+                }
+            });
+        } finally {
+            dbRouter.clear();
+        }
     }
 }

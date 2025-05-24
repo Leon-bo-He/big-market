@@ -12,6 +12,7 @@ public enum ResponseCode {
     SUCCESS("0000", "Success"),
     UN_ERROR("0001", "Unknown error"),
     ILLEGAL_PARAMETER("0002", "Illegal parameter"),
+    INDEX_DUP("0003", "Unique index conflict"),
     STRATEGY_RULE_WEIGHT_IS_NULL("ERR_BIZ_001", "Service error, rule_weight is active but not exist"),
     UN_ASSEMBLED_STRATEGY_ARMORY("ERR_BIZ_002", "Service error, strategy armory is not assembled, using IStrategyArmory.assembleLotteryStrategy() to assemble"),
     ;

@@ -16,6 +16,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateOrderAggregate {
 
-    private ActivityAccountEntity activityAccountEntity;
+    private String userId;
+    private Long activityId;
+    private Integer totalCount;
+    private Integer dayCount;
+    private Integer monthCount;
     private ActivityOrderEntity activityOrderEntity;
 }

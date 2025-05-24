@@ -19,6 +19,7 @@ import java.util.Date;
 public class ActivityOrderEntity {
 
     private String userId;
+    private Long sku;
     private Long activityId;
     private String activityName;
     private Long strategyId;
@@ -28,5 +29,6 @@ public class ActivityOrderEntity {
     private Integer dayCount;
     private Integer monthCount;
     private OrderStateVO state;
+    private String outBusinessNo;
 
 }
