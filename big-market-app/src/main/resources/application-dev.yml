@@ -11,6 +11,19 @@ app:
     api-version: v1
     cross-origin: '*'
 
+# Spring config；rabbitmq
+spring:
+  rabbitmq:
+    addresses: 127.0.0.1
+    port: 5672
+    username: admin
+    password: admin
+    listener:
+      simple:
+        prefetch: 1 # send n messages at a time, and send n messages after consumption
+    topic:
+      activity_sku_stock_zero: activity_sku_stock_zero
+
 
 # thread pool configuration
 thread:

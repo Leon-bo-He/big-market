@@ -90,9 +90,13 @@
             <groupId>org.jeasy</groupId>
             <artifactId>easy-random-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
 
 
-        <!-- 工程模块；启动依赖 trigger->domain, infrastructure-->
+        <!-- project module；Start dependency: trigger->domain, infrastructure-->
         <dependency>
             <groupId>cn.bobo</groupId>
             <artifactId>big-market-trigger</artifactId>

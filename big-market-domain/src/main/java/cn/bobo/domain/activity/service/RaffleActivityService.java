@@ -2,6 +2,7 @@ package cn.bobo.domain.activity.service;
 
 import cn.bobo.domain.activity.model.aggregate.CreateOrderAggregate;
 import cn.bobo.domain.activity.model.entity.*;
+import cn.bobo.domain.activity.model.vo.ActivitySkuStockKeyVO;
 import cn.bobo.domain.activity.model.vo.OrderStateVO;
 import cn.bobo.domain.activity.repository.IActivityRepository;
 import cn.bobo.domain.activity.service.rule.factory.DefaultActivityChainFactory;
@@ -14,7 +15,7 @@ import java.util.Date;
  * @author BO HE
  */
 @Service
-public class RaffleActivityService extends AbstractRaffleActivity {
+public class RaffleActivityService extends AbstractRaffleActivity implements ISkuStock {
 
 
     public RaffleActivityService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
@@ -54,5 +55,25 @@ public class RaffleActivityService extends AbstractRaffleActivity {
     @Override
     protected void doSaveOrder(CreateOrderAggregate createOrderAggregate) {
         activityRepository.doSaveOrder(createOrderAggregate);
+    }
+
+    @Override
+    public ActivitySkuStockKeyVO takeQueueValue() throws InterruptedException {
+        return activityRepository.takeQueueValue();
+    }
+
+    @Override
+    public void clearQueueValue() {
+        activityRepository.clearQueueValue();
+    }
+
+    @Override
+    public void updateActivitySkuStock(Long sku) {
+        activityRepository.updateActivitySkuStock(sku);
+    }
+
+    @Override
+    public void clearActivitySkuStock(Long sku) {
+        activityRepository.clearActivitySkuStock(sku);
     }
 }

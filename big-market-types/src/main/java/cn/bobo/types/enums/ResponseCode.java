@@ -15,6 +15,9 @@ public enum ResponseCode {
     INDEX_DUP("0003", "Unique index conflict"),
     STRATEGY_RULE_WEIGHT_IS_NULL("ERR_BIZ_001", "Service error, rule_weight is active but not exist"),
     UN_ASSEMBLED_STRATEGY_ARMORY("ERR_BIZ_002", "Service error, strategy armory is not assembled, using IStrategyArmory.assembleLotteryStrategy() to assemble"),
+    ACTIVITY_STATE_ERROR("ERR_BIZ_003", "activity not open (not in open state)"),
+    ACTIVITY_DATE_ERROR("ERR_BIZ_004", "not in activity date range"),
+    ACTIVITY_SKU_STOCK_ERROR("ERR_BIZ_005", "activity inventory not enough"),
     ;
 
     private String code;
