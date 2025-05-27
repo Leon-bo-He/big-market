@@ -1,12 +1,9 @@
 package cn.bobo.test.domain.activity;
 
-import cn.bobo.domain.activity.model.entity.ActivityOrderEntity;
-import cn.bobo.domain.activity.model.entity.ActivityShopCartEntity;
 import cn.bobo.domain.activity.model.entity.SkuRechargeEntity;
-import cn.bobo.domain.activity.service.IRaffleOrder;
+import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.activity.service.armory.IActivityArmory;
 import cn.bobo.types.exception.AppException;
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
@@ -18,28 +15,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.concurrent.CountDownLatch;
 
+
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RaffleOrderTest {
+public class RaffleActivityAccountQuotaServiceTest {
+
 
     @Resource
-    private IRaffleOrder raffleOrder;
+    private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
     @Resource
     private IActivityArmory activityArmory;
 
     @Before
     public void setUp() {
-        log.info("Activity Assemble：{}", activityArmory.assembleActivitySku(9011L));
-    }
-
-    @Test
-    public void test_createRaffleActivityOrder() {
-        ActivityShopCartEntity activityShopCartEntity = new ActivityShopCartEntity();
-        activityShopCartEntity.setUserId("bobo");
-        activityShopCartEntity.setSku(9011L);
-        ActivityOrderEntity raffleActivityOrder = raffleOrder.createRaffleActivityOrder(activityShopCartEntity);
-        log.info("Test results：{}", JSON.toJSONString(raffleActivityOrder));
+        log.info("activity assemble：{}", activityArmory.assembleActivitySku(9011L));
     }
 
     @Test
@@ -48,8 +38,8 @@ public class RaffleOrderTest {
         skuRechargeEntity.setUserId("bobo");
         skuRechargeEntity.setSku(9011L);
         // outBusinessNo 作为幂等仿重使用，同一个业务单号2次使用会抛出索引冲突 Duplicate entry '700091009111' for key 'uq_out_business_no' 确保唯一性。
-        skuRechargeEntity.setOutBusinessNo("700091009111");
-        String orderId = raffleOrder.createSkuRechargeOrder(skuRechargeEntity);
+        skuRechargeEntity.setOutBusinessNo("700091009119");
+        String orderId = raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
         log.info("Test results：{}", orderId);
     }
 
@@ -62,8 +52,8 @@ public class RaffleOrderTest {
                 skuRechargeEntity.setSku(9011L);
                 // outBusinessNo 作为幂等仿重使用，同一个业务单号2次使用会抛出索引冲突 Duplicate entry '700091009111' for key 'uq_out_business_no' 确保唯一性。
                 skuRechargeEntity.setOutBusinessNo(RandomStringUtils.randomNumeric(12));
-                String orderId = raffleOrder.createSkuRechargeOrder(skuRechargeEntity);
-                log.info("Test results：{}", orderId);
+                String orderId = raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
+                log.info("Test result：{}", orderId);
             } catch (AppException e) {
                 log.warn(e.getInfo());
             }
