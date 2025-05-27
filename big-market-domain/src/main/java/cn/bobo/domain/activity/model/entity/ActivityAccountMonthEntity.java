@@ -1,29 +1,21 @@
-package cn.bobo.infrastructure.persistent.po;
+package cn.bobo.domain.activity.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
-/**
- * @author BO HE
- */
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleActivityAccountMonth {
+public class ActivityAccountMonthEntity {
 
-    private String id;
     private String userId;
     private Long activityId;
     private String month;
     private Integer monthCount;
     private Integer monthCountSurplus;
-    private Date createTime;
-    private Date updateTime;
 
 }

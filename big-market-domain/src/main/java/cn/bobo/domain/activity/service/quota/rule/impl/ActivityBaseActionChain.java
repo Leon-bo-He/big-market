@@ -1,10 +1,10 @@
-package cn.bobo.domain.activity.service.rule.impl;
+package cn.bobo.domain.activity.service.quota.rule.impl;
 
 import cn.bobo.domain.activity.model.entity.ActivityCountEntity;
 import cn.bobo.domain.activity.model.entity.ActivityEntity;
 import cn.bobo.domain.activity.model.entity.ActivitySkuEntity;
 import cn.bobo.domain.activity.model.vo.ActivityStateVO;
-import cn.bobo.domain.activity.service.rule.AbstractActionChain;
+import cn.bobo.domain.activity.service.quota.rule.AbstractActionChain;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;

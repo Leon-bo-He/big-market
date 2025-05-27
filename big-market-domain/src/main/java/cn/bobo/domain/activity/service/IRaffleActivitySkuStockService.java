@@ -5,7 +5,7 @@ import cn.bobo.domain.activity.model.vo.ActivitySkuStockKeyVO;
 /**
  * @author BO HE
  */
-public interface ISkuStock {
+public interface IRaffleActivitySkuStockService {
 
     ActivitySkuStockKeyVO takeQueueValue() throws InterruptedException;
     void clearQueueValue();

@@ -11,7 +11,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum OrderStateVO {
 
-    COMPLETED("completed", "completed order"),;
+    COMPLETED("COMPLETED", "completed order"),;
 
     private final String code;
     private final String desc;

@@ -1,10 +1,11 @@
-package cn.bobo.domain.activity.service;
+package cn.bobo.domain.activity.service.quota;
 
-import cn.bobo.domain.activity.model.aggregate.CreateOrderAggregate;
+import cn.bobo.domain.activity.model.aggregate.CreateQuotaOrderAggregate;
 import cn.bobo.domain.activity.model.entity.*;
 import cn.bobo.domain.activity.repository.IActivityRepository;
-import cn.bobo.domain.activity.service.rule.IActionChain;
-import cn.bobo.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
+import cn.bobo.domain.activity.service.quota.rule.IActionChain;
+import cn.bobo.domain.activity.service.quota.rule.factory.DefaultActivityChainFactory;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import com.alibaba.fastjson.JSON;
@@ -16,9 +17,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 
 @Slf4j
-public abstract class AbstractRaffleActivity extends RaffleActivitySupport implements IRaffleOrder {
+public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityAccountQuotaSupport implements IRaffleActivityAccountQuotaService {
 
-    public AbstractRaffleActivity(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public AbstractRaffleActivityAccountQuota(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
     }
 
@@ -37,7 +38,7 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
     }
 
     @Override
-    public String createSkuRechargeOrder(SkuRechargeEntity skuRechargeEntity) {
+    public String createOrder(SkuRechargeEntity skuRechargeEntity) {
         // 1. parameter verification
         String userId = skuRechargeEntity.getUserId();
         Long sku = skuRechargeEntity.getSku();
@@ -59,7 +60,7 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
         actionChain.action(activitySkuEntity, activityEntity, activityCountEntity);
 
         // 4. create order aggregate object
-        CreateOrderAggregate createOrderAggregate = buildOrderAggregate(skuRechargeEntity, activitySkuEntity, activityEntity, activityCountEntity);
+        CreateQuotaOrderAggregate createOrderAggregate = buildOrderAggregate(skuRechargeEntity, activitySkuEntity, activityEntity, activityCountEntity);
 
         // 5. save transaction
         doSaveOrder(createOrderAggregate);
@@ -68,9 +69,9 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
         return createOrderAggregate.getActivityOrderEntity().getOrderId();
     }
 
-    protected abstract void doSaveOrder(CreateOrderAggregate createOrderAggregate);
+    protected abstract void doSaveOrder(CreateQuotaOrderAggregate createOrderAggregate);
 
-    protected abstract CreateOrderAggregate buildOrderAggregate(SkuRechargeEntity skuRechargeEntity, ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);
+    protected abstract CreateQuotaOrderAggregate buildOrderAggregate(SkuRechargeEntity skuRechargeEntity, ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);
 
 
 }

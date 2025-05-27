@@ -7,7 +7,7 @@ import cn.bobo.domain.activity.model.entity.SkuRechargeEntity;
 /**
  * @author BO HE
  */
-public interface IRaffleOrder {
+public interface IRaffleActivityAccountQuotaService {
 
     ActivityOrderEntity createRaffleActivityOrder(ActivityShopCartEntity activityShopCartEntity);
 
@@ -19,5 +19,5 @@ public interface IRaffleOrder {
      * @param skuRechargeEntity sku recharge entity
      * @return activity id
      */
-    String createSkuRechargeOrder(SkuRechargeEntity skuRechargeEntity);
+    String createOrder(SkuRechargeEntity skuRechargeEntity);
 }

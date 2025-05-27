@@ -1,0 +1,155 @@
+25-05-26.02:12:57.060 [main            ] INFO  RaffleOrderTest        - Starting RaffleOrderTest using Java 1.8.0_412 on Mac.lan with PID 40691 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-26.02:12:57.061 [main            ] INFO  RaffleOrderTest        - The following 1 profile is active: "dev"
+25-05-26.02:12:57.531 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-26.02:12:57.533 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-26.02:12:57.550 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+25-05-26.02:12:58.365 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-26.02:12:58.378 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-26.02:12:58.459 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-26.02:12:58.468 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-26.02:12:59.562 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-26.02:12:59.602 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-26.02:12:59.645 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#68e47e7:0/SimpleConnection@297c3a43 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 50720]
+25-05-26.02:12:59.690 [main            ] INFO  RaffleOrderTest        - Started RaffleOrderTest in 2.841 seconds (JVM running for 3.268)
+25-05-26.02:12:59.811 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-26.02:12:59.961 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-26.02:13:00.002 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:00.003 [main            ] INFO  RaffleOrderTest        - Activity Assemble：true
+25-05-26.02:13:00.006 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock sku:9011 activityId:100301
+25-05-26.02:13:00.009 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.009 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.009 [scheduling-1    ] INFO  UpdateAwardInventoryJob - Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:00.012 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.012 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.016 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.016 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.019 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.019 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.022 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.022 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.025 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.025 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.028 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.028 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.030 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.030 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.032 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.032 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.035 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.035 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.037 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.037 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.039 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.039 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.041 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.041 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.044 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.044 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.047 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.047 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.049 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.049 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.052 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.052 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.055 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.055 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.058 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.058 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:00.060 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:00.060 [main            ] WARN  RaffleOrderTest        - activity inventory not enough
+25-05-26.02:13:05.006 [scheduling-1    ] INFO  UpdateAwardInventoryJob - Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:05.010 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:05.012 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock sku:9011 activityId:100301
+25-05-26.02:13:05.256 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-26.02:13:05.703 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-26.02:13:05.705 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-26.02:13:35.827 [main            ] INFO  RaffleOrderTest        - Starting RaffleOrderTest using Java 1.8.0_412 on Mac.lan with PID 40748 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-26.02:13:35.827 [main            ] INFO  RaffleOrderTest        - The following 1 profile is active: "dev"
+25-05-26.02:13:36.278 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-26.02:13:36.280 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-26.02:13:36.297 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+25-05-26.02:13:37.071 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-26.02:13:37.084 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-26.02:13:37.176 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-26.02:13:37.186 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-26.02:13:38.275 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-26.02:13:38.311 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-26.02:13:38.343 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#36df4c26:0/SimpleConnection@46e6458d [delegate=amqp://admin@127.0.0.1:5672/, localPort= 50755]
+25-05-26.02:13:38.377 [main            ] INFO  RaffleOrderTest        - Started RaffleOrderTest in 2.748 seconds (JVM running for 3.212)
+25-05-26.02:13:38.495 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-26.02:13:38.647 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-26.02:13:38.687 [main            ] INFO  RaffleOrderTest        - Activity Assemble：true
+25-05-26.02:13:38.694 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.694 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.700 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-26.02:13:38.722 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-26.02:13:38.734 [main            ] INFO  RaffleOrderTest        - Test results：743387928543
+25-05-26.02:13:38.737 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.737 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.746 [main            ] INFO  RaffleOrderTest        - Test results：305373500569
+25-05-26.02:13:38.748 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.748 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.755 [main            ] INFO  RaffleOrderTest        - Test results：142590518781
+25-05-26.02:13:38.757 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.757 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.764 [main            ] INFO  RaffleOrderTest        - Test results：159349291342
+25-05-26.02:13:38.766 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.766 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.772 [main            ] INFO  RaffleOrderTest        - Test results：216230541231
+25-05-26.02:13:38.774 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.774 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.779 [main            ] INFO  RaffleOrderTest        - Test results：606369681180
+25-05-26.02:13:38.781 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.781 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.787 [main            ] INFO  RaffleOrderTest        - Test results：475119544094
+25-05-26.02:13:38.789 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.789 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.795 [main            ] INFO  RaffleOrderTest        - Test results：484585313607
+25-05-26.02:13:38.797 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.797 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.803 [main            ] INFO  RaffleOrderTest        - Test results：119915366365
+25-05-26.02:13:38.805 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.805 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.811 [main            ] INFO  RaffleOrderTest        - Test results：374831934951
+25-05-26.02:13:38.813 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.813 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.817 [main            ] INFO  RaffleOrderTest        - Test results：590014828246
+25-05-26.02:13:38.819 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.819 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.824 [main            ] INFO  RaffleOrderTest        - Test results：816877429651
+25-05-26.02:13:38.827 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.827 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.836 [main            ] INFO  RaffleOrderTest        - Test results：047206324301
+25-05-26.02:13:38.839 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.839 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.847 [main            ] INFO  RaffleOrderTest        - Test results：641707299458
+25-05-26.02:13:38.852 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.852 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.859 [main            ] INFO  RaffleOrderTest        - Test results：433148784674
+25-05-26.02:13:38.862 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.862 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.869 [main            ] INFO  RaffleOrderTest        - Test results：397338452837
+25-05-26.02:13:38.871 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.871 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.877 [main            ] INFO  RaffleOrderTest        - Test results：055750945299
+25-05-26.02:13:38.879 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.879 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.883 [main            ] INFO  RaffleOrderTest        - Test results：892511153464
+25-05-26.02:13:38.885 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.885 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.889 [main            ] INFO  RaffleOrderTest        - Test results：313392246291
+25-05-26.02:13:38.891 [main            ] INFO  ActivityBaseActionChain - activity responsibility chain - basic information [validity period, status, sku] verification start. sku:9011 activityId:100301
+25-05-26.02:13:38.891 [main            ] INFO  ActivitySkuStockActionChain - activity responsibility chain - sku stock processing [verification & deduction] start. sku:9011 activityId:100301
+25-05-26.02:13:38.895 [main            ] INFO  RaffleOrderTest        - Test results：295823209509
+25-05-26.02:13:40.005 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:40.019 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock sku:9011 activityId:100301
+25-05-26.02:13:40.030 [scheduling-1    ] INFO  UpdateAwardInventoryJob - Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:45.005 [scheduling-1    ] INFO  UpdateAwardInventoryJob - Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:45.008 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:45.009 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock sku:9011 activityId:100301
+25-05-26.02:13:50.002 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:50.005 [scheduling-1    ] INFO  UpdateActivitySkuStockJob - Scheduled task, update activity sku stock sku:9011 activityId:100301
+25-05-26.02:13:50.011 [scheduling-1    ] INFO  UpdateAwardInventoryJob - Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]
+25-05-26.02:13:52.161 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-26.02:13:52.422 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-26.02:13:52.425 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped

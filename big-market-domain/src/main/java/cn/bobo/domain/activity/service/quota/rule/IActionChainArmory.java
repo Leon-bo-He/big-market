@@ -1,4 +1,4 @@
-package cn.bobo.domain.activity.service.rule;
+package cn.bobo.domain.activity.service.quota.rule;
 
 /**
  * @author BO HE

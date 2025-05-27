@@ -1,4 +1,4 @@
-package cn.bobo.domain.activity.service.rule.impl;
+package cn.bobo.domain.activity.service.quota.rule.impl;
 
 import cn.bobo.domain.activity.model.entity.ActivityCountEntity;
 import cn.bobo.domain.activity.model.entity.ActivityEntity;
@@ -6,7 +6,7 @@ import cn.bobo.domain.activity.model.entity.ActivitySkuEntity;
 import cn.bobo.domain.activity.model.vo.ActivitySkuStockKeyVO;
 import cn.bobo.domain.activity.repository.IActivityRepository;
 import cn.bobo.domain.activity.service.armory.IActivityDispatch;
-import cn.bobo.domain.activity.service.rule.AbstractActionChain;
+import cn.bobo.domain.activity.service.quota.rule.AbstractActionChain;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

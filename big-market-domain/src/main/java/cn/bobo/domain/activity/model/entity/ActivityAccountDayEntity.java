@@ -1,29 +1,21 @@
-package cn.bobo.infrastructure.persistent.po;
+package cn.bobo.domain.activity.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
-/**
- * @author BO HE
- */
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleActivityAccountDay {
+public class ActivityAccountDayEntity {
 
-    private String id;
     private String userId;
     private Long activityId;
     private String day;
     private Integer dayCount;
     private Integer dayCountSurplus;
-    private Date createTime;
-    private Date updateTime;
 
 }

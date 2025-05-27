@@ -18,6 +18,9 @@ public enum ResponseCode {
     ACTIVITY_STATE_ERROR("ERR_BIZ_003", "activity not open (not in open state)"),
     ACTIVITY_DATE_ERROR("ERR_BIZ_004", "not in activity date range"),
     ACTIVITY_SKU_STOCK_ERROR("ERR_BIZ_005", "activity inventory not enough"),
+    ACCOUNT_QUOTA_ERROR("ERR_BIZ_006","account total quota insufficient"),
+    ACCOUNT_MONTH_QUOTA_ERROR("ERR_BIZ_007","account month quota insufficient"),
+    ACCOUNT_DAY_QUOTA_ERROR("ERR_BIZ_008","account day quota insufficient"),
     ;
 
     private String code;

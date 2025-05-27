@@ -6,16 +6,16 @@ import lombok.Getter;
 /**
  * @author BO HE
  */
-
 @Getter
 @AllArgsConstructor
-public enum ActivityStateVO {
+public enum UserRaffleOrderStateVO {
 
-    CREATE("CREATE", "create activity"),
-    OPEN("OPEN", "activity opened"),
-    CLOSE("CLOSE", "activity closed"),
+    CREATE("CREATE", "created order"),
+    USED("USED", "used order"),
+    CANCEL("CANCEL", "cancelled order"),
     ;
 
     private final String code;
     private final String desc;
+
 }
