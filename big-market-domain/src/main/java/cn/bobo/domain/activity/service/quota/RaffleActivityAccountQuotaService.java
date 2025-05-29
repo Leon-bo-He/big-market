@@ -3,7 +3,7 @@ package cn.bobo.domain.activity.service.quota;
 import cn.bobo.domain.activity.model.aggregate.CreateQuotaOrderAggregate;
 import cn.bobo.domain.activity.model.entity.*;
 import cn.bobo.domain.activity.model.vo.ActivitySkuStockKeyVO;
-import cn.bobo.domain.activity.model.vo.OrderStateVO;
+import cn.bobo.domain.activity.model.vo.RaffleActivityOrderStateVO;
 import cn.bobo.domain.activity.repository.IActivityRepository;
 import cn.bobo.domain.activity.service.IRaffleActivitySkuStockService;
 import cn.bobo.domain.activity.service.quota.rule.factory.DefaultActivityChainFactory;
@@ -39,7 +39,7 @@ public class RaffleActivityAccountQuotaService extends AbstractRaffleActivityAcc
         activityOrderEntity.setTotalCount(activityCountEntity.getTotalCount());
         activityOrderEntity.setDayCount(activityCountEntity.getDayCount());
         activityOrderEntity.setMonthCount(activityCountEntity.getMonthCount());
-        activityOrderEntity.setState(OrderStateVO.COMPLETED);
+        activityOrderEntity.setState(RaffleActivityOrderStateVO.COMPLETED);
         activityOrderEntity.setOutBusinessNo(skuRechargeEntity.getOutBusinessNo());
 
         // build aggregate object

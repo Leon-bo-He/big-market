@@ -2,4 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.bobo.infrastructure.persistent.dao.ITaskDao">
 
+    <resultMap id="dataMap" type="cn.bobo.infrastructure.persistent.po.Task">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="topic" property="topic"/>
+        <result column="message_id" property="messageId"/>
+        <result column="message" property="message"/>
+        <result column="state" property="state"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.bobo.infrastructure.persistent.po.UserAwardRecord">
+        INSERT INTO task(user_id, topic, message_id, message, state, create_time, update_time)
+        VALUES (#{userId}, #{topic}, #{messageId}, #{message}, #{state}, now(), now())
+    </insert>
+
+    <update id="updateTaskSendMessageCompleted"
+            parameterType="cn.bobo.infrastructure.persistent.po.UserAwardRecord">
+        UPDATE task
+        SET state       = 'COMPLETED',
+            update_time = now()
+        WHERE user_id = #{userId}
+          AND message_id = #{messageId}
+    </update>
+
+    <update id="updateTaskSendMessageFail" parameterType="cn.bobo.infrastructure.persistent.po.UserAwardRecord">
+        UPDATE task
+        SET state       = 'FAIL',
+            update_time = now()
+        WHERE user_id = #{userId}
+          AND message_id = #{messageId}
+    </update>
+
+    <select id="queryNoSendMessageTaskList" resultMap="dataMap">
+        SELECT user_id, topic, message_id, message
+        FROM task
+        WHERE state = 'FAIL'
+           OR (state = 'CREATE' and now() - update_time > 6) limit 10
+    </select>
+
 </mapper>

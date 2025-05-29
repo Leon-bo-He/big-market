@@ -1,6 +1,6 @@
 package cn.bobo.domain.activity.model.entity;
 
-import cn.bobo.domain.activity.model.vo.OrderStateVO;
+import cn.bobo.domain.activity.model.vo.RaffleActivityOrderStateVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,7 @@ public class ActivityOrderEntity {
     private Integer totalCount;
     private Integer dayCount;
     private Integer monthCount;
-    private OrderStateVO state;
+    private RaffleActivityOrderStateVO state;
     private String outBusinessNo;
 
 }

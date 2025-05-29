@@ -9,7 +9,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum OrderStateVO {
+public enum RaffleActivityOrderStateVO {
 
     COMPLETED("COMPLETED", "completed order"),;
 

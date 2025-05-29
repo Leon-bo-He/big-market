@@ -12,7 +12,9 @@ import java.util.Date;
 public class Task {
 
     private String id;
+    private String userId;
     private String topic;
+    private String messageId;
     private String message;
     private String state;
     private Date createTime;

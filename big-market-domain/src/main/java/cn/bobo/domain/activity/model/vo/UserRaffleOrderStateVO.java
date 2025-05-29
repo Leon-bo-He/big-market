@@ -12,7 +12,7 @@ public enum UserRaffleOrderStateVO {
 
     CREATE("CREATE", "created order"),
     USED("USED", "used order"),
-    CANCEL("CANCEL", "cancelled order"),
+    CANCELLED("CANCELLED", "cancelled order"),
     ;
 
     private final String code;

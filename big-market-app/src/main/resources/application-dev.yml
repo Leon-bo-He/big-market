@@ -23,6 +23,7 @@ spring:
         prefetch: 1 # send n messages at a time, and send n messages after consumption
     topic:
       activity_sku_stock_zero: activity_sku_stock_zero
+      send_award: send_award
 
 
 # thread pool configuration

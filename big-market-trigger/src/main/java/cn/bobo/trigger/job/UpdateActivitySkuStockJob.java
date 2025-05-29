@@ -18,7 +18,7 @@ public class UpdateActivitySkuStockJob {
     @Scheduled(cron = "0/5 * * * * ?")
     public void exec() {
         try {
-            log.info("Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]");
+//            log.info("Scheduled task, update activity sku stock [Delay queue acquisition, reduce database update frequency, do not generate competition]");
             ActivitySkuStockKeyVO activitySkuStockKeyVO = skuStock.takeQueueValue();
             if (null == activitySkuStockKeyVO) return;
             log.info("Scheduled task, update activity sku stock sku:{} activityId:{}", activitySkuStockKeyVO.getSku(), activitySkuStockKeyVO.getActivityId());

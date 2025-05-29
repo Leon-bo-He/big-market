@@ -22,7 +22,7 @@ public class UpdateAwardInventoryJob {
     @Scheduled(cron = "0/5 * * * * ?")
     public void exec() {
         try {
-            log.info("Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]");
+//            log.info("Scheduled task, update award inventory [Delay queue acquisition, reduce database update frequency, do not generate competition]");
             StrategyAwardInventoryKeyVO strategyAwardStockKeyVO = raffleInventory.takeQueueValue();
             if (null == strategyAwardStockKeyVO) return;
             log.info("Scheduled task, update award inventory strategyId:{} awardId:{}", strategyAwardStockKeyVO.getStrategyId(), strategyAwardStockKeyVO.getAwardId());
