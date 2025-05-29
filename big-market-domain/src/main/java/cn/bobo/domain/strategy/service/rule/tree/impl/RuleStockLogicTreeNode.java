@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author BO HE
@@ -26,11 +27,11 @@ public class RuleStockLogicTreeNode implements ILogicTreeNode {
     private IStrategyRepository repository;
 
     @Override
-    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue) {
+    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue, Date endDateTime) {
 
         log.info("rule filter - inventory subtraction - strategyId: {}, awardId: {}", strategyId, awardId);
 
-        Boolean status = strategyDispatch.subtractAwardInventory(strategyId, awardId);
+        Boolean status = strategyDispatch.subtractAwardInventory(strategyId, awardId, endDateTime);
         if (status) {
             // write to delay queue, delay consumption update database record
             // update award inventory record under trigger.job.UpdateAwardInventoryJob

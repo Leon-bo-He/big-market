@@ -26,4 +26,6 @@ public class UserRaffleOrderEntity {
     private Date orderTime;
     private UserRaffleOrderStateVO orderState;
 
+    private Date endDateTime;
+
 }

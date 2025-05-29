@@ -197,3 +197,66 @@
 25-05-29.14:13:17.790 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
 25-05-29.14:13:17.791 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
 25-05-29.14:13:17.792 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:35.995 [main            ] INFO  RaffleActivityControllerTest - Starting RaffleActivityControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 10774 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:36:35.996 [main            ] INFO  RaffleActivityControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:36:36.443 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:36:36.445 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:36:36.462 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:36:37.046 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:36:37.059 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:36:37.138 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:37.147 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:38.467 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:36:38.506 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:36:38.546 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#64f32e9e:0/SimpleConnection@5a63fa71 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 57085]
+25-05-29.14:36:38.596 [main            ] INFO  RaffleActivityControllerTest - Started RaffleActivityControllerTest in 2.794 seconds (JVM running for 3.2)
+25-05-29.14:36:38.721 [main            ] INFO  RaffleActivityController - activity assembly, data preheating starting; activityId:100301
+25-05-29.14:36:38.740 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:38.917 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:39.027 [main            ] INFO  RaffleActivityController - activity assembly, data preheating completed; activityId:100301
+25-05-29.14:36:39.115 [main            ] INFO  RaffleActivityControllerTest - Test Results：{"code":"0000","data":true,"info":"Success"}
+25-05-29.14:36:39.123 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:39.123 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:39.591 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:39.594 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:39.596 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:39.596 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:46.488 [main            ] INFO  RaffleActivityControllerTest - Starting RaffleActivityControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 10791 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:36:46.489 [main            ] INFO  RaffleActivityControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:36:46.908 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:36:46.910 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:36:46.928 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:36:47.481 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:36:47.498 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:36:47.575 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:47.584 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:48.871 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:36:48.912 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:36:48.947 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#3b770d07:0/SimpleConnection@a6fc1bc [delegate=amqp://admin@127.0.0.1:5672/, localPort= 57117]
+25-05-29.14:36:48.990 [main            ] INFO  RaffleActivityControllerTest - Started RaffleActivityControllerTest in 2.709 seconds (JVM running for 3.189)
+25-05-29.14:36:49.090 [main            ] INFO  RaffleActivityController - activity draw start, userId:bobo, activityId:100301
+25-05-29.14:36:49.145 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:49.284 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:49.330 [main            ] INFO  RaffleActivityController - activity draw order created, userId:bobo, activityId:100301, orderId:546457008689
+25-05-29.14:36:49.341 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo strategyId:100006 awardId:106
+25-05-29.14:36:49.342 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - chain raffle result: bobo 100006 106 rule_default
+25-05-29.14:36:49.342 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:49.363 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:49.381 [main            ] INFO  RuleLockLogicTreeNode  - rule filter - rule lock userId:bobo strategyId:100006 awardId:106
+25-05-29.14:36:49.384 [main            ] INFO  RuleLockLogicTreeNode  - rule filter - rule lock [ALLOW] userId:bobo strategyId:100006 awardId:106 raffleCount:25 userRaffleCount:25
+25-05-29.14:36:49.385 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock_1 node:rule_lock code:0000
+25-05-29.14:36:49.385 [main            ] INFO  RuleStockLogicTreeNode - rule filter - inventory subtraction - strategyId: 100006, awardId: 106
+25-05-29.14:36:49.399 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock_1 node:rule_stock code:0001
+25-05-29.14:36:49.399 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - tree raffle result: bobo 100006 106 
+25-05-29.14:36:49.507 [main            ] INFO  EventPublisher         - sending MQ message. topic:send_award message:{"data":{"awardId":106,"awardTitle":"Prize 3","userId":"bobo"},"id":"79501088758","timestamp":1748543809406}
+25-05-29.14:36:49.512 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  SendAwardCustomer      - Listening to user award sending message, topic: send_award message: {"data":{"awardId":106,"awardTitle":"Prize 3","userId":"bobo"},"id":"79501088758","timestamp":1748543809406}
+25-05-29.14:36:49.513 [main            ] INFO  RaffleActivityControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:36:49.516 [main            ] INFO  RaffleActivityControllerTest - Test Results：{"code":"0000","data":{"awardId":106,"awardIndex":6,"awardTitle":"Prize 3"},"info":"Success"}
+25-05-29.14:36:49.527 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:49.527 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:49.992 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:50.015 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:50.036 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:50.522 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:50.527 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:50.528 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped

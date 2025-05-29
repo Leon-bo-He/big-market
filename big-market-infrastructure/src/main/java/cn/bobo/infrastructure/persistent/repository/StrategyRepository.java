@@ -224,6 +224,11 @@ public class StrategyRepository implements IStrategyRepository {
 
     @Override
     public Boolean subtractAwardInventory(String cacheKey) {
+        return subtractAwardInventory(cacheKey, null);
+    }
+
+    @Override
+    public Boolean subtractAwardInventory(String cacheKey, Date endDateTime) {
         long surplus = redisService.decr(cacheKey);
         if (surplus < 0) {
             redisService.setValue(cacheKey, 0);
@@ -231,7 +236,15 @@ public class StrategyRepository implements IStrategyRepository {
         }
 
         String lockKey = cacheKey + Constants.UNDERLINE + surplus;
-        Boolean lock = redisService.setNx(lockKey);
+
+        Boolean lock = false;
+        if (null != endDateTime) {
+            long expireMillis = endDateTime.getTime() - System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1);
+            lock = redisService.setNx(lockKey, expireMillis, TimeUnit.MILLISECONDS);
+        } else {
+            lock = redisService.setNx(lockKey);
+        }
+
         if (!lock) {
             log.info("subtractAwardInventory lock failed, lockKey: {}", lockKey);
         }

@@ -116,6 +116,7 @@ public class RaffleActivityController implements IRaffleActivityService {
             RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(RaffleFactorEntity.builder()
                     .userId(orderEntity.getUserId())
                     .strategyId(orderEntity.getStrategyId())
+                    .endDateTime(orderEntity.getEndDateTime())
                     .build());
             // 4. store result - write winning record
             UserAwardRecordEntity userAwardRecord = UserAwardRecordEntity.builder()

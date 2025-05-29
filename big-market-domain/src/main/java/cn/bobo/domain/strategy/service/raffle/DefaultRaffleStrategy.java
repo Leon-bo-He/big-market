@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,11 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRa
 
     @Override
     public DefaultTreeFactory.StrategyAwardVO raffleLogicTree(String userId, Long strategyId, Integer awardId) {
+        return raffleLogicTree(userId, strategyId, awardId, null);
+    }
+
+    @Override
+    public DefaultTreeFactory.StrategyAwardVO raffleLogicTree(String userId, Long strategyId, Integer awardId, Date endDateTime) {
         StrategyAwardRuleModelVO strategyAwardRuleModelVO = repository.queryStrategyAwardRuleModelVO(strategyId, awardId);
         if (null == strategyAwardRuleModelVO) {
             return DefaultTreeFactory.StrategyAwardVO.builder()
@@ -51,8 +57,7 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRa
                     "not exist in the library table rule_tree, rule_tree_node, and rule_tree_line: " + strategyAwardRuleModelVO.getRuleModels());
         }
         IDecisionTreeEngine treeEngine = defaultTreeFactory.openLogicTree(ruleTreeVO);
-        return treeEngine.process(userId, strategyId, awardId);
-
+        return treeEngine.process(userId, strategyId, awardId, endDateTime);
     }
 
     @Override

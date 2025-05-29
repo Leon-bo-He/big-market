@@ -7,6 +7,8 @@ import cn.bobo.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * @author BO HE
  */
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component("rule_luck_award")
 public class RuleLuckAwardLogicTreeNode implements ILogicTreeNode {
     @Override
-    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue) {
+    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue, Date endDateTime) {
         log.info("rule filter - rule luck(fallback) award userId:{} strategyId:{} awardId:{}", userId, strategyId, awardId);
         String[] split = ruleValue.split(Constants.COLON);
         if (split.length == 0) {

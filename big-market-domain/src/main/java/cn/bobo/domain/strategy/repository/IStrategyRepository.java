@@ -8,6 +8,7 @@ import cn.bobo.domain.strategy.model.vo.StrategyAwardInventoryKeyVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,8 @@ public interface IStrategyRepository {
     void cacheStrategyAwardInventory(String cacheKey, Integer awardCount);
 
     Boolean subtractAwardInventory(String cacheKey);
+
+    Boolean subtractAwardInventory(String cacheKey, Date endDateTime);
 
     void awardStockConsumeSendQueue(StrategyAwardInventoryKeyVO strategyAwardInventoryKeyVO);
 
