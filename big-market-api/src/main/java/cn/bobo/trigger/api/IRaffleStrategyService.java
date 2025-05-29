@@ -1,8 +1,8 @@
 package cn.bobo.trigger.api;
 import cn.bobo.trigger.api.dto.RaffleAwardListRequestDTO;
 import cn.bobo.trigger.api.dto.RaffleAwardListResponseDTO;
-import cn.bobo.trigger.api.dto.RaffleRequestDTO;
-import cn.bobo.trigger.api.dto.RaffleResponseDTO;
+import cn.bobo.trigger.api.dto.RaffleStrategyRequestDTO;
+import cn.bobo.trigger.api.dto.RaffleStrategyResponseDTO;
 import cn.bobo.types.model.Response;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author BO HE
  */
-public interface IRaffleService {
+public interface IRaffleStrategyService {
 
     /**
      * strategy assemble interface
@@ -22,7 +22,7 @@ public interface IRaffleService {
 
     Response<List<RaffleAwardListResponseDTO>> queryRaffleAwardList(RaffleAwardListRequestDTO requestDTO);
 
-    Response<RaffleResponseDTO> randomRaffle(RaffleRequestDTO requestDTO);
+    Response<RaffleStrategyResponseDTO> randomRaffle(RaffleStrategyRequestDTO requestDTO);
 
 
 }

@@ -8,15 +8,13 @@ import lombok.NoArgsConstructor;
 /**
  * @author BO HE
  */
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleResponseDTO {
+public class ActivityDrawResponseDTO {
 
     private Integer awardId;
+    private String awardTitle;
     private Integer awardIndex;
-
-
 }

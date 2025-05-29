@@ -27,7 +27,13 @@
     <select id="queryNoUsedRaffleOrder" parameterType="cn.bobo.infrastructure.persistent.po.UserRaffleOrder" resultMap="dataMap">
         SELECT user_id, activity_id, activity_name, strategy_id, order_id, order_time, order_state
         FROM user_raffle_order
-        WHERE user_id = #{userId} and activity_id = #{activityId} and order_state = 'create'
+        WHERE user_id = #{userId} and activity_id = #{activityId} and order_state = 'CREATE'
     </select>
+
+    <update id="updateUserRaffleOrderStateUsed" parameterType="cn.bobo.infrastructure.persistent.po.UserRaffleOrder">
+        UPDATE user_raffle_order
+        SET order_state = 'USED', update_time = now()
+        WHERE user_id = #{userId} and order_id = #{orderId} and order_state = 'CREATE'
+    </update>
 
 </mapper>

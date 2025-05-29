@@ -6,6 +6,7 @@ import cn.bobo.domain.activity.model.entity.*;
 import cn.bobo.domain.activity.model.vo.ActivitySkuStockKeyVO;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author BO HE
@@ -43,4 +44,6 @@ public interface IActivityRepository {
     ActivityAccountMonthEntity queryActivityAccountMonthByUserId(String userId, Long activityId, String month);
 
     ActivityAccountDayEntity queryActivityAccountDayByUserId(String userId, Long activityId, String day);
+
+    List<ActivitySkuEntity> queryActivitySkuListByActivityId(Long activityId);
 }

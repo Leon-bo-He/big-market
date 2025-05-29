@@ -1,4 +1,4 @@
-package cn.bobo.domain.strategy.model.entity;
+package cn.bobo.trigger.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleAwardEntity {
+public class RaffleStrategyResponseDTO {
 
     private Integer awardId;
-    private String awardTitle;
-    private String awardConfig;
-    private Integer sort;
+    private Integer awardIndex;
+
+
 }

@@ -13,4 +13,9 @@ public interface IRaffleActivityPartakeService {
      * If there are any unused quota, it will be used first.
      */
     UserRaffleOrderEntity createOrder(PartakeRaffleActivityEntity partakeRaffleActivityEntity);
+
+
+    UserRaffleOrderEntity createOrder(String userId, Long activityId);
+
+
 }
