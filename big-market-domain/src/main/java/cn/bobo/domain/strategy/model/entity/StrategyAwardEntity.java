@@ -25,4 +25,6 @@ public class StrategyAwardEntity {
     private Integer awardCountSurplus;
     private BigDecimal awardRate;
     private Integer sort;
+
+    private String ruleModels;
 }

@@ -23,13 +23,19 @@
     <update id="updateActivityAccountDaySubtractionQuota" parameterType="cn.bobo.infrastructure.persistent.po.RaffleActivityAccountDay">
         UPDATE raffle_activity_account_day
         SET day_count_surplus = day_count_surplus - 1, update_time = now()
-        WHERE user_id = #{userId} and activity_id = #{activityId} and day = #{day} and day_count_surplus > 0
+        WHERE user_id = #{userId} AND activity_id = #{activityId} AND day = #{day} and day_count_surplus > 0
     </update>
 
     <select id="queryActivityAccountDayByUserId" parameterType="cn.bobo.infrastructure.persistent.po.RaffleActivityAccountDay" resultMap="dataMap">
         SELECT user_id, activity_id, day, day_count, day_count_surplus
         FROM raffle_activity_account_day
-        WHERE user_id = #{userId} and activity_id = #{activityId} and day = #{day}
+        WHERE user_id = #{userId} AND activity_id = #{activityId} AND day = #{day}
+    </select>
+
+    <select id="queryRaffleActivityAccountDayPartakeCount" parameterType="cn.bobo.infrastructure.persistent.po.RaffleActivityAccountDay" resultType="java.lang.Integer">
+        SELECT day_count - day_count_surplus
+        FROM raffle_activity_account_day
+        WHERE user_id = #{userId} AND activity_id = #{activityId} AND day = #{day}
     </select>
 
 </mapper>

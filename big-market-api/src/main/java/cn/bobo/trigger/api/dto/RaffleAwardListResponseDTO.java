@@ -20,5 +20,8 @@ public class RaffleAwardListResponseDTO {
     private String awardSubtitle;
     private Integer sort;
 
+    private Integer awardRuleLockCount;
+    private boolean isAwardUnlock;
+    private Integer waitUnlockCount;
 
 }

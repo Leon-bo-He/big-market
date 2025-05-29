@@ -5,10 +5,7 @@ import cn.bobo.domain.strategy.model.vo.RuleTreeVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardInventoryKeyVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 import cn.bobo.domain.strategy.repository.IStrategyRepository;
-import cn.bobo.domain.strategy.service.AbstractRaffleStrategy;
-import cn.bobo.domain.strategy.service.IRaffleAward;
-import cn.bobo.domain.strategy.service.IRaffleInventory;
-import cn.bobo.domain.strategy.service.IRaffleStrategy;
+import cn.bobo.domain.strategy.service.*;
 import cn.bobo.domain.strategy.service.armory.IStrategyDispatch;
 import cn.bobo.domain.strategy.service.rule.chain.ILogicChain;
 import cn.bobo.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
@@ -19,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author BO HE
@@ -26,7 +24,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRaffleAward, IRaffleInventory {
+public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRaffleAward, IRaffleInventory, IRaffleRule {
 
     protected DefaultRaffleStrategy(IStrategyRepository repository, IStrategyDispatch strategyDispatch, DefaultChainFactory defaultChainFactory, DefaultTreeFactory defaultTreeFactory) {
         super(repository, strategyDispatch, defaultChainFactory, defaultTreeFactory);
@@ -70,5 +68,16 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRa
     @Override
     public List<StrategyAwardEntity> queryRaffleStrategyAwardList(Long strategyId) {
         return repository.queryStrategyAwardList(strategyId);
+    }
+
+    @Override
+    public List<StrategyAwardEntity> queryRaffleStrategyAwardListByActivityId(Long activityId) {
+        Long strategyId = repository.queryStrategyIdByActivityId(activityId);
+        return queryRaffleStrategyAwardList(strategyId);
+    }
+
+    @Override
+    public Map<String, Integer> queryAwardRuleLockCount(String[] treeIds) {
+        return repository.queryAwardRuleLockCount(treeIds);
     }
 }

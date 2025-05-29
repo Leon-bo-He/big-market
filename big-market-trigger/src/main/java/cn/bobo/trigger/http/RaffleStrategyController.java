@@ -1,9 +1,11 @@
 package cn.bobo.trigger.http;
 
+import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.bobo.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.bobo.domain.strategy.service.IRaffleAward;
+import cn.bobo.domain.strategy.service.IRaffleRule;
 import cn.bobo.domain.strategy.service.IRaffleStrategy;
 import cn.bobo.domain.strategy.service.armory.IStrategyArmory;
 import cn.bobo.trigger.api.IRaffleStrategyService;
@@ -16,11 +18,13 @@ import cn.bobo.types.exception.AppException;
 import cn.bobo.types.model.Response;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author BO HE
@@ -33,13 +37,15 @@ import java.util.List;
 public class RaffleStrategyController implements IRaffleStrategyService {
 
     @Resource
-    private IStrategyArmory strategyArmory;
-
-    @Resource
     private IRaffleAward raffleAward;
-
+    @Resource
+    private IRaffleRule raffleRule;
     @Resource
     private IRaffleStrategy raffleStrategy;
+    @Resource
+    private IStrategyArmory strategyArmory;
+    @Resource
+    private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
 
 
     /**
@@ -79,23 +85,49 @@ public class RaffleStrategyController implements IRaffleStrategyService {
      * <a href="http://localhost:8091/api/v1/raffle/query_raffle_award_list">/api/v1/raffle/query_raffle_award_list</a>
      * request parameter raw json
      *
-     * @param requestDTO {"strategyId":1000001}
+     * @param request {"strategyId":1000001}
      * @return award list
      */
 
     @RequestMapping(value="query_raffle_award_list",method= RequestMethod.POST)
     @Override
-    public Response<List<RaffleAwardListResponseDTO>> queryRaffleAwardList(@RequestBody RaffleAwardListRequestDTO requestDTO) {
+    public Response<List<RaffleAwardListResponseDTO>> queryRaffleAwardList(@RequestBody RaffleAwardListRequestDTO request) {
         try {
-            log.info("query raffle award list config start, strategyId：{}", requestDTO.getStrategyId());
-            List<StrategyAwardEntity> strategyAwardEntities = raffleAward.queryRaffleStrategyAwardList(requestDTO.getStrategyId());
+            log.info("query raffle award list config start, userId: {}, activityId: {}", request.getUserId(), request.getActivityId());
+            // 1. parameter validation
+            if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
+                return Response.<List<RaffleAwardListResponseDTO>>builder()
+                        .code(ResponseCode.ILLEGAL_PARAMETER.getCode())
+                        .info(ResponseCode.ILLEGAL_PARAMETER.getInfo())
+                        .build();
+            }
+
+            // 2. query award setting
+            List<StrategyAwardEntity> strategyAwardEntities = raffleAward.queryRaffleStrategyAwardListByActivityId(request.getActivityId());
+            // 3. get strategy setting
+            String[] treeIds = strategyAwardEntities.stream()
+                    .map(StrategyAwardEntity::getRuleModels)
+                    .filter(ruleModel -> ruleModel != null && !ruleModel.isEmpty())
+                    .toArray(String[]::new);
+
+            // 4. query strategy setting, award unlock rule
+            Map<String, Integer> ruleLockCountMap = raffleRule.queryAwardRuleLockCount(treeIds);
+
+            // 5. query raffle times
+            Integer dayPartakeCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountDayPartakeCount(request.getActivityId(), request.getUserId());
+
+            // 6. filter award list based on rule lock count and user raffle times
             List<RaffleAwardListResponseDTO> raffleAwardListResponseDTOS = new ArrayList<>(strategyAwardEntities.size());
             for (StrategyAwardEntity strategyAward : strategyAwardEntities) {
+                Integer awardRuleLockCount = ruleLockCountMap.get(strategyAward.getRuleModels());
                 raffleAwardListResponseDTOS.add(RaffleAwardListResponseDTO.builder()
                         .awardId(strategyAward.getAwardId())
                         .awardTitle(strategyAward.getAwardTitle())
                         .awardSubtitle(strategyAward.getAwardSubtitle())
                         .sort(strategyAward.getSort())
+                        .awardRuleLockCount(awardRuleLockCount)
+                        .isAwardUnlock(null == awardRuleLockCount || dayPartakeCount >= awardRuleLockCount)
+                        .waitUnlockCount(null == awardRuleLockCount || awardRuleLockCount <= dayPartakeCount ? 0 : awardRuleLockCount - dayPartakeCount)
                         .build());
             }
             Response<List<RaffleAwardListResponseDTO>> response = Response.<List<RaffleAwardListResponseDTO>>builder()
@@ -103,10 +135,10 @@ public class RaffleStrategyController implements IRaffleStrategyService {
                     .info(ResponseCode.SUCCESS.getInfo())
                     .data(raffleAwardListResponseDTOS)
                     .build();
-            log.info("query raffle award list config completed, strategyId：{} response: {}", requestDTO.getStrategyId(), JSON.toJSONString(response));
+            log.info("query raffle award list config completed, userId: {}, activityId: {} response: {}", request.getUserId(), request.getActivityId(), JSON.toJSONString(response));
             return response;
         } catch (Exception e) {
-            log.error("query raffle award list config failed, strategyId：{}", requestDTO.getStrategyId(), e);
+            log.error("query raffle award list config failed, userId: {}, activityId: {}", request.getUserId(), request.getActivityId());
             return Response.<List<RaffleAwardListResponseDTO>>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
