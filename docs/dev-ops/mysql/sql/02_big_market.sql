@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-05-21 16:55:41 +0000
+# Generation Time: 2025-05-29 19:02:17 +0000
 # ************************************************************
 
 
@@ -69,11 +69,8 @@ CREATE TABLE `raffle_activity` (
   `activity_desc` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `begin_date_time` datetime NOT NULL COMMENT 'activity start data time',
   `end_date_time` datetime NOT NULL COMMENT 'activity end data time',
-  `stock_count` int NOT NULL COMMENT 'activity participation inventory',
-  `stock_count_surplus` int NOT NULL,
-  `activity_count_id` bigint NOT NULL COMMENT 'activity participation inventory id - sync to other table, for convenience use',
   `strategy_id` bigint NOT NULL,
-  `state` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'activity state',
+  `state` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '[CREATE, OPEN, CLOSE]',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -82,6 +79,15 @@ CREATE TABLE `raffle_activity` (
   KEY `idx_end_date_time` (`end_date_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+LOCK TABLES `raffle_activity` WRITE;
+/*!40000 ALTER TABLE `raffle_activity` DISABLE KEYS */;
+
+INSERT INTO `raffle_activity` (`id`, `activity_id`, `activity_name`, `activity_desc`, `begin_date_time`, `end_date_time`, `strategy_id`, `state`, `create_time`, `update_time`)
+VALUES
+	(1,100301,'test activity','test activity','2025-05-22 08:23:50','2035-05-22 08:23:50',100006,'OPEN','2025-05-22 08:23:50','2025-05-24 00:03:40');
+
+/*!40000 ALTER TABLE `raffle_activity` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table raffle_activity_count
@@ -101,6 +107,45 @@ CREATE TABLE `raffle_activity_count` (
   UNIQUE KEY `uq_activity_count_id` (`activity_count_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+LOCK TABLES `raffle_activity_count` WRITE;
+/*!40000 ALTER TABLE `raffle_activity_count` DISABLE KEYS */;
+
+INSERT INTO `raffle_activity_count` (`id`, `activity_count_id`, `total_count`, `day_count`, `month_count`, `create_time`, `update_time`)
+VALUES
+	(1,11101,100,2,60,'2025-05-22 08:24:26','2025-05-22 19:34:51');
+
+/*!40000 ALTER TABLE `raffle_activity_count` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table raffle_activity_sku
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `raffle_activity_sku`;
+
+CREATE TABLE `raffle_activity_sku` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `sku` bigint NOT NULL,
+  `activity_id` bigint NOT NULL,
+  `activity_count_id` bigint NOT NULL,
+  `stock_count` int NOT NULL,
+  `stock_count_surplus` int NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_sku` (`sku`),
+  KEY `idx_activity_id_activity_count_id` (`activity_id`,`activity_count_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `raffle_activity_sku` WRITE;
+/*!40000 ALTER TABLE `raffle_activity_sku` DISABLE KEYS */;
+
+INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `create_time`, `update_time`)
+VALUES
+	(1,9011,100301,11101,20,9,'2024-03-16 11:41:09','2025-05-28 11:15:55');
+
+/*!40000 ALTER TABLE `raffle_activity_sku` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table rule_tree
@@ -127,7 +172,8 @@ INSERT INTO `rule_tree` (`id`, `tree_id`, `tree_name`, `tree_desc`, `tree_root_r
 VALUES
 	(1,'tree_lock_1','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:24'),
 	(2,'tree_luck_award','rule_tree_fallback_prize','rule_tree_fallback_prize','rule_stock','2024-02-15 07:35:06','2025-05-20 20:34:34'),
-	(3,'tree_lock_2','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:25');
+	(3,'tree_lock_2','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:25'),
+	(4,'tree_lock_3','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:25');
 
 /*!40000 ALTER TABLE `rule_tree` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -161,7 +207,10 @@ VALUES
 	(5,'tree_luck_award','rule_luck_award','random points - fallback prize','101:1,100','2024-02-15 07:35:55','2025-05-20 20:35:51'),
 	(6,'tree_lock_2','rule_lock','unlock certain award as the user completes N times of lottery','2','2024-01-27 10:03:09','2025-05-20 20:35:34'),
 	(7,'tree_lock_2','rule_luck_award','random points - fallback prize','101:1,100','2024-01-27 10:03:09','2025-05-20 20:35:51'),
-	(8,'tree_lock_2','rule_stock','stock deduction rule',NULL,'2024-01-27 10:04:43','2025-05-20 20:36:24');
+	(8,'tree_lock_2','rule_stock','stock deduction rule',NULL,'2024-01-27 10:04:43','2025-05-20 20:36:24'),
+	(9,'tree_lock_3','rule_lock','unlock certain award as the user completes N times of lottery','3','2024-01-27 10:03:09','2025-05-29 11:59:29'),
+	(10,'tree_lock_3','rule_luck_award','random points - fallback prize','101:1,100','2024-01-27 10:03:09','2025-05-20 20:35:51'),
+	(11,'tree_lock_3','rule_stock','stock deduction rule',NULL,'2024-01-27 10:04:43','2025-05-20 20:36:24');
 
 /*!40000 ALTER TABLE `rule_tree_node` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -189,13 +238,16 @@ LOCK TABLES `rule_tree_node_line` WRITE;
 
 INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node_to`, `rule_limit_type`, `rule_limit_value`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_lock','rule_stock','EQUAL','ALLOW','0000-00-00 00:00:00','2024-02-15 07:55:08'),
-	(2,'tree_lock_1','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','0000-00-00 00:00:00','2024-02-15 07:55:11'),
-	(3,'tree_lock_1','rule_stock','rule_luck_award','EQUAL','ALLOW','0000-00-00 00:00:00','2024-02-15 07:55:13'),
+	(1,'tree_lock_1','rule_lock','rule_stock','EQUAL','ALLOW','2025-05-29 12:01:14','2025-05-29 12:01:14'),
+	(2,'tree_lock_1','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-29 12:01:18','2025-05-29 12:01:18'),
+	(3,'tree_lock_1','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:01:20','2025-05-29 12:01:20'),
 	(4,'tree_luck_award','rule_stock','rule_luck_award','EQUAL','ALLOW','2024-02-15 07:37:31','2024-02-15 07:39:28'),
-	(5,'tree_lock_2','rule_lock','rule_stock','EQUAL','ALLOW','0000-00-00 00:00:00','2024-02-15 07:55:08'),
-	(6,'tree_lock_2','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','0000-00-00 00:00:00','2024-02-15 07:55:11'),
-	(7,'tree_lock_2','rule_stock','rule_luck_award','EQUAL','ALLOW','0000-00-00 00:00:00','2024-02-15 07:55:13');
+	(5,'tree_lock_2','rule_lock','rule_stock','EQUAL','ALLOW','2025-05-29 12:01:25','2025-05-29 12:01:25'),
+	(6,'tree_lock_2','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-29 12:01:28','2025-05-29 12:01:28'),
+	(7,'tree_lock_2','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:01:30','2025-05-29 12:01:30'),
+	(8,'tree_lock_3','rule_lock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:00:44','2024-02-15 07:55:08'),
+	(9,'tree_lock_3','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-29 12:01:09','2024-02-15 07:55:11'),
+	(10,'tree_lock_3','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:01:30','2025-05-29 12:01:30');
 
 /*!40000 ALTER TABLE `rule_tree_node_line` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -281,14 +333,14 @@ VALUES
 	(19,100005,103,'Random Points',NULL,80000,80000,0.0300,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:17'),
 	(20,100005,104,'Random Points',NULL,80000,80000,0.0300,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:18'),
 	(21,100005,105,'Random Points',NULL,80000,80000,0.0010,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:18'),
-	(22,100006,101,'Random Points',NULL,100,88,0.0200,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:19'),
-	(23,100006,102,'Prize 7',NULL,100,62,0.0300,'tree_luck_award',2,'2023-12-09 09:38:31','2025-05-20 20:44:48'),
-	(24,100006,103,'Prize 6',NULL,100,71,0.0300,'tree_luck_award',3,'2023-12-09 09:38:31','2025-05-20 20:44:50'),
-	(25,100006,104,'Prize 5',NULL,100,68,0.0300,'tree_luck_award',4,'2023-12-09 09:38:31','2025-05-20 20:44:55'),
-	(26,100006,105,'Prize 4',NULL,100,74,0.0300,'tree_luck_award',5,'2023-12-09 09:38:31','2025-05-20 20:44:57'),
-	(27,100006,106,'Prize 3','Unlock after 1 times play',100,68,0.0300,'tree_lock_1',6,'2023-12-09 09:38:31','2025-05-20 20:45:00'),
-	(28,100006,107,'Prize 2','Unlock after 1 times play',100,72,0.0300,'tree_lock_1',7,'2023-12-09 09:38:31','2025-05-20 20:45:02'),
-	(29,100006,108,'Prize 1','Unlock after 2 times play',100,74,0.0300,'tree_lock_2',8,'2023-12-09 09:38:31','2025-05-20 20:45:04');
+	(22,100006,101,'Random Points',NULL,100,85,0.0200,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-28 22:15:00'),
+	(23,100006,102,'Prize 1',NULL,100,60,0.0300,'tree_luck_award',2,'2023-12-09 09:38:31','2025-05-29 11:58:01'),
+	(24,100006,103,'Prize 2',NULL,100,69,0.0300,'tree_luck_award',3,'2023-12-09 09:38:31','2025-05-29 11:58:03'),
+	(25,100006,104,'Prize 3',NULL,100,63,0.0300,'tree_luck_award',4,'2023-12-09 09:38:31','2025-05-29 11:58:05'),
+	(26,100006,105,'Prize 4','Unlock after 3 times play',100,72,0.0300,'tree_lock_3',5,'2023-12-09 09:38:31','2025-05-29 11:57:27'),
+	(27,100006,106,'Prize 5','Unlock after 2 times play',100,63,0.0300,'tree_lock_2',6,'2023-12-09 09:38:31','2025-05-29 11:58:07'),
+	(28,100006,107,'Prize 6','Unlock after 1 times play',100,71,0.0300,'tree_lock_1',7,'2023-12-09 09:38:31','2025-05-29 11:58:09'),
+	(29,100006,108,'Prize 7',NULL,100,69,0.0300,'tree_luck_award',8,'2023-12-09 09:38:31','2025-05-29 11:58:11');
 
 /*!40000 ALTER TABLE `strategy_award` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -318,23 +370,8 @@ LOCK TABLES `strategy_rule` WRITE;
 
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`)
 VALUES
-	(1,100001,101,2,'rule_random','1,1000','Random point strategy(Deposit random value from rule_value to user account)','2023-12-09 10:05:30','2025-05-20 20:47:53'),
-	(2,100001,107,2,'rule_lock','1','unlock after 1 times play','2023-12-09 10:16:41','2025-05-20 20:47:56'),
-	(3,100001,108,2,'rule_lock','2','unlock after 2 times play','2023-12-09 10:17:43','2025-05-20 20:47:58'),
-	(4,100001,109,2,'rule_lock','6','unlock after 6 times play','2023-12-09 10:17:43','2025-05-20 20:48:02'),
-	(5,100001,107,2,'rule_luck_award','1,100','random points less than 100 - fallback prize','2023-12-09 10:30:12','2025-05-20 20:47:11'),
-	(6,100001,108,2,'rule_luck_award','1,100','random points less than 100 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:13'),
-	(7,100001,101,2,'rule_luck_award','1,10','random points less than 10 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:18'),
-	(8,100001,102,2,'rule_luck_award','1,20','random points less than 20 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:21'),
-	(9,100001,103,2,'rule_luck_award','1,30','random points less than 30 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:25'),
-	(10,100001,104,2,'rule_luck_award','1,40','random points less than 40 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:29'),
-	(11,100001,105,2,'rule_luck_award','1,50','random points less than 50 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:33'),
-	(12,100001,106,2,'rule_luck_award','1,60','random points less than 60 - fallback prize','2023-12-09 10:30:43','2025-05-20 20:47:38'),
 	(13,100001,NULL,1,'rule_weight','4000:102,103,104,105 5000:102,103,104,105,106,107 6000:102,103,104,105,106,107,108,109','choose from designed awards based on points used','2023-12-09 10:30:43','2025-05-20 20:48:25'),
-	(14,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2023-12-09 12:59:45','2025-05-20 20:48:26'),
-	(15,100003,107,2,'rule_lock','1','unlock after 1 times play','2023-12-09 10:16:41','2025-05-20 20:48:33'),
-	(16,100003,108,2,'rule_lock','2','unlock after 2 times play','2023-12-09 10:17:43','2025-05-20 20:48:36'),
-	(17,100003,109,2,'rule_lock','6','unlock after 6 times play','2023-12-09 10:17:43','2025-05-20 20:48:39');
+	(14,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2023-12-09 12:59:45','2025-05-20 20:48:26');
 
 /*!40000 ALTER TABLE `strategy_rule` ENABLE KEYS */;
 UNLOCK TABLES;
