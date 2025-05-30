@@ -1,0 +1,262 @@
+25-05-29.14:01:37.540 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 8823 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:01:37.540 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:01:38.012 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:01:38.014 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:01:38.033 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:01:38.648 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:01:38.661 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:01:38.746 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:01:38.755 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:01:40.094 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:01:40.133 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:01:40.167 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7b211077:0/SimpleConnection@5a63fa71 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56467]
+25-05-29.14:01:40.212 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 2.865 seconds (JVM running for 3.301)
+25-05-29.14:01:40.321 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:01:40.398 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:01:40.400 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0002","info":"Illegal parameter"}
+25-05-29.14:01:40.409 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:01:40.409 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:01:41.214 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:01:41.214 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:01:41.220 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:01:41.221 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:03:55.110 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 8950 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:03:55.110 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:03:55.579 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:03:55.580 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:03:55.598 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+25-05-29.14:03:56.186 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:03:56.199 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:03:56.276 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:03:56.290 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:03:57.586 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:03:57.623 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:03:57.657 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#37b1149b:0/SimpleConnection@48da64f2 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56502]
+25-05-29.14:03:57.706 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 2.79 seconds (JVM running for 3.257)
+25-05-29.14:03:57.807 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:03:57.878 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:03:57.880 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0002","info":"Illegal parameter"}
+25-05-29.14:03:57.888 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:03:57.889 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:03:58.699 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:03:58.702 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:03:58.704 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:03:58.704 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:04:23.407 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 8974 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:04:23.407 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:04:23.910 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:04:23.918 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:04:23.937 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:04:24.563 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:04:24.577 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:04:24.671 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:04:24.681 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:04:26.306 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:04:26.405 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:04:26.449 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#4c2ab536:0/SimpleConnection@ab4d2ba [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56521]
+25-05-29.14:04:26.505 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 3.307 seconds (JVM running for 4.109)
+25-05-29.14:04:26.662 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:04:26.746 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:04:26.748 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0002","info":"Illegal parameter"}
+25-05-29.14:04:26.756 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:04:26.756 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:04:27.498 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:04:27.499 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:04:27.503 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:04:27.504 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:04:43.864 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 8989 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:04:43.864 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:04:44.353 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:04:44.355 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:04:44.382 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:04:45.063 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:04:45.081 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:04:45.182 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:04:45.194 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:04:46.754 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:04:46.810 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:04:46.846 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#4c2ab536:0/SimpleConnection@65ff4b8c [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56534]
+25-05-29.14:04:46.895 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 3.246 seconds (JVM running for 4.014)
+25-05-29.14:04:47.022 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:04:47.099 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:04:47.101 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0002","info":"Illegal parameter"}
+25-05-29.14:04:47.110 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:04:47.110 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:04:47.895 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:04:47.895 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:04:47.900 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:04:47.900 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:04:59.341 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 9006 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:04:59.342 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:04:59.812 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:04:59.821 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:04:59.839 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:05:00.460 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:05:00.472 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:05:00.561 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:05:00.570 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:05:02.054 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:05:02.104 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:05:02.141 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#4c2ab536:0/SimpleConnection@ab4d2ba [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56546]
+25-05-29.14:05:02.186 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 3.054 seconds (JVM running for 3.725)
+25-05-29.14:05:02.316 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:05:23.370 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:05:23.370 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:05:23.385 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:05:23.386 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:05:23.439 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:05:23.441 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0002","info":"Illegal parameter"}
+25-05-29.14:05:23.545 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:05:23.545 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:05:24.339 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:05:24.339 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:05:24.341 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:05:24.341 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:09:26.904 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 9218 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:09:26.905 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:09:27.401 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:09:27.403 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:09:27.425 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+25-05-29.14:09:28.042 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:09:28.056 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:09:28.138 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:09:28.149 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:09:29.432 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:09:29.475 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:09:29.509 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7b211077:0/SimpleConnection@5a63fa71 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56653]
+25-05-29.14:09:29.553 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 2.858 seconds (JVM running for 3.275)
+25-05-29.14:09:29.656 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:09:29.672 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:09:29.811 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:09:29.878 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:09:29.900 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:09:29.996 [main            ] INFO  RaffleStrategyController - query raffle award list config completed, userId: bobo, activityId: 100301 response: {"code":"0000","data":[{"awardId":101,"awardTitle":"Random Points","awardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"Prize 7","awardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"Prize 6","awardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"Prize 5","awardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"Prize 4","awardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 3","awardUnlock":true,"sort":6,"waitUnlockCount":0},{"awardId":107,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 2","awardUnlock":true,"sort":7,"waitUnlockCount":0},{"awardId":108,"awardRuleLockCount":2,"awardSubtitle":"Unlock after 2 times play","awardTitle":"Prize 1","awardUnlock":true,"sort":8,"waitUnlockCount":0}],"info":"Success"}
+25-05-29.14:09:29.998 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:09:29.999 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0000","data":[{"awardId":101,"awardTitle":"Random Points","awardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"Prize 7","awardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"Prize 6","awardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"Prize 5","awardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"Prize 4","awardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 3","awardUnlock":true,"sort":6,"waitUnlockCount":0},{"awardId":107,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 2","awardUnlock":true,"sort":7,"waitUnlockCount":0},{"awardId":108,"awardRuleLockCount":2,"awardSubtitle":"Unlock after 2 times play","awardTitle":"Prize 1","awardUnlock":true,"sort":8,"waitUnlockCount":0}],"info":"Success"}
+25-05-29.14:09:30.007 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:09:30.009 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:09:30.010 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:09:30.022 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:09:30.557 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:09:30.557 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:09:30.563 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:09:30.564 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:13:02.254 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 9424 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:13:02.255 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:13:02.734 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:13:02.737 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:13:02.756 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:13:03.396 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:13:03.411 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:13:03.494 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:13:03.506 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:13:04.885 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:13:04.922 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:13:04.955 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#2c8a445b:0/SimpleConnection@1d5bb5c [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56764]
+25-05-29.14:13:04.999 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 2.955 seconds (JVM running for 3.431)
+25-05-29.14:13:05.015 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:13:05.015 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:13:05.117 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:13:05.120 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:13:05.181 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:13:05.181 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:13:05.182 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:13:05.335 [main            ] INFO  RaffleStrategyController - query raffle award list config completed, userId: bobo, activityId: 100301 response: {"code":"0000","data":[{"awardId":101,"awardTitle":"Random Points","awardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"Prize 7","awardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"Prize 6","awardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"Prize 5","awardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"Prize 4","awardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 3","awardUnlock":true,"sort":6,"waitUnlockCount":0},{"awardId":107,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 2","awardUnlock":true,"sort":7,"waitUnlockCount":0},{"awardId":108,"awardRuleLockCount":2,"awardSubtitle":"Unlock after 2 times play","awardTitle":"Prize 1","awardUnlock":true,"sort":8,"waitUnlockCount":0}],"info":"Success"}
+25-05-29.14:13:05.337 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:13:05.338 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0000","data":[{"awardId":101,"awardTitle":"Random Points","awardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"Prize 7","awardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"Prize 6","awardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"Prize 5","awardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"Prize 4","awardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 3","awardUnlock":true,"sort":6,"waitUnlockCount":0},{"awardId":107,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 2","awardUnlock":true,"sort":7,"waitUnlockCount":0},{"awardId":108,"awardRuleLockCount":2,"awardSubtitle":"Unlock after 2 times play","awardTitle":"Prize 1","awardUnlock":true,"sort":8,"waitUnlockCount":0}],"info":"Success"}
+25-05-29.14:13:05.349 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:13:05.350 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:13:06.004 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:13:06.004 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:13:06.011 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:13:06.012 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:13:14.249 [main            ] INFO  RaffleStrategyControllerTest - Starting RaffleStrategyControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 9440 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:13:14.249 [main            ] INFO  RaffleStrategyControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:13:14.683 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:13:14.685 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:13:14.707 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+25-05-29.14:13:15.272 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:13:15.288 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:13:15.362 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:13:15.371 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:13:16.682 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:13:16.719 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:13:16.751 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7b211077:0/SimpleConnection@5a63fa71 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 56824]
+25-05-29.14:13:16.793 [main            ] INFO  RaffleStrategyControllerTest - Started RaffleStrategyControllerTest in 2.743 seconds (JVM running for 3.171)
+25-05-29.14:13:16.886 [main            ] INFO  RaffleStrategyController - query raffle award list config start, userId: bobo, activityId: 100301
+25-05-29.14:13:16.901 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:13:17.043 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:13:17.100 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:13:17.122 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:13:17.202 [main            ] INFO  RaffleStrategyController - query raffle award list config completed, userId: bobo, activityId: 100301 response: {"code":"0000","data":[{"awardId":101,"awardTitle":"Random Points","awardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"Prize 7","awardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"Prize 6","awardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"Prize 5","awardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"Prize 4","awardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 3","awardUnlock":false,"sort":6,"waitUnlockCount":1},{"awardId":107,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 2","awardUnlock":false,"sort":7,"waitUnlockCount":1},{"awardId":108,"awardRuleLockCount":2,"awardSubtitle":"Unlock after 2 times play","awardTitle":"Prize 1","awardUnlock":false,"sort":8,"waitUnlockCount":2}],"info":"Success"}
+25-05-29.14:13:17.204 [main            ] INFO  RaffleStrategyControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:13:17.205 [main            ] INFO  RaffleStrategyControllerTest - Test Results：{"code":"0000","data":[{"awardId":101,"awardTitle":"Random Points","awardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"Prize 7","awardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"Prize 6","awardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"Prize 5","awardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"Prize 4","awardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 3","awardUnlock":false,"sort":6,"waitUnlockCount":1},{"awardId":107,"awardRuleLockCount":1,"awardSubtitle":"Unlock after 1 times play","awardTitle":"Prize 2","awardUnlock":false,"sort":7,"waitUnlockCount":1},{"awardId":108,"awardRuleLockCount":2,"awardSubtitle":"Unlock after 2 times play","awardTitle":"Prize 1","awardUnlock":false,"sort":8,"waitUnlockCount":2}],"info":"Success"}
+25-05-29.14:13:17.212 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:13:17.213 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:13:17.789 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:13:17.790 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:13:17.791 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:13:17.792 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:35.995 [main            ] INFO  RaffleActivityControllerTest - Starting RaffleActivityControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 10774 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:36:35.996 [main            ] INFO  RaffleActivityControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:36:36.443 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:36:36.445 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:36:36.462 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:36:37.046 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:36:37.059 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:36:37.138 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:37.147 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:38.467 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:36:38.506 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:36:38.546 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#64f32e9e:0/SimpleConnection@5a63fa71 [delegate=amqp://admin@127.0.0.1:5672/, localPort= 57085]
+25-05-29.14:36:38.596 [main            ] INFO  RaffleActivityControllerTest - Started RaffleActivityControllerTest in 2.794 seconds (JVM running for 3.2)
+25-05-29.14:36:38.721 [main            ] INFO  RaffleActivityController - activity assembly, data preheating starting; activityId:100301
+25-05-29.14:36:38.740 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:38.917 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:39.027 [main            ] INFO  RaffleActivityController - activity assembly, data preheating completed; activityId:100301
+25-05-29.14:36:39.115 [main            ] INFO  RaffleActivityControllerTest - Test Results：{"code":"0000","data":true,"info":"Success"}
+25-05-29.14:36:39.123 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:39.123 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:39.591 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:39.594 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:39.596 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:39.596 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:46.488 [main            ] INFO  RaffleActivityControllerTest - Starting RaffleActivityControllerTest using Java 1.8.0_412 on Bos-MacBook-Pro.local with PID 10791 (started by bo in /Users/bo/IdeaProjects/XFG/big-market/big-market-app)
+25-05-29.14:36:46.489 [main            ] INFO  RaffleActivityControllerTest - The following 1 profile is active: "dev"
+25-05-29.14:36:46.908 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-05-29.14:36:46.910 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-05-29.14:36:46.928 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+25-05-29.14:36:47.481 [main            ] INFO  Version                - Redisson 3.23.4
+25-05-29.14:36:47.498 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+25-05-29.14:36:47.575 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:47.584 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-05-29.14:36:48.871 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-05-29.14:36:48.912 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+25-05-29.14:36:48.947 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#3b770d07:0/SimpleConnection@a6fc1bc [delegate=amqp://admin@127.0.0.1:5672/, localPort= 57117]
+25-05-29.14:36:48.990 [main            ] INFO  RaffleActivityControllerTest - Started RaffleActivityControllerTest in 2.709 seconds (JVM running for 3.189)
+25-05-29.14:36:49.090 [main            ] INFO  RaffleActivityController - activity draw start, userId:bobo, activityId:100301
+25-05-29.14:36:49.145 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:49.284 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:49.330 [main            ] INFO  RaffleActivityController - activity draw order created, userId:bobo, activityId:100301, orderId:546457008689
+25-05-29.14:36:49.341 [main            ] INFO  DefaultLogicChain      - Ruffle chain of responsibility - default; userId:bobo strategyId:100006 awardId:106
+25-05-29.14:36:49.342 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - chain raffle result: bobo 100006 106 rule_default
+25-05-29.14:36:49.342 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:49.363 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:49.381 [main            ] INFO  RuleLockLogicTreeNode  - rule filter - rule lock userId:bobo strategyId:100006 awardId:106
+25-05-29.14:36:49.384 [main            ] INFO  RuleLockLogicTreeNode  - rule filter - rule lock [ALLOW] userId:bobo strategyId:100006 awardId:106 raffleCount:25 userRaffleCount:25
+25-05-29.14:36:49.385 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock_1 node:rule_lock code:0000
+25-05-29.14:36:49.385 [main            ] INFO  RuleStockLogicTreeNode - rule filter - inventory subtraction - strategyId: 100006, awardId: 106
+25-05-29.14:36:49.399 [main            ] INFO  DecisionTreeEngine     - Decision Tree Engine [rule_tree] treeId:tree_lock_1 node:rule_stock code:0001
+25-05-29.14:36:49.399 [main            ] INFO  AbstractRaffleStrategy - ruffle strategy calculate - tree raffle result: bobo 100006 106 
+25-05-29.14:36:49.507 [main            ] INFO  EventPublisher         - sending MQ message. topic:send_award message:{"data":{"awardId":106,"awardTitle":"Prize 3","userId":"bobo"},"id":"79501088758","timestamp":1748543809406}
+25-05-29.14:36:49.512 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  SendAwardCustomer      - Listening to user award sending message, topic: send_award message: {"data":{"awardId":106,"awardTitle":"Prize 3","userId":"bobo"},"id":"79501088758","timestamp":1748543809406}
+25-05-29.14:36:49.513 [main            ] INFO  RaffleActivityControllerTest - parameters：{"activityId":100301,"userId":"bobo"}
+25-05-29.14:36:49.516 [main            ] INFO  RaffleActivityControllerTest - Test Results：{"code":"0000","data":{"awardId":106,"awardIndex":6,"awardTitle":"Prize 3"},"info":"Success"}
+25-05-29.14:36:49.527 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:49.527 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+25-05-29.14:36:49.992 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:50.015 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+25-05-29.14:36:50.036 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+25-05-29.14:36:50.522 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+25-05-29.14:36:50.527 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+25-05-29.14:36:50.528 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
