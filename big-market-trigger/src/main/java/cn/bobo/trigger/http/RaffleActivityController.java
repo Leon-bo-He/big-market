@@ -186,7 +186,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "daily_checkin_rebate", method = RequestMethod.POST)
     @Override
-    public Response<Boolean> dailyCheckinRebate(@RequestBody String userId) {
+    public Response<Boolean> dailyCheckinRebate(@RequestParam String userId) {
         try {
             log.info("Daily check-in rebate start. userId:{}", userId);
             BehaviorEntity behaviorEntity = new BehaviorEntity();
