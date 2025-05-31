@@ -4,15 +4,13 @@ import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.bobo.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyAwardEntity;
+import cn.bobo.domain.strategy.model.vo.RuleWeightVO;
 import cn.bobo.domain.strategy.service.IRaffleAward;
 import cn.bobo.domain.strategy.service.IRaffleRule;
 import cn.bobo.domain.strategy.service.IRaffleStrategy;
 import cn.bobo.domain.strategy.service.armory.IStrategyArmory;
 import cn.bobo.trigger.api.IRaffleStrategyService;
-import cn.bobo.trigger.api.dto.RaffleAwardListRequestDTO;
-import cn.bobo.trigger.api.dto.RaffleAwardListResponseDTO;
-import cn.bobo.trigger.api.dto.RaffleStrategyRequestDTO;
-import cn.bobo.trigger.api.dto.RaffleStrategyResponseDTO;
+import cn.bobo.trigger.api.dto.*;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import cn.bobo.types.model.Response;
@@ -145,6 +143,54 @@ public class RaffleStrategyController implements IRaffleStrategyService {
                     .build();
         }
 
+    }
+
+    @RequestMapping(value = "query_raffle_strategy_rule_weight", method = RequestMethod.POST)
+    @Override
+    public Response<List<RaffleStrategyRuleWeightResponseDTO>> queryRaffleStrategyRuleWeight(RaffleStrategyRuleWeightRequestDTO request) {
+        try {
+            log.info("query raffle strategy rule weight config start, userId: {}, activityId: {}", request.getUserId(), request.getActivityId());
+            // 1. check parameters
+            if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
+                throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
+            }
+            // 2. query user activity account total use count
+            Integer userActivityAccountTotalUseCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountPartakeCount(request.getActivityId(), request.getUserId());
+            // 3. query raffle strategy rule weight
+            List<RaffleStrategyRuleWeightResponseDTO> raffleStrategyRuleWeightList = new ArrayList<>();
+            List<RuleWeightVO> ruleWeightVOList = raffleRule.queryAwardRuleWeightByActivityId(request.getActivityId());
+            for (RuleWeightVO ruleWeightVO : ruleWeightVOList) {
+                // transform RuleWeightVO to RaffleStrategyRuleWeightResponseDTO
+                List<RaffleStrategyRuleWeightResponseDTO.StrategyAward> strategyAwards = new ArrayList<>();
+                List<RuleWeightVO.Award> awardList = ruleWeightVO.getAwardList();
+                for (RuleWeightVO.Award award : awardList) {
+                    RaffleStrategyRuleWeightResponseDTO.StrategyAward strategyAward = new RaffleStrategyRuleWeightResponseDTO.StrategyAward();
+                    strategyAward.setAwardId(award.getAwardId());
+                    strategyAward.setAwardTitle(award.getAwardTitle());
+                    strategyAwards.add(strategyAward);
+                }
+                // create RaffleStrategyRuleWeightResponseDTO
+                RaffleStrategyRuleWeightResponseDTO raffleStrategyRuleWeightResponseDTO = new RaffleStrategyRuleWeightResponseDTO();
+                raffleStrategyRuleWeightResponseDTO.setRuleWeightCount(ruleWeightVO.getWeight());
+                raffleStrategyRuleWeightResponseDTO.setStrategyAwards(strategyAwards);
+                raffleStrategyRuleWeightResponseDTO.setUserActivityAccountTotalUseCount(userActivityAccountTotalUseCount);
+
+                raffleStrategyRuleWeightList.add(raffleStrategyRuleWeightResponseDTO);
+            }
+            Response<List<RaffleStrategyRuleWeightResponseDTO>> response = Response.<List<RaffleStrategyRuleWeightResponseDTO>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(raffleStrategyRuleWeightList)
+                    .build();
+            log.info("query raffle strategy rule weight config completed, userId: {}, activityId: {} response: {}", request.getUserId(), request.getActivityId(), JSON.toJSONString(response));
+            return response;
+        } catch (Exception e) {
+            log.error("query raffle strategy rule weight config failed, userId: {}, activityId: {}", request.getUserId(), request.getActivityId(), e);
+            return Response.<List<RaffleStrategyRuleWeightResponseDTO>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
     }
 
     /**

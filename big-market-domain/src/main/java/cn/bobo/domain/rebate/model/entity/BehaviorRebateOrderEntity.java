@@ -21,5 +21,6 @@ public class BehaviorRebateOrderEntity {
     private String rebateDesc;
     private String rebateType;
     private String rebateConfig;
+    private String outBusinessNo;
     private String bizId;
 }

@@ -24,8 +24,6 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
     @Resource
     private IStrategyDispatch strategyDispatch;
 
-    private Long userScore = 0L;
-
 
     @Override
     public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
@@ -41,6 +39,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         Collections.sort(analyticalSortedKeys);
         Collections.reverse(analyticalSortedKeys);
 
+        Integer userScore = repository.queryActivityAccountTotalUseCount(userId, strategyId);
         // 3. find the largest key less than or equal to userScore
         Long nextValue = analyticalSortedKeys.stream()
                 .filter(key -> userScore >= key)

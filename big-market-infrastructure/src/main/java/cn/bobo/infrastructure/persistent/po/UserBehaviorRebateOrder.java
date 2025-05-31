@@ -15,6 +15,7 @@ public class UserBehaviorRebateOrder {
     private String rebateDesc;
     private String rebateType;
     private String rebateConfig;
+    private String outBusinessNo;
     private String bizId;
     private Date createTime;
     private Date updateTime;

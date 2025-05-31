@@ -4,6 +4,7 @@ import cn.bobo.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyEntity;
 import cn.bobo.domain.strategy.model.entity.StrategyRuleEntity;
 import cn.bobo.domain.strategy.model.vo.RuleTreeVO;
+import cn.bobo.domain.strategy.model.vo.RuleWeightVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardInventoryKeyVO;
 import cn.bobo.domain.strategy.model.vo.StrategyAwardRuleModelVO;
 
@@ -56,4 +57,8 @@ public interface IStrategyRepository {
     Integer queryTodayUserRaffleCount(String userId, Long strategyId);
 
     Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
+
+    Integer queryActivityAccountTotalUseCount(String userId, Long strategyId);
+
+    List<RuleWeightVO> queryAwardRuleWeight(Long strategyId);
 }

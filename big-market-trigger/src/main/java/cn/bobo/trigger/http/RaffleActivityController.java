@@ -1,12 +1,15 @@
 package cn.bobo.trigger.http;
 
+import cn.bobo.domain.activity.model.entity.ActivityAccountEntity;
 import cn.bobo.domain.activity.model.entity.UserRaffleOrderEntity;
+import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.activity.service.IRaffleActivityPartakeService;
 import cn.bobo.domain.activity.service.armory.IActivityArmory;
 import cn.bobo.domain.award.model.entity.UserAwardRecordEntity;
 import cn.bobo.domain.award.model.vo.AwardStateVO;
 import cn.bobo.domain.award.service.IAwardService;
 import cn.bobo.domain.rebate.model.entity.BehaviorEntity;
+import cn.bobo.domain.rebate.model.entity.BehaviorRebateOrderEntity;
 import cn.bobo.domain.rebate.model.vo.BehaviorTypeVO;
 import cn.bobo.domain.rebate.service.IBehaviorRebateService;
 import cn.bobo.domain.strategy.model.entity.RaffleAwardEntity;
@@ -16,6 +19,8 @@ import cn.bobo.domain.strategy.service.armory.IStrategyArmory;
 import cn.bobo.trigger.api.IRaffleActivityService;
 import cn.bobo.trigger.api.dto.ActivityDrawRequestDTO;
 import cn.bobo.trigger.api.dto.ActivityDrawResponseDTO;
+import cn.bobo.trigger.api.dto.UserActivityAccountRequestDTO;
+import cn.bobo.trigger.api.dto.UserActivityAccountResponseDTO;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import cn.bobo.types.model.Response;
@@ -42,6 +47,8 @@ public class RaffleActivityController implements IRaffleActivityService {
 
     @Resource
     private IRaffleActivityPartakeService raffleActivityPartakeService;
+    @Resource
+    private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
     @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
@@ -208,5 +215,76 @@ public class RaffleActivityController implements IRaffleActivityService {
                     .build();
         }
 
+    }
+
+    /**
+     *
+     * curl -X POST http://localhost:8091/api/v1/raffle/activity/is_daily_checkin_rebate -d "userId=bobo" -H "Content-Type: application/x-www-form-urlencoded"
+     */
+    @RequestMapping(value = "is_daily_checkin_rebate", method = RequestMethod.POST)
+    @Override
+    public Response<Boolean> isDailyCheckinRebate(String userId) {
+        try {
+            log.info("check if user has completed daily check-in rebate start. userId:{}", userId);
+            String outBusinessNo = dateFormatDay.format(new Date());
+            List<BehaviorRebateOrderEntity> behaviorRebateOrderEntities = behaviorRebateService.queryOrderByOutBusinessNo(userId, outBusinessNo);
+            log.info("check if user has completed daily check-in rebate completed. userId:{} orders.size:{}", userId, behaviorRebateOrderEntities.size());
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(!behaviorRebateOrderEntities.isEmpty())
+                    .build();
+        } catch (Exception e) {
+            log.error("check if user has completed daily check-in rebate failed. userId:{}", userId, e);
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .data(false)
+                    .build();
+        }
+    }
+
+
+    /**
+     * curl --request POST \
+     * --url http://localhost:8091/api/v1/raffle/activity/query_user_activity_account \
+     * --header 'content-type: application/json' \
+     * --data '{
+     * "userId":"bobo",
+     * "activityId": 100301
+     * }'
+     */
+    @RequestMapping(value = "query_user_activity_account", method = RequestMethod.POST)
+    @Override
+    public Response<UserActivityAccountResponseDTO> queryUserActivityAccount(UserActivityAccountRequestDTO request) {
+        try {
+            log.info("check user activity account start, userId:{}, activityId:{}", request.getUserId(), request.getActivityId());
+            // 1. check parameters
+            if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
+                throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
+            }
+            ActivityAccountEntity activityAccountEntity = raffleActivityAccountQuotaService.queryActivityAccountEntity(request.getActivityId(), request.getUserId());
+            UserActivityAccountResponseDTO userActivityAccountResponseDTO = UserActivityAccountResponseDTO.builder()
+                    .totalCount(activityAccountEntity.getTotalCount())
+                    .totalCountSurplus(activityAccountEntity.getTotalCountSurplus())
+                    .dayCount(activityAccountEntity.getDayCount())
+                    .dayCountSurplus(activityAccountEntity.getDayCountSurplus())
+                    .monthCount(activityAccountEntity.getMonthCount())
+                    .monthCountSurplus(activityAccountEntity.getMonthCountSurplus())
+                    .build();
+            log.info("check user activity account completed, userId:{}, activityId:{}, response:{}",
+                    request.getUserId(), request.getActivityId(), JSON.toJSONString(userActivityAccountResponseDTO));
+            return Response.<UserActivityAccountResponseDTO>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(userActivityAccountResponseDTO)
+                    .build();
+        } catch (Exception e) {
+            log.error("check user activity account failed, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
+            return Response.<UserActivityAccountResponseDTO>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
     }
 }
