@@ -223,7 +223,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "is_daily_checkin_rebate", method = RequestMethod.POST)
     @Override
-    public Response<Boolean> isDailyCheckinRebate(@RequestBody String userId) {
+    public Response<Boolean> isDailyCheckinRebate(@RequestParam String userId) {
         try {
             log.info("check if user has completed daily check-in rebate start. userId:{}", userId);
             String outBusinessNo = dateFormatDay.format(new Date());
