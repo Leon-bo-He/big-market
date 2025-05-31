@@ -141,7 +141,7 @@ public class ActivityRepository implements IActivityRepository {
             raffleActivityOrder.setState(activityOrderEntity.getState().getCode());
             raffleActivityOrder.setOutBusinessNo(activityOrderEntity.getOutBusinessNo());
 
-            // Account entity object
+            // Account entity object - total account
             RaffleActivityAccount raffleActivityAccount = new RaffleActivityAccount();
             raffleActivityAccount.setUserId(createOrderAggregate.getUserId());
             raffleActivityAccount.setActivityId(createOrderAggregate.getActivityId());
@@ -151,6 +151,22 @@ public class ActivityRepository implements IActivityRepository {
             raffleActivityAccount.setDayCountSurplus(createOrderAggregate.getDayCount());
             raffleActivityAccount.setMonthCount(createOrderAggregate.getMonthCount());
             raffleActivityAccount.setMonthCountSurplus(createOrderAggregate.getMonthCount());
+
+            // Account entity object - month
+            RaffleActivityAccountMonth raffleActivityAccountMonth = new RaffleActivityAccountMonth();
+            raffleActivityAccountMonth.setUserId(createOrderAggregate.getUserId());
+            raffleActivityAccountMonth.setActivityId(createOrderAggregate.getActivityId());
+            raffleActivityAccountMonth.setMonth(raffleActivityAccountMonth.currentMonth());
+            raffleActivityAccountMonth.setMonthCount(createOrderAggregate.getMonthCount());
+            raffleActivityAccountMonth.setMonthCountSurplus(createOrderAggregate.getMonthCount());
+
+            // Account entity object - day
+            RaffleActivityAccountDay raffleActivityAccountDay = new RaffleActivityAccountDay();
+            raffleActivityAccountDay.setUserId(createOrderAggregate.getUserId());
+            raffleActivityAccountDay.setActivityId(createOrderAggregate.getActivityId());
+            raffleActivityAccountDay.setDay(raffleActivityAccountDay.currentDay());
+            raffleActivityAccountDay.setDayCount(createOrderAggregate.getDayCount());
+            raffleActivityAccountDay.setDayCountSurplus(createOrderAggregate.getDayCount());
 
             // using userId as the sharding key, set the routing through doRouter [this ensures that the operations
             // below are under the same link, thus ensuring the characteristics of the transaction]
@@ -166,6 +182,12 @@ public class ActivityRepository implements IActivityRepository {
                     if (0 == count) {
                         raffleActivityAccountDao.insert(raffleActivityAccount);
                     }
+
+                    // 4. update account - month
+                    raffleActivityAccountMonthDao.addAccountQuota(raffleActivityAccountMonth);
+                    // 5. update account - day
+                    raffleActivityAccountDayDao.addAccountQuota(raffleActivityAccountDay);
+
                     return 1;
                 } catch (DuplicateKeyException e) {
                     status.setRollbackOnly();

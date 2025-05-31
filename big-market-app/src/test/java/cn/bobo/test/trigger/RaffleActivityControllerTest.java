@@ -38,4 +38,10 @@ public class RaffleActivityControllerTest {
         log.info("Test Results：{}", JSON.toJSONString(response));
     }
 
+    @Test
+    public void test_dailyCheckinRebate(){
+        Response<Boolean> response = raffleActivityService.dailyCheckinRebate("bobo");
+        log.info("Test Results：{}", JSON.toJSONString(response));
+    }
+
 }

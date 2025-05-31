@@ -6,6 +6,9 @@ import cn.bobo.domain.activity.service.armory.IActivityArmory;
 import cn.bobo.domain.award.model.entity.UserAwardRecordEntity;
 import cn.bobo.domain.award.model.vo.AwardStateVO;
 import cn.bobo.domain.award.service.IAwardService;
+import cn.bobo.domain.rebate.model.entity.BehaviorEntity;
+import cn.bobo.domain.rebate.model.vo.BehaviorTypeVO;
+import cn.bobo.domain.rebate.service.IBehaviorRebateService;
 import cn.bobo.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.bobo.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.bobo.domain.strategy.service.IRaffleStrategy;
@@ -16,12 +19,15 @@ import cn.bobo.trigger.api.dto.ActivityDrawResponseDTO;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import cn.bobo.types.model.Response;
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author BO HE
@@ -31,6 +37,8 @@ import java.util.Date;
 @CrossOrigin("${app.config.cross-origin}")
 @RequestMapping("/api/${app.config.api-version}/raffle/activity")
 public class RaffleActivityController implements IRaffleActivityService {
+
+    private final SimpleDateFormat dateFormatDay = new SimpleDateFormat("yyyyMMdd");
 
     @Resource
     private IRaffleActivityPartakeService raffleActivityPartakeService;
@@ -42,6 +50,8 @@ public class RaffleActivityController implements IRaffleActivityService {
     private IActivityArmory activityArmory;
     @Resource
     private IStrategyArmory strategyArmory;
+    @Resource
+    private IBehaviorRebateService behaviorRebateService;
 
 
     /**
@@ -153,5 +163,50 @@ public class RaffleActivityController implements IRaffleActivityService {
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
         }
+    }
+
+
+    /**
+     * Daily check-in rebate interface
+     *
+     * <a href="http://localhost:8091/api/v1/raffle/activity/daily_checkin_rebate">/api/v1/raffle/activity/daily_checkin_rebate</a>
+     * parameters：{"userId":"bobo"}
+     *
+     * curl -X POST http://localhost:8091/api/v1/raffle/activity/daily_checkin_rebate -d "userId=bobo" -H "Content-Type: application/x-www-form-urlencoded"
+     *
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "daily_checkin_rebate", method = RequestMethod.POST)
+    @Override
+    public Response<Boolean> dailyCheckinRebate(String userId) {
+        try {
+            log.info("Daily check-in rebate start. userId:{}", userId);
+            BehaviorEntity behaviorEntity = new BehaviorEntity();
+            behaviorEntity.setUserId(userId);
+            behaviorEntity.setBehaviorTypeVO(BehaviorTypeVO.CHECK_IN);
+            behaviorEntity.setOutBusinessNo(dateFormatDay.format(new Date()));
+            List<String> orderIds = behaviorRebateService.createOrder(behaviorEntity);
+            log.info("Daily check-in rebate completed. userId:{} orderIds: {}", userId, JSON.toJSONString(orderIds));
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(true)
+                    .build();
+        } catch (AppException e) {
+            log.error("Daily check-in rebate error. userId:{} ", userId, e);
+            return Response.<Boolean>builder()
+                    .code(e.getCode())
+                    .info(e.getInfo())
+                    .build();
+        } catch (Exception e) {
+            log.error("Daily check-in rebate failed. userId:{}", userId);
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .data(false)
+                    .build();
+        }
+
     }
 }
