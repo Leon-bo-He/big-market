@@ -186,7 +186,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "daily_checkin_rebate", method = RequestMethod.POST)
     @Override
-    public Response<Boolean> dailyCheckinRebate(String userId) {
+    public Response<Boolean> dailyCheckinRebate(@RequestBody String userId) {
         try {
             log.info("Daily check-in rebate start. userId:{}", userId);
             BehaviorEntity behaviorEntity = new BehaviorEntity();
@@ -223,7 +223,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "is_daily_checkin_rebate", method = RequestMethod.POST)
     @Override
-    public Response<Boolean> isDailyCheckinRebate(String userId) {
+    public Response<Boolean> isDailyCheckinRebate(@RequestBody String userId) {
         try {
             log.info("check if user has completed daily check-in rebate start. userId:{}", userId);
             String outBusinessNo = dateFormatDay.format(new Date());
@@ -256,7 +256,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "query_user_activity_account", method = RequestMethod.POST)
     @Override
-    public Response<UserActivityAccountResponseDTO> queryUserActivityAccount(UserActivityAccountRequestDTO request) {
+    public Response<UserActivityAccountResponseDTO> queryUserActivityAccount(@RequestBody UserActivityAccountRequestDTO request) {
         try {
             log.info("check user activity account start, userId:{}, activityId:{}", request.getUserId(), request.getActivityId());
             // 1. check parameters
