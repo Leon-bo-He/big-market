@@ -1,4 +1,4 @@
-package cn.bobo.domain.award.model.vo;
+package cn.bobo.domain.credit.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

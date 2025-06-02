@@ -1,6 +1,8 @@
 package cn.bobo.infrastructure.persistent.po;
 
 import lombok.Data;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,6 +18,7 @@ public class RaffleActivitySku {
     private Long activityCountId;
     private Integer stockCount;
     private Integer stockCountSurplus;
+    private BigDecimal productAmount;
     private Date createTime;
     private Date updateTime;
 

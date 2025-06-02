@@ -1,9 +1,6 @@
 package cn.bobo.domain.activity.service;
 
-import cn.bobo.domain.activity.model.entity.ActivityAccountEntity;
-import cn.bobo.domain.activity.model.entity.ActivityOrderEntity;
-import cn.bobo.domain.activity.model.entity.ActivityShopCartEntity;
-import cn.bobo.domain.activity.model.entity.SkuRechargeEntity;
+import cn.bobo.domain.activity.model.entity.*;
 
 /**
  * @author BO HE
@@ -21,6 +18,8 @@ public interface IRaffleActivityAccountQuotaService {
      * @return activity id
      */
     String createOrder(SkuRechargeEntity skuRechargeEntity);
+
+    void updateOrder(DeliveryOrderEntity deliveryOrderEntity);
 
     Integer queryRaffleActivityAccountPartakeCount(Long activityId, String userId);
 

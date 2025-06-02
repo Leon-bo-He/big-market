@@ -11,7 +11,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum RaffleActivityOrderStateVO {
 
-    COMPLETED("COMPLETED", "completed order"),;
+    WAIT_PAY("WAIT_PAY", "waiting for payment"),
+    COMPLETED("COMPLETED", "completed order"),
+    ;
 
     private final String code;
     private final String desc;

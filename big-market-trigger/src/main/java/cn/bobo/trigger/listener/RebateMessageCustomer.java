@@ -1,6 +1,7 @@
 package cn.bobo.trigger.listener;
 
 import cn.bobo.domain.activity.model.entity.SkuRechargeEntity;
+import cn.bobo.domain.activity.model.vo.OrderTradeTypeVO;
 import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.credit.model.entity.TradeEntity;
 import cn.bobo.domain.credit.model.vo.TradeNameVO;
@@ -49,6 +50,7 @@ public class RebateMessageCustomer {
                     skuRechargeEntity.setUserId(rebateMessage.getUserId());
                     skuRechargeEntity.setSku(Long.valueOf(rebateMessage.getRebateConfig()));
                     skuRechargeEntity.setOutBusinessNo(rebateMessage.getBizId());
+                    skuRechargeEntity.setOrderTradeType(OrderTradeTypeVO.REBATE_NO_PAY_TRADE);
                     raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
                     break;
                 case "INTEGRAL":

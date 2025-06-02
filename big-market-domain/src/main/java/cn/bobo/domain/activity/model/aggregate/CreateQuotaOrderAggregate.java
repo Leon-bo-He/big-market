@@ -1,6 +1,7 @@
 package cn.bobo.domain.activity.model.aggregate;
 
 import cn.bobo.domain.activity.model.entity.ActivityOrderEntity;
+import cn.bobo.domain.activity.model.vo.RaffleActivityOrderStateVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +22,9 @@ public class CreateQuotaOrderAggregate {
     private Integer dayCount;
     private Integer monthCount;
     private ActivityOrderEntity activityOrderEntity;
+
+    public void setOrderState(RaffleActivityOrderStateVO orderState) {
+        this.activityOrderEntity.setState(orderState);
+    }
+
 }

@@ -1,9 +1,13 @@
 package cn.bobo.domain.credit.model.aggregate;
 
+import cn.bobo.domain.credit.event.CreditAdjustSuccessMessageEvent;
 import cn.bobo.domain.credit.model.entity.CreditAccountEntity;
 import cn.bobo.domain.credit.model.entity.CreditOrderEntity;
+import cn.bobo.domain.credit.model.entity.TaskEntity;
+import cn.bobo.domain.credit.model.vo.TaskStateVO;
 import cn.bobo.domain.credit.model.vo.TradeNameVO;
 import cn.bobo.domain.credit.model.vo.TradeTypeVO;
+import cn.bobo.types.event.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +30,8 @@ public class TradeAggregate {
     private CreditAccountEntity creditAccountEntity;
     private CreditOrderEntity creditOrderEntity;
 
+    private TaskEntity taskEntity;
+
     public static CreditAccountEntity createCreditAccountEntity(String userId, BigDecimal adjustAmount) {
         return CreditAccountEntity.builder().userId(userId).adjustAmount(adjustAmount).build();
     }
@@ -43,6 +49,16 @@ public class TradeAggregate {
                 .tradeAmount(tradeAmount)
                 .outBusinessNo(outBusinessNo)
                 .build();
+    }
+
+    public static TaskEntity createTaskEntity(String userId, String topic, String messageId, BaseEvent.EventMessage<CreditAdjustSuccessMessageEvent.CreditAdjustSuccessMessage> message) {
+        TaskEntity taskEntity = new TaskEntity();
+        taskEntity.setUserId(userId);
+        taskEntity.setTopic(topic);
+        taskEntity.setMessageId(messageId);
+        taskEntity.setMessage(message);
+        taskEntity.setState(TaskStateVO.CREATE);
+        return taskEntity;
     }
 
 }

@@ -1,6 +1,8 @@
 package cn.bobo.infrastructure.persistent.po;
 
 import lombok.Data;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -21,6 +23,7 @@ public class RaffleActivityOrder {
     private Integer totalCount;
     private Integer dayCount;
     private Integer monthCount;
+    private BigDecimal payAmount;
     private String state;
     private String outBusinessNo;
     private Date createTime;
