@@ -2,6 +2,10 @@ package cn.bobo.trigger.listener;
 
 import cn.bobo.domain.activity.model.entity.SkuRechargeEntity;
 import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
+import cn.bobo.domain.credit.model.entity.TradeEntity;
+import cn.bobo.domain.credit.model.vo.TradeNameVO;
+import cn.bobo.domain.credit.model.vo.TradeTypeVO;
+import cn.bobo.domain.credit.service.ICreditAdjustService;
 import cn.bobo.domain.rebate.event.SendRebateMessageEvent;
 import cn.bobo.domain.rebate.model.vo.RebateTypeVO;
 import cn.bobo.types.enums.ResponseCode;
@@ -16,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 
 @Slf4j
 @Component
@@ -25,6 +30,8 @@ public class RebateMessageCustomer {
     private String topic;
     @Resource
     private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
+    @Resource
+    private ICreditAdjustService creditAdjustService;
 
     @RabbitListener(queuesToDeclare = @Queue(value = "${spring.rabbitmq.topic.send_rebate}"))
     public void listener(String message) {
@@ -34,16 +41,26 @@ public class RebateMessageCustomer {
             BaseEvent.EventMessage<SendRebateMessageEvent.RebateMessage> eventMessage = JSON.parseObject(message, new TypeReference<BaseEvent.EventMessage<SendRebateMessageEvent.RebateMessage>>() {
             }.getType());
             SendRebateMessageEvent.RebateMessage rebateMessage = eventMessage.getData();
-            if (!RebateTypeVO.SKU.getCode().equals(rebateMessage.getRebateType())) {
-                log.info("listening to user behavior rebate message - non-sku reward not processed. topic: {} message: {}", topic, message);
-                return;
-            }
+
             // 2. credit reward
-            SkuRechargeEntity skuRechargeEntity = new SkuRechargeEntity();
-            skuRechargeEntity.setUserId(rebateMessage.getUserId());
-            skuRechargeEntity.setSku(Long.valueOf(rebateMessage.getRebateConfig()));
-            skuRechargeEntity.setOutBusinessNo(rebateMessage.getBizId());
-            raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
+            switch (rebateMessage.getRebateType()) {
+                case "SKU":
+                    SkuRechargeEntity skuRechargeEntity = new SkuRechargeEntity();
+                    skuRechargeEntity.setUserId(rebateMessage.getUserId());
+                    skuRechargeEntity.setSku(Long.valueOf(rebateMessage.getRebateConfig()));
+                    skuRechargeEntity.setOutBusinessNo(rebateMessage.getBizId());
+                    raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
+                    break;
+                case "INTEGRAL":
+                    TradeEntity tradeEntity = new TradeEntity();
+                    tradeEntity.setUserId(rebateMessage.getUserId());
+                    tradeEntity.setTradeName(TradeNameVO.REBATE);
+                    tradeEntity.setTradeType(TradeTypeVO.FORWARD);
+                    tradeEntity.setAmount(new BigDecimal(rebateMessage.getRebateConfig()));
+                    tradeEntity.setOutBusinessNo(rebateMessage.getBizId());
+                    creditAdjustService.createOrder(tradeEntity);
+                    break;
+            }
         } catch (AppException e) {
             if (ResponseCode.INDEX_DUP.getCode().equals(e.getCode())) {
                 log.warn("listening to user behavior rebate message, duplicate consumption. topic: {} message: {}", topic, message, e);
