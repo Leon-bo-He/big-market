@@ -25,4 +25,10 @@
         VALUES (#{userId}, #{totalAmount}, #{availableAmount}, #{accountStatus}, now(), now())
     </insert>
 
+    <select id="queryUserCreditAccount" parameterType="cn.bobo.infrastructure.persistent.po.UserAwardRecord" resultMap="dataMap">
+        SELECT user_id, total_amount, available_amount, account_status
+        FROM user_credit_account
+        WHERE user_id = #{userId}
+    </select>
+
 </mapper>

@@ -66,6 +66,11 @@
         WHERE user_id = #{userId} and activity_id = #{activityId}
     </update>
 
-
+    <select id="queryAccountByUserId" parameterType="cn.bobo.infrastructure.persistent.po.RaffleActivityAccount" resultMap="dataMap">
+        SELECT  user_id, activity_id, total_count, total_count_surplus, day_count,
+                day_count_surplus, month_count, month_count_surplus
+        FROM raffle_activity_account
+        WHERE user_id = #{userId} AND activity_id = #{activityId}
+    </select>
 
 </mapper>
