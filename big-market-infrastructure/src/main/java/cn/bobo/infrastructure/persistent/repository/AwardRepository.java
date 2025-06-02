@@ -1,15 +1,17 @@
 package cn.bobo.infrastructure.persistent.repository;
 
+import cn.bobo.domain.award.model.aggregate.GiveOutPrizesAggregate;
 import cn.bobo.domain.award.model.aggregate.UserAwardRecordAggregate;
 import cn.bobo.domain.award.model.entity.TaskEntity;
 import cn.bobo.domain.award.model.entity.UserAwardRecordEntity;
+import cn.bobo.domain.award.model.entity.UserCreditAwardEntity;
+import cn.bobo.domain.award.model.vo.AccountStatusVO;
 import cn.bobo.domain.award.repository.IAwardRepository;
 import cn.bobo.infrastructure.event.EventPublisher;
-import cn.bobo.infrastructure.persistent.dao.ITaskDao;
-import cn.bobo.infrastructure.persistent.dao.IUserAwardRecordDao;
-import cn.bobo.infrastructure.persistent.dao.IUserRaffleOrderDao;
+import cn.bobo.infrastructure.persistent.dao.*;
 import cn.bobo.infrastructure.persistent.po.Task;
 import cn.bobo.infrastructure.persistent.po.UserAwardRecord;
+import cn.bobo.infrastructure.persistent.po.UserCreditAccount;
 import cn.bobo.infrastructure.persistent.po.UserRaffleOrder;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
@@ -31,11 +33,15 @@ import javax.annotation.Resource;
 public class AwardRepository implements IAwardRepository {
 
     @Resource
+    private IAwardDao awardDao;
+    @Resource
     private ITaskDao taskDao;
     @Resource
     private IUserAwardRecordDao userAwardRecordDao;
     @Resource
     private IUserRaffleOrderDao userRaffleOrderDao;
+    @Resource
+    private IUserCreditAccountDao userCreditAccountDao;
     @Resource
     private IDBRouterStrategy dbRouter;
     @Resource
@@ -108,5 +114,59 @@ public class AwardRepository implements IAwardRepository {
             log.error("write user award record failed, send MQ message failed, userId: {}, activityId: {}, awardId: {}", userId, activityId, awardId, e);
             taskDao.updateTaskSendMessageFail(task);
         }
+    }
+
+    @Override
+    public String queryAwardConfig(Integer awardId) {
+        return awardDao.queryAwardConfigByAwardId(awardId);
+    }
+
+    @Override
+    public void saveGiveOutPrizesAggregate(GiveOutPrizesAggregate giveOutPrizesAggregate) {
+
+        String userId = giveOutPrizesAggregate.getUserId();
+        UserCreditAwardEntity userCreditAwardEntity = giveOutPrizesAggregate.getUserCreditAwardEntity();
+        UserAwardRecordEntity userAwardRecordEntity = giveOutPrizesAggregate.getUserAwardRecordEntity();
+
+        UserAwardRecord userAwardRecordReq = new UserAwardRecord();
+        userAwardRecordReq.setUserId(userId);
+        userAwardRecordReq.setOrderId(userAwardRecordEntity.getOrderId());
+        userAwardRecordReq.setAwardState(userAwardRecordEntity.getAwardState().getCode());
+
+        UserCreditAccount userCreditAccountReq = new UserCreditAccount();
+        userCreditAccountReq.setUserId(userCreditAwardEntity.getUserId());
+        userCreditAccountReq.setTotalAmount(userCreditAwardEntity.getCreditAmount());
+        userCreditAccountReq.setAvailableAmount(userCreditAwardEntity.getCreditAmount());
+        userCreditAccountReq.setAccountStatus(AccountStatusVO.OPEN.getCode());
+
+        try {
+            dbRouter.doRouter(giveOutPrizesAggregate.getUserId());
+            transactionTemplate.execute(status -> {
+                try {
+                    int updateAccountCount = userCreditAccountDao.updateAddAmount(userCreditAccountReq);
+                    if (0 == updateAccountCount) {
+                        userCreditAccountDao.insert(userCreditAccountReq);
+                    }
+
+                    int updateAwardCount = userAwardRecordDao.updateAwardRecordCompletedState(userAwardRecordReq);
+                    if (0 == updateAwardCount) {
+                        log.warn("update user award record failed, no record found for userId: {}, orderId: {}", userId, userAwardRecordEntity.getOrderId());
+                        status.setRollbackOnly();
+                    }
+                    return 1;
+                } catch (DuplicateKeyException e) {
+                    status.setRollbackOnly();
+                    log.error("update user award record failed, duplicate key userId: {}, orderId: {}", userId, userAwardRecordEntity.getOrderId(), e);
+                    throw new AppException(ResponseCode.INDEX_DUP.getCode(), e);
+                }
+            });
+        } finally {
+            dbRouter.clear();
+        }
+    }
+
+    @Override
+    public String queryAwardKey(Integer awardId) {
+        return awardDao.queryAwardKeyByAwardId(awardId);
     }
 }

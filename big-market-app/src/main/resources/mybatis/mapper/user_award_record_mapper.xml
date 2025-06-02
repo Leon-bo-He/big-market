@@ -23,5 +23,11 @@
                 #{awardState}, now(), now())
     </insert>
 
+    <update id="updateAwardRecordCompletedState" parameterType="cn.bobo.infrastructure.persistent.po.UserAwardRecord">
+        UPDATE user_award_record
+        SET award_state = 'COMPLETED'
+        WHERE user_id = #{userId} AND order_id = #{orderId} AND award_state = 'CREATE'
+    </update>
+
 </mapper>
 

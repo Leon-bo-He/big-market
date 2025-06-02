@@ -7,6 +7,7 @@ public class Constants {
     public final static String SPACE = " ";
     public final static String UNDERLINE = "_";
     public final static String RULE_WEIGHT = "rule_weight";
+    public final static String BLACKLIST_RULE_CONFIG_VALUE = "0.01,1";
 
     public static String RED_START = "\u001B[31mSTART\u001B[0m";
     public static String RED_TAKE_OVER = "\u001B[31mTAKE_OVER\u001B[0m";

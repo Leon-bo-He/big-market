@@ -41,8 +41,19 @@ public class RaffleActivityControllerTest {
     }
 
     @Test
+    public void test_draw_blacklist() {
+        ActivityDrawRequestDTO request = new ActivityDrawRequestDTO();
+        request.setActivityId(100301L);
+        request.setUserId("user003");
+        Response<ActivityDrawResponseDTO> response = raffleActivityService.draw(request);
+
+        log.info("parameters：{}", JSON.toJSONString(request));
+        log.info("Test Results：{}", JSON.toJSONString(response));
+    }
+
+    @Test
     public void test_dailyCheckinRebate(){
-        Response<Boolean> response = raffleActivityService.dailyCheckinRebate("bobo");
+        Response<Boolean> response = raffleActivityService.dailyCheckinRebate("user003");
         log.info("Test Results：{}", JSON.toJSONString(response));
     }
 
