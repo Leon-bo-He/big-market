@@ -53,4 +53,15 @@
           AND state = 'WAIT_PAY'
     </update>
 
+    <select id="queryUnpaidActivityOrder" parameterType="cn.bobo.infrastructure.persistent.po.RaffleActivityOrder"
+            resultMap="dataMap">
+        SELECT user_id, order_id, out_business_no, pay_amount
+        FROM raffle_activity_order
+        WHERE user_id = #{userId}
+          AND sku = #{sku}
+          AND state = 'WAIT_PAY'
+          AND order_time >= NOW() - INTERVAL 1 MONTH
+            limit 1
+    </select>
+
 </mapper>

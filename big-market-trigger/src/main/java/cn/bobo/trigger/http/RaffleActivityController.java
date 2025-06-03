@@ -1,13 +1,19 @@
 package cn.bobo.trigger.http;
 
-import cn.bobo.domain.activity.model.entity.ActivityAccountEntity;
-import cn.bobo.domain.activity.model.entity.UserRaffleOrderEntity;
+import cn.bobo.domain.activity.model.entity.*;
+import cn.bobo.domain.activity.model.vo.OrderTradeTypeVO;
 import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.activity.service.IRaffleActivityPartakeService;
+import cn.bobo.domain.activity.service.IRaffleActivitySkuProductService;
 import cn.bobo.domain.activity.service.armory.IActivityArmory;
 import cn.bobo.domain.award.model.entity.UserAwardRecordEntity;
 import cn.bobo.domain.award.model.vo.AwardStateVO;
 import cn.bobo.domain.award.service.IAwardService;
+import cn.bobo.domain.credit.model.entity.CreditAccountEntity;
+import cn.bobo.domain.credit.model.entity.TradeEntity;
+import cn.bobo.domain.credit.model.vo.TradeNameVO;
+import cn.bobo.domain.credit.model.vo.TradeTypeVO;
+import cn.bobo.domain.credit.service.ICreditAdjustService;
 import cn.bobo.domain.rebate.model.entity.BehaviorEntity;
 import cn.bobo.domain.rebate.model.entity.BehaviorRebateOrderEntity;
 import cn.bobo.domain.rebate.model.vo.BehaviorTypeVO;
@@ -17,20 +23,20 @@ import cn.bobo.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.bobo.domain.strategy.service.IRaffleStrategy;
 import cn.bobo.domain.strategy.service.armory.IStrategyArmory;
 import cn.bobo.trigger.api.IRaffleActivityService;
-import cn.bobo.trigger.api.dto.ActivityDrawRequestDTO;
-import cn.bobo.trigger.api.dto.ActivityDrawResponseDTO;
-import cn.bobo.trigger.api.dto.UserActivityAccountRequestDTO;
-import cn.bobo.trigger.api.dto.UserActivityAccountResponseDTO;
+import cn.bobo.trigger.api.dto.*;
 import cn.bobo.types.enums.ResponseCode;
 import cn.bobo.types.exception.AppException;
 import cn.bobo.types.model.Response;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +56,8 @@ public class RaffleActivityController implements IRaffleActivityService {
     @Resource
     private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
     @Resource
+    private IRaffleActivitySkuProductService raffleActivitySkuProductService;
+    @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
     private IAwardService awardService;
@@ -59,6 +67,8 @@ public class RaffleActivityController implements IRaffleActivityService {
     private IStrategyArmory strategyArmory;
     @Resource
     private IBehaviorRebateService behaviorRebateService;
+    @Resource
+    private ICreditAdjustService creditAdjustService;
 
 
     /**
@@ -285,6 +295,109 @@ public class RaffleActivityController implements IRaffleActivityService {
             return Response.<UserActivityAccountResponseDTO>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    public Response<List<SkuProductResponseDTO>> querySkuProductListByActivityId(Long activityId) {
+        try {
+            log.info("query sku product list by activityId start, activityId:{}", activityId);
+            // 1. parameter check
+            if (null == activityId) {
+                throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
+            }
+            // 2. query sku product entities by activityId
+            List<SkuProductEntity> skuProductEntities = raffleActivitySkuProductService.querySkuProductEntityListByActivityId(activityId);
+            List<SkuProductResponseDTO> skuProductResponseDTOS = new ArrayList<>(skuProductEntities.size());
+            for (SkuProductEntity skuProductEntity : skuProductEntities) {
+
+                SkuProductResponseDTO.ActivityCount activityCount = new SkuProductResponseDTO.ActivityCount();
+                activityCount.setTotalCount(skuProductEntity.getActivityCount().getTotalCount());
+                activityCount.setMonthCount(skuProductEntity.getActivityCount().getMonthCount());
+                activityCount.setDayCount(skuProductEntity.getActivityCount().getDayCount());
+
+                SkuProductResponseDTO skuProductResponseDTO = new SkuProductResponseDTO();
+                skuProductResponseDTO.setSku(skuProductEntity.getSku());
+                skuProductResponseDTO.setActivityId(skuProductEntity.getActivityId());
+                skuProductResponseDTO.setActivityCountId(skuProductEntity.getActivityCountId());
+                skuProductResponseDTO.setStockCount(skuProductEntity.getStockCount());
+                skuProductResponseDTO.setStockCountSurplus(skuProductEntity.getStockCountSurplus());
+                skuProductResponseDTO.setProductAmount(skuProductEntity.getProductAmount());
+                skuProductResponseDTO.setActivityCount(activityCount);
+                skuProductResponseDTOS.add(skuProductResponseDTO);
+            }
+
+            log.info("query sku product list by activityId completed, activityId:{}, response:{}", activityId, JSON.toJSONString(skuProductResponseDTOS));
+            return Response.<List<SkuProductResponseDTO>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(skuProductResponseDTOS)
+                    .build();
+        } catch (Exception e) {
+            log.error("query sku product list by activityId failed, activityId:{}", activityId, e);
+            return Response.<List<SkuProductResponseDTO>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    public Response<BigDecimal> queryUserCreditAccount(String userId) {
+        try {
+            log.info("query user credit account start, userId:{}", userId);
+            CreditAccountEntity creditAccountEntity = creditAdjustService.queryUserCreditAccount(userId);
+            log.info("query user credit account completed, userId:{} adjustAmount:{}", userId, creditAccountEntity.getAdjustAmount());
+            return Response.<BigDecimal>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(creditAccountEntity.getAdjustAmount())
+                    .build();
+        } catch (Exception e) {
+            log.error("query user credit account failed, userId:{}", userId, e);
+            return Response.<BigDecimal>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @RequestMapping(value = "credit_pay_exchange_sku", method = RequestMethod.POST)
+    @Override
+    public Response<Boolean> creditPayExchangeSku(@RequestBody SkuProductShopCartRequestDTO request) {
+        try {
+            log.info("credit redeem products start, userId:{}, sku:{}", request.getUserId(), request.getSku());
+            UnpaidActivityOrderEntity unpaidActivityOrder = raffleActivityAccountQuotaService.createOrder(SkuRechargeEntity.builder()
+                    .userId(request.getUserId())
+                    .sku(request.getSku())
+                    .outBusinessNo(RandomStringUtils.randomNumeric(12))
+                    .orderTradeType(OrderTradeTypeVO.CREDIT_PAY_TRADE)
+                    .build());
+            log.info("credit redeem products create order completed, userId:{}, sku:{}, orderId:{}",
+                    request.getUserId(), request.getSku(), unpaidActivityOrder.getOutBusinessNo());
+
+            String orderId = creditAdjustService.createOrder(TradeEntity.builder()
+                    .userId(unpaidActivityOrder.getUserId())
+                    .tradeName(TradeNameVO.CONVERT_SKU)
+                    .tradeType(TradeTypeVO.REVERSE)
+                    .amount(unpaidActivityOrder.getPayAmount().negate())
+                    .outBusinessNo(unpaidActivityOrder.getOutBusinessNo())
+                    .build());
+            log.info("credit redeem products order payment completed, userId:{}, sku:{}, orderId:{}",
+                    request.getUserId(), request.getSku(), orderId);
+
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(true)
+                    .build();
+        } catch (Exception e) {
+            log.error("credit redeem products failed, userId:{}, sku:{}", request.getUserId(), request.getSku(), e);
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .data(false)
                     .build();
         }
     }
