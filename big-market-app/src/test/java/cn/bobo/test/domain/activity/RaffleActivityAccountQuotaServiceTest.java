@@ -75,7 +75,7 @@ public class RaffleActivityAccountQuotaServiceTest {
         // outBusinessNo 作为幂等仿重使用，同一个业务单号2次使用会抛出索引冲突 Duplicate entry '700091009111' for key 'uq_out_business_no' 确保唯一性。
         skuRechargeEntity.setOutBusinessNo("70009240609002");
         skuRechargeEntity.setOrderTradeType(OrderTradeTypeVO.CREDIT_PAY_TRADE);
-        raffleActivityAccountQuotaService.createOrder(skuRechargeEntity)
+        UnpaidActivityOrderEntity order = raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
         log.info("Test results：{}", JSON.toJSONString(order));
     }
 
