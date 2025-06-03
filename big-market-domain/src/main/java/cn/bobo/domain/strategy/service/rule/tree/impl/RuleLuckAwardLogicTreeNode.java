@@ -1,12 +1,15 @@
 package cn.bobo.domain.strategy.service.rule.tree.impl;
 
 import cn.bobo.domain.strategy.model.vo.RuleLogicCheckTypeVO;
+import cn.bobo.domain.strategy.model.vo.StrategyAwardInventoryKeyVO;
+import cn.bobo.domain.strategy.repository.IStrategyRepository;
 import cn.bobo.domain.strategy.service.rule.tree.ILogicTreeNode;
 import cn.bobo.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
 import cn.bobo.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -16,6 +19,10 @@ import java.util.Date;
 @Slf4j
 @Component("rule_luck_award")
 public class RuleLuckAwardLogicTreeNode implements ILogicTreeNode {
+
+    @Resource
+    private IStrategyRepository strategyRepository;
+
     @Override
     public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue, Date endDateTime) {
         log.info("rule filter - rule luck(fallback) award userId:{} strategyId:{} awardId:{}", userId, strategyId, awardId);
@@ -28,6 +35,12 @@ public class RuleLuckAwardLogicTreeNode implements ILogicTreeNode {
         // get fallback award config
         Integer luckAwardId = Integer.valueOf(split[0]);
         String awardRuleValue = split.length > 1 ? split[1] : "";
+
+        // write to stock consume queue
+        strategyRepository.awardStockConsumeSendQueue(StrategyAwardInventoryKeyVO.builder()
+                .strategyId(strategyId)
+                .awardId(luckAwardId)
+                .build());
 
         // return fallback award
         log.info("rule filter - return fallback award userId:{} strategyId:{} awardId:{} awardRuleValue:{}", userId, strategyId, luckAwardId, awardRuleValue);

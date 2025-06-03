@@ -2,6 +2,7 @@ package cn.bobo.domain.activity.service.quota;
 
 import cn.bobo.domain.activity.model.aggregate.CreateQuotaOrderAggregate;
 import cn.bobo.domain.activity.model.entity.*;
+import cn.bobo.domain.activity.model.vo.OrderTradeTypeVO;
 import cn.bobo.domain.activity.repository.IActivityRepository;
 import cn.bobo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.bobo.domain.activity.service.quota.policy.ITradePolicy;
@@ -13,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -64,6 +66,14 @@ public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityA
         ActivityEntity activityEntity = queryRaffleActivityByActivityId(activitySkuEntity.getActivityId());
         // 2.3 query number information (user's available participation times in the activity)
         ActivityCountEntity activityCountEntity = queryRaffleActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
+
+        // 4. account quota verification
+        if (OrderTradeTypeVO.CREDIT_PAY_TRADE.equals(skuRechargeEntity.getOrderTradeType())){
+            BigDecimal availableAmount = activityRepository.queryUserCreditAccountAmount(userId);
+            if (availableAmount.compareTo(activitySkuEntity.getProductAmount()) < 0) {
+                throw new AppException(ResponseCode.USER_CREDIT_ACCOUNT_NO_AVAILABLE_AMOUNT.getCode(), ResponseCode.USER_CREDIT_ACCOUNT_NO_AVAILABLE_AMOUNT.getInfo());
+            }
+        }
 
         // 3. activity rule verification
         IActionChain actionChain = defaultActivityChainFactory.openActionChain();

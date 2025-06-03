@@ -1,5 +1,6 @@
 package cn.bobo.infrastructure.persistent.repository;
 
+import cn.bobo.domain.award.model.vo.AccountStatusVO;
 import cn.bobo.domain.credit.model.aggregate.TradeAggregate;
 import cn.bobo.domain.credit.model.entity.CreditAccountEntity;
 import cn.bobo.domain.credit.model.entity.CreditOrderEntity;
@@ -14,6 +15,8 @@ import cn.bobo.infrastructure.persistent.po.UserCreditAccount;
 import cn.bobo.infrastructure.persistent.po.UserCreditOrder;
 import cn.bobo.infrastructure.persistent.redis.IRedisService;
 import cn.bobo.types.common.Constants;
+import cn.bobo.types.enums.ResponseCode;
+import cn.bobo.types.exception.AppException;
 import cn.bugstack.middleware.db.router.strategy.IDBRouterStrategy;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +26,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -60,6 +64,7 @@ public class CreditRepository implements ICreditRepository {
         userCreditAccountReq.setUserId(userId);
         userCreditAccountReq.setTotalAmount(creditAccountEntity.getAdjustAmount());
         userCreditAccountReq.setAvailableAmount(creditAccountEntity.getAdjustAmount());
+        userCreditAccountReq.setAccountStatus(AccountStatusVO.OPEN.getCode());
 
         // credit order
         UserCreditOrder userCreditOrderReq = new UserCreditOrder();
@@ -89,7 +94,16 @@ public class CreditRepository implements ICreditRepository {
                     if (null == userCreditAccount) {
                         userCreditAccountDao.insert(userCreditAccountReq);
                     } else {
-                        userCreditAccountDao.updateAddAmount(userCreditAccountReq);
+                        BigDecimal availableAmount = userCreditAccountReq.getAvailableAmount();
+                        if (availableAmount.compareTo(BigDecimal.ZERO) >= 0) {
+                            userCreditAccountDao.updateAddAmount(userCreditAccountReq);
+                        } else {
+                            int subtractionCount = userCreditAccountDao.updateSubtractionAmount(userCreditAccountReq);
+                            if (1 != subtractionCount) {
+                                status.setRollbackOnly();
+                                throw new AppException(ResponseCode.USER_CREDIT_ACCOUNT_NO_AVAILABLE_AMOUNT.getCode(), ResponseCode.USER_CREDIT_ACCOUNT_NO_AVAILABLE_AMOUNT.getInfo());
+                            }
+                        }
                     }
                     // 2. save user credit order
                     userCreditOrderDao.insert(userCreditOrderReq);
@@ -106,7 +120,9 @@ public class CreditRepository implements ICreditRepository {
             });
         } finally {
             dbRouter.clear();
-            lock.unlock();
+            if (lock.isLocked()) {
+                lock.unlock();
+            }
         }
 
         try {
@@ -129,7 +145,11 @@ public class CreditRepository implements ICreditRepository {
         try {
             dbRouter.doRouter(userId);
             UserCreditAccount userCreditAccount = userCreditAccountDao.queryUserCreditAccount(userCreditAccountReq);
-            return CreditAccountEntity.builder().userId(userId).adjustAmount(userCreditAccount.getAvailableAmount()).build();
+            BigDecimal availableAmount = BigDecimal.ZERO;
+            if (null != userCreditAccount) {
+                availableAmount = userCreditAccount.getAvailableAmount();
+            }
+            return CreditAccountEntity.builder().userId(userId).adjustAmount(availableAmount).build();
         } finally {
             dbRouter.clear();
         }

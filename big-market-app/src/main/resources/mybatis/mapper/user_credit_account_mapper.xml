@@ -19,6 +19,13 @@
         WHERE user_id = #{userId}
     </update>
 
+    <update id="updateSubtractionAmount" parameterType="cn.bobo.infrastructure.persistent.po.UserCreditAccount">
+        UPDATE user_credit_account
+        SET available_amount = available_amount + #{availableAmount}
+        WHERE user_id = #{userId}
+          AND available_amount > 0
+    </update>
+
     <insert id="insert" parameterType="cn.bobo.infrastructure.persistent.po.UserCreditAccount">
         INSERT INTO user_credit_account(user_id, total_amount, available_amount, account_status, create_time,
                                         update_time)

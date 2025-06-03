@@ -25,6 +25,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -56,9 +57,11 @@ public class ActivityRepository implements IActivityRepository {
     @Resource
     private IRaffleActivityAccountDayDao raffleActivityAccountDayDao;
     @Resource
-    private TransactionTemplate transactionTemplate;
-    @Resource
     private IUserRaffleOrderDao userRaffleOrderDao;
+    @Resource
+    private IUserCreditAccountDao userCreditAccountDao;
+    @Resource
+    private TransactionTemplate transactionTemplate;
     @Resource
     private IDBRouterStrategy dbRouter;
     @Resource
@@ -603,6 +606,11 @@ public class ActivityRepository implements IActivityRepository {
             raffleActivityOrderReq.setOutBusinessNo(deliveryOrderEntity.getOutBusinessNo());
             RaffleActivityOrder raffleActivityOrderRes = raffleActivityOrderDao.queryRaffleActivityOrder(raffleActivityOrderReq);
 
+            if (null == raffleActivityOrderRes) {
+                if (lock.isLocked()) lock.unlock();
+                return;
+            }
+
             // account object - total
             RaffleActivityAccount raffleActivityAccount = new RaffleActivityAccount();
             raffleActivityAccount.setUserId(raffleActivityOrderRes.getUserId());
@@ -662,7 +670,9 @@ public class ActivityRepository implements IActivityRepository {
             });
         } finally {
             dbRouter.clear();
-            lock.unlock();
+            if (lock.isLocked()) {
+                lock.unlock();
+            }
         }
     }
 
@@ -715,6 +725,20 @@ public class ActivityRepository implements IActivityRepository {
                 .build());
         if (null == raffleActivityAccount) return 0;
         return raffleActivityAccount.getTotalCount() - raffleActivityAccount.getTotalCountSurplus();
+    }
+
+    @Override
+    public BigDecimal queryUserCreditAccountAmount(String userId) {
+        try {
+            dbRouter.doRouter(userId);
+            UserCreditAccount userCreditAccountReq = new UserCreditAccount();
+            userCreditAccountReq.setUserId(userId);
+            UserCreditAccount userCreditAccount = userCreditAccountDao.queryUserCreditAccount(userCreditAccountReq);
+            if (null == userCreditAccount) return BigDecimal.ZERO;
+            return userCreditAccount.getAvailableAmount();
+        } finally {
+            dbRouter.clear();
+        }
     }
 
 }

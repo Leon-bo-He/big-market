@@ -21,7 +21,8 @@ public enum ResponseCode {
     ACCOUNT_QUOTA_ERROR("ERR_BIZ_006","account total quota insufficient"),
     ACCOUNT_MONTH_QUOTA_ERROR("ERR_BIZ_007","account month quota insufficient"),
     ACCOUNT_DAY_QUOTA_ERROR("ERR_BIZ_008","account day quota insufficient"),
-    ACTIVITY_ORDER_ERROR("ERR_BIZ_009", "user raffle order has been used, cannot raffle again")
+    ACTIVITY_ORDER_ERROR("ERR_BIZ_009", "user raffle order has been used, cannot raffle again"),
+    USER_CREDIT_ACCOUNT_NO_AVAILABLE_AMOUNT("ERR_CREDIT_001", "User credit account no available amount")
     ;
 
     private String code;
