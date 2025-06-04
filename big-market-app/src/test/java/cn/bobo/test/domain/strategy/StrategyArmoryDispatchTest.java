@@ -28,14 +28,14 @@ public class StrategyArmoryDispatchTest {
 
     @Before
     public void test_strategyArmory() {
-        boolean success = strategyArmory.assembleLotteryStrategy(100001L);
+        boolean success = strategyArmory.assembleLotteryStrategy(100006L);
         log.info("Test Result: {}", success);
     }
 
     @Test
     public void test_getRandomAwardId() {
         for (int i = 0; i < 200 ; i++) {
-            log.info("Test Result: returned award_id - {} ", strategyDispatch.getRandomAwardId(100001L));
+            log.info("Test Result: returned award_id - {} ", strategyDispatch.getRandomAwardId(100006L));
         }
     }
 

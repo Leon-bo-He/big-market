@@ -452,7 +452,19 @@ public class ActivityRepository implements IActivityRepository {
         raffleActivityAccountReq.setUserId(userId);
         raffleActivityAccountReq.setActivityId(activityId);
         RaffleActivityAccount raffleActivityAccountRes = raffleActivityAccountDao.queryActivityAccountByUserId(raffleActivityAccountReq);
-        if (null == raffleActivityAccountRes) return null;
+
+        if (null == raffleActivityAccountRes) {
+            return ActivityAccountEntity.builder()
+                    .userId(userId)
+                    .activityId(activityId)
+                    .totalCount(0)
+                    .totalCountSurplus(0)
+                    .dayCount(0)
+                    .dayCountSurplus(0)
+                    .monthCount(0)
+                    .monthCountSurplus(0)
+                    .build();
+        }
 
         return ActivityAccountEntity.builder()
                 .userId(raffleActivityAccountRes.getUserId())
