@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-05-29 19:02:17 +0000
+# Generation Time: 2025-06-04 18:09:42 +0000
 # ************************************************************
 
 
@@ -42,18 +42,53 @@ LOCK TABLES `award` WRITE;
 
 INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`, `create_time`, `update_time`)
 VALUES
-	(1,101,'user_credit_random','1,100','award user random points','2023-12-09 11:07:06','2025-05-20 20:32:02'),
-	(2,102,'openai_use_count','5','add voucher','2023-12-09 11:07:06','2025-05-20 20:32:20'),
-	(3,103,'openai_use_count','10','add voucher','2023-12-09 11:07:06','2025-05-20 20:32:20'),
-	(4,104,'openai_use_count','20','add voucher','2023-12-09 11:07:06','2025-05-20 20:32:21'),
-	(5,105,'openai_model','gpt-4','unlock gpt-4 model','2023-12-09 11:07:06','2025-05-20 20:32:37'),
-	(6,106,'openai_model','dall-e-2','unlock dall-e-2 model','2023-12-09 11:07:06','2025-05-20 20:32:42'),
-	(7,107,'openai_model','dall-e-3','unlock dall-e-3 model','2023-12-09 11:07:06','2025-05-20 20:32:44'),
-	(8,108,'openai_use_count','100','add voucher','2023-12-09 11:07:06','2025-05-20 20:32:50'),
-	(9,109,'openai_model','gpt-4,dall-e-2,dall-e-3','unlock models','2023-12-09 11:07:06','2025-05-20 20:32:55'),
-	(10,100,'user_credit_blacklist','1','award blacklist user 1 point','2024-01-06 12:30:40','2025-05-20 20:33:05');
+	(1,101,'user_credit_random','1,100','award user random credits between 1 to 100','2025-06-04 09:15:33','2025-06-04 10:20:58'),
+	(2,102,'udemy_course_voucher','5','Access 5 tech courses of your choice on Udemy.','2025-06-04 09:15:33','2025-06-04 11:01:20'),
+	(3,103,'aws_credits','100','$100 AWS Credits','2025-06-04 09:15:33','2025-06-04 10:21:57'),
+	(4,104,'copilot_subscription','1','1-Year GitHub Copilot Subscription','2025-06-04 09:15:33','2025-06-04 10:24:31'),
+	(5,105,'swag_pack','1','T-shirt, laptop stickers, water bottle, socks','2025-06-04 09:15:33','2025-06-04 10:25:29'),
+	(6,106,'mechanical_keyboard','1','Keychron K8 Pro','2025-06-04 09:15:33','2025-06-04 10:26:18'),
+	(7,107,'headphones','1','Sony WH-1000XM6','2025-06-04 09:15:33','2025-06-04 10:27:19'),
+	(8,108,'standing_desk_setup','1','Ergonomic standing desk + monitor arm + mat bundle.','2025-06-04 09:15:33','2025-06-04 10:28:38'),
+	(9,109,'apple_macbook','1','MacBook Pro 16\" (M3 Pro)','2025-06-04 09:15:33','2025-06-04 10:28:18'),
+	(10,110,'product_design_sprint','1','1-week product design sprint with a senior designer','2025-06-04 10:32:03','2025-06-04 10:32:23'),
+	(11,111,'cloud_infra_audit','1','Cloud infrastructure audit for AWS or GCP','2025-06-04 10:32:03','2025-06-04 10:32:24'),
+	(12,112,'marketing_strategy_session','1','2-hour session with a SaaS growth marketing expert','2025-06-04 10:32:03','2025-06-04 10:32:25'),
+	(13,113,'startup_legal_office_hours','1','Legal advisory session for IP, contracts, or compliance','2025-06-04 10:32:03','2025-06-04 10:32:27'),
+	(14,114,'devops_health_check','1','DevOps pipeline health check and optimization tips','2025-06-04 10:32:03','2025-06-04 10:32:28'),
+	(15,115,'crm_subscription_pro','1','1-month pro-tier CRM tool subscription','2025-06-04 10:32:03','2025-06-04 10:32:29');
 
 /*!40000 ALTER TABLE `award` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table daily_behavior_rebate
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `daily_behavior_rebate`;
+
+CREATE TABLE `daily_behavior_rebate` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `behavior_type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'CHECK_IN; PAYMENT',
+  `rebate_desc` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rebate_type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'SKU; INTEGRAL - user points',
+  `rebate_config` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `state` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'OPEN, CLOSE',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_behavior_type` (`behavior_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `daily_behavior_rebate` WRITE;
+/*!40000 ALTER TABLE `daily_behavior_rebate` DISABLE KEYS */;
+
+INSERT INTO `daily_behavior_rebate` (`id`, `behavior_type`, `rebate_desc`, `rebate_type`, `rebate_config`, `state`, `create_time`, `update_time`)
+VALUES
+	(1,'CHECK_IN','CheckIn rebate - sku quota','SKU','9014','OPEN','2025-06-04 09:15:33','2025-06-04 10:42:50'),
+	(2,'CHECK_IN','CheckIn rebate - user credits','INTEGRAL','10','OPEN','2025-06-04 09:15:33','2025-06-04 09:17:16');
+
+/*!40000 ALTER TABLE `daily_behavior_rebate` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -84,7 +119,8 @@ LOCK TABLES `raffle_activity` WRITE;
 
 INSERT INTO `raffle_activity` (`id`, `activity_id`, `activity_name`, `activity_desc`, `begin_date_time`, `end_date_time`, `strategy_id`, `state`, `create_time`, `update_time`)
 VALUES
-	(1,100301,'test activity','test activity','2025-05-22 08:23:50','2035-05-22 08:23:50',100006,'OPEN','2025-05-22 08:23:50','2025-05-24 00:03:40');
+	(1,100301,'9 rewards strategy','9 rewards strategy','2025-05-22 08:23:50','2035-05-22 08:23:50',100001,'OPEN','2025-06-04 09:15:33','2025-06-04 10:34:10'),
+	(2,100302,'6 rewards strategy','6 rewards strategy','2025-05-22 08:23:50','2035-05-22 08:23:50',100002,'OPEN','2025-06-04 09:15:33','2025-06-04 10:34:13');
 
 /*!40000 ALTER TABLE `raffle_activity` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -112,7 +148,11 @@ LOCK TABLES `raffle_activity_count` WRITE;
 
 INSERT INTO `raffle_activity_count` (`id`, `activity_count_id`, `total_count`, `day_count`, `month_count`, `create_time`, `update_time`)
 VALUES
-	(1,11101,100,2,60,'2025-05-22 08:24:26','2025-05-22 19:34:51');
+	(1,11101,100,100,100,'2025-06-04 09:15:33','2025-06-04 10:40:15'),
+	(2,11102,70,70,70,'2025-06-04 09:15:33','2025-06-04 10:37:24'),
+	(3,11103,30,30,30,'2025-06-04 09:15:33','2025-06-04 10:37:58'),
+	(4,11104,10,10,10,'2025-06-04 09:15:33','2025-06-04 10:38:02'),
+	(5,11105,5,5,5,'2025-06-04 09:15:33','2025-06-04 10:38:07');
 
 /*!40000 ALTER TABLE `raffle_activity_count` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -130,6 +170,7 @@ CREATE TABLE `raffle_activity_sku` (
   `activity_count_id` bigint NOT NULL,
   `stock_count` int NOT NULL,
   `stock_count_surplus` int NOT NULL,
+  `product_amount` decimal(10,2) NOT NULL,
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -140,9 +181,16 @@ CREATE TABLE `raffle_activity_sku` (
 LOCK TABLES `raffle_activity_sku` WRITE;
 /*!40000 ALTER TABLE `raffle_activity_sku` DISABLE KEYS */;
 
-INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `create_time`, `update_time`)
+INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `product_amount`, `create_time`, `update_time`)
 VALUES
-	(1,9011,100301,11101,20,9,'2024-03-16 11:41:09','2025-05-28 11:15:55');
+	(1,9011,100301,11101,100000,100000,300.00,'2025-06-04 09:15:33','2025-06-04 10:40:27'),
+	(2,9012,100301,11102,100000,100000,245.00,'2025-06-04 09:15:33','2025-06-04 10:39:21'),
+	(3,9013,100301,11103,100000,100000,120.00,'2025-06-04 09:15:33','2025-06-04 10:38:56'),
+	(4,9014,100301,11104,100000,100000,45.00,'2025-06-04 09:15:33','2025-06-04 10:38:43'),
+	(5,9015,100301,11105,100000,100000,25.00,'2025-06-04 09:15:33','2025-06-04 10:38:33'),
+	(6,9016,100302,11102,100000,100000,105.00,'2025-06-04 09:15:33','2025-06-04 10:48:44'),
+	(7,9017,100302,11103,100000,100000,60.00,'2025-06-04 09:15:33','2025-06-04 10:48:44'),
+	(8,9018,100302,11105,100000,100000,15.00,'2025-06-04 09:15:33','2025-06-04 10:48:46');
 
 /*!40000 ALTER TABLE `raffle_activity_sku` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -170,10 +218,10 @@ LOCK TABLES `rule_tree` WRITE;
 
 INSERT INTO `rule_tree` (`id`, `tree_id`, `tree_name`, `tree_desc`, `tree_root_rule_key`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:24'),
-	(2,'tree_luck_award','rule_tree_fallback_prize','rule_tree_fallback_prize','rule_stock','2024-02-15 07:35:06','2025-05-20 20:34:34'),
-	(3,'tree_lock_2','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:25'),
-	(4,'tree_lock_3','rule_tree','rule_tree','rule_lock','2024-01-27 10:01:59','2025-05-20 20:34:25');
+	(1,'tree_lock_1','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(2,'tree_luck_award','rule_tree_fallback_prize','rule_tree_fallback_prize','rule_stock','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(3,'tree_lock_5','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 10:44:58'),
+	(4,'tree_lock_10','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 10:45:01');
 
 /*!40000 ALTER TABLE `rule_tree` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -200,17 +248,17 @@ LOCK TABLES `rule_tree_node` WRITE;
 
 INSERT INTO `rule_tree_node` (`id`, `tree_id`, `rule_key`, `rule_desc`, `rule_value`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_lock','unlock certain award as the user completes N times of lottery','1','2024-01-27 10:03:09','2025-05-20 20:35:34'),
-	(2,'tree_lock_1','rule_luck_award','random points - fallback prize','101:1,100','2024-01-27 10:03:09','2025-05-20 20:35:50'),
-	(3,'tree_lock_1','rule_stock','stock deduction rule',NULL,'2024-01-27 10:04:43','2025-05-20 20:36:22'),
-	(4,'tree_luck_award','rule_stock','stock deduction rule',NULL,'2024-02-15 07:35:55','2025-05-20 20:36:23'),
-	(5,'tree_luck_award','rule_luck_award','random points - fallback prize','101:1,100','2024-02-15 07:35:55','2025-05-20 20:35:51'),
-	(6,'tree_lock_2','rule_lock','unlock certain award as the user completes N times of lottery','2','2024-01-27 10:03:09','2025-05-20 20:35:34'),
-	(7,'tree_lock_2','rule_luck_award','random points - fallback prize','101:1,100','2024-01-27 10:03:09','2025-05-20 20:35:51'),
-	(8,'tree_lock_2','rule_stock','stock deduction rule',NULL,'2024-01-27 10:04:43','2025-05-20 20:36:24'),
-	(9,'tree_lock_3','rule_lock','unlock certain award as the user completes N times of lottery','3','2024-01-27 10:03:09','2025-05-29 11:59:29'),
-	(10,'tree_lock_3','rule_luck_award','random points - fallback prize','101:1,100','2024-01-27 10:03:09','2025-05-20 20:35:51'),
-	(11,'tree_lock_3','rule_stock','stock deduction rule',NULL,'2024-01-27 10:04:43','2025-05-20 20:36:24');
+	(1,'tree_lock_1','rule_lock','unlock certain award as the user completes N times of lottery','1','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(2,'tree_lock_1','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(3,'tree_lock_1','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(4,'tree_luck_award','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(5,'tree_luck_award','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(6,'tree_lock_5','rule_lock','unlock certain award as the user completes N times of lottery','5','2025-06-04 09:15:33','2025-06-04 10:45:13'),
+	(7,'tree_lock_5','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 10:45:09'),
+	(8,'tree_lock_5','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 10:45:11'),
+	(9,'tree_lock_10','rule_lock','unlock certain award as the user completes N times of lottery','10','2025-06-04 09:15:33','2025-06-04 10:45:55'),
+	(10,'tree_lock_10','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 10:45:50'),
+	(11,'tree_lock_10','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 10:45:52');
 
 /*!40000 ALTER TABLE `rule_tree_node` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -238,16 +286,16 @@ LOCK TABLES `rule_tree_node_line` WRITE;
 
 INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node_to`, `rule_limit_type`, `rule_limit_value`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_lock','rule_stock','EQUAL','ALLOW','2025-05-29 12:01:14','2025-05-29 12:01:14'),
-	(2,'tree_lock_1','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-29 12:01:18','2025-05-29 12:01:18'),
-	(3,'tree_lock_1','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:01:20','2025-05-29 12:01:20'),
-	(4,'tree_luck_award','rule_stock','rule_luck_award','EQUAL','ALLOW','2024-02-15 07:37:31','2024-02-15 07:39:28'),
-	(5,'tree_lock_2','rule_lock','rule_stock','EQUAL','ALLOW','2025-05-29 12:01:25','2025-05-29 12:01:25'),
-	(6,'tree_lock_2','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-29 12:01:28','2025-05-29 12:01:28'),
-	(7,'tree_lock_2','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:01:30','2025-05-29 12:01:30'),
-	(8,'tree_lock_3','rule_lock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:00:44','2024-02-15 07:55:08'),
-	(9,'tree_lock_3','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-05-29 12:01:09','2024-02-15 07:55:11'),
-	(10,'tree_lock_3','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-05-29 12:01:30','2025-05-29 12:01:30');
+	(1,'tree_lock_1','rule_lock','rule_stock','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(2,'tree_lock_1','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(3,'tree_lock_1','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(4,'tree_luck_award','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(5,'tree_lock_5','rule_lock','rule_stock','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:11'),
+	(6,'tree_lock_5','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 10:46:13'),
+	(7,'tree_lock_5','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:15'),
+	(8,'tree_lock_10','rule_lock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:17'),
+	(9,'tree_lock_10','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 10:46:20'),
+	(10,'tree_lock_10','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:22');
 
 /*!40000 ALTER TABLE `rule_tree_node_line` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -274,12 +322,8 @@ LOCK TABLES `strategy` WRITE;
 
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`)
 VALUES
-	(1,100001,'Strategy A','rule_blacklist,rule_weight','2023-12-09 09:37:19','2025-05-20 20:38:29'),
-	(2,100003,'Strategy B - lock','rule_blacklist','2024-01-13 10:34:06','2025-05-20 20:38:40'),
-	(3,100002,'Strategy C - probability total not 1',NULL,'2023-12-09 09:37:19','2025-05-20 20:39:10'),
-	(4,100004,'Strategy D - random raffle',NULL,'2023-12-09 09:37:19','2025-05-20 20:39:22'),
-	(5,100005,'Strategy E - test probability calculation',NULL,'2023-12-09 09:37:19','2025-05-20 20:39:42'),
-	(6,100006,'Strategy F - strategy tree',NULL,'2024-02-03 09:53:40','2025-05-20 20:39:53');
+	(1,100001,'Strategy A - 9 rewards','rule_blacklist,rule_weight','2025-06-04 09:15:33','2025-06-04 10:47:25'),
+	(2,100002,'Strategy B - 6 rewards','rule_blacklist,rule_weight','2025-06-04 09:15:33','2025-06-04 10:48:33');
 
 /*!40000 ALTER TABLE `strategy` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -312,35 +356,21 @@ LOCK TABLES `strategy_award` WRITE;
 
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`)
 VALUES
-	(1,100001,101,'Random Points',NULL,80000,80000,0.3000,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:41:56'),
-	(2,100001,102,'5 Times Voucher',NULL,10000,10000,0.2000,'tree_luck_award',2,'2023-12-09 09:39:18','2025-05-20 20:42:10'),
-	(3,100001,103,'10 Times Voucher',NULL,5000,5000,0.2000,'tree_luck_award',3,'2023-12-09 09:42:36','2025-05-20 20:42:14'),
-	(4,100001,104,'20 Times Voucher',NULL,4000,4000,0.1000,'tree_luck_award',4,'2023-12-09 09:43:15','2025-05-20 20:42:21'),
-	(5,100001,105,'Unlock GPT-4 Model',NULL,600,600,0.1000,'tree_luck_award',5,'2023-12-09 09:43:47','2025-05-20 20:42:23'),
-	(6,100001,106,'Unlock dall-e-2 Model',NULL,200,200,0.0500,'tree_luck_award',6,'2023-12-09 09:44:20','2025-05-20 20:42:36'),
-	(7,100001,107,'Unlock dall-e-3 Model','Unlock after 1 times play',200,200,0.0400,'tree_luck_award',7,'2023-12-09 09:45:38','2025-05-20 20:42:59'),
-	(8,100001,108,'100 Times Voucher','Unlock after 2 times play',199,199,0.0099,'tree_luck_award',8,'2023-12-09 09:46:02','2025-05-20 20:43:33'),
-	(9,100001,109,'Unlock All Models','Unlock after 6 times play',1,1,0.0001,'tree_luck_award',9,'2023-12-09 09:46:39','2025-05-20 20:43:44'),
-	(10,100002,101,'Random Points',NULL,1,1,0.5000,'tree_luck_award',1,'2023-12-09 09:46:39','2025-05-20 20:43:47'),
-	(11,100002,102,'5 Times Voucher',NULL,1,1,0.1000,'tree_luck_award',2,'2023-12-09 09:46:39','2025-05-20 20:43:49'),
-	(12,100002,106,'Unlock dall-e-2 Model',NULL,1,1,0.0100,'tree_luck_award',3,'2023-12-09 09:46:39','2025-05-20 20:43:57'),
-	(13,100003,107,'Unlock dall-e-3 Model','Unlock after 1 times play',200,200,0.0400,'tree_luck_award',7,'2023-12-09 09:45:38','2025-05-20 20:44:00'),
-	(14,100003,108,'100 Times Voucher','Unlock after 2 times play',199,199,0.0099,'tree_luck_award',8,'2023-12-09 09:46:02','2025-05-20 20:44:06'),
-	(15,100003,109,'Unlock All Models','Unlock after 6 times play',1,1,0.0001,'tree_luck_award',9,'2023-12-09 09:46:39','2025-05-20 20:44:11'),
-	(16,100004,109,'Unlock All Models','Unlock after 6 times play',1,1,1.0000,'tree_luck_award',9,'2023-12-09 09:46:39','2025-05-20 20:44:13'),
-	(17,100005,101,'Random Points',NULL,80000,80000,0.0300,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:15'),
-	(18,100005,102,'Random Points',NULL,80000,80000,0.0300,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:16'),
-	(19,100005,103,'Random Points',NULL,80000,80000,0.0300,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:17'),
-	(20,100005,104,'Random Points',NULL,80000,80000,0.0300,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:18'),
-	(21,100005,105,'Random Points',NULL,80000,80000,0.0010,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-20 20:44:18'),
-	(22,100006,101,'Random Points',NULL,100,85,0.0200,'tree_luck_award',1,'2023-12-09 09:38:31','2025-05-28 22:15:00'),
-	(23,100006,102,'Prize 1',NULL,100,60,0.0300,'tree_luck_award',2,'2023-12-09 09:38:31','2025-05-29 11:58:01'),
-	(24,100006,103,'Prize 2',NULL,100,69,0.0300,'tree_luck_award',3,'2023-12-09 09:38:31','2025-05-29 11:58:03'),
-	(25,100006,104,'Prize 3',NULL,100,63,0.0300,'tree_luck_award',4,'2023-12-09 09:38:31','2025-05-29 11:58:05'),
-	(26,100006,105,'Prize 4','Unlock after 3 times play',100,72,0.0300,'tree_lock_3',5,'2023-12-09 09:38:31','2025-05-29 11:57:27'),
-	(27,100006,106,'Prize 5','Unlock after 2 times play',100,63,0.0300,'tree_lock_2',6,'2023-12-09 09:38:31','2025-05-29 11:58:07'),
-	(28,100006,107,'Prize 6','Unlock after 1 times play',100,71,0.0300,'tree_lock_1',7,'2023-12-09 09:38:31','2025-05-29 11:58:09'),
-	(29,100006,108,'Prize 7',NULL,100,69,0.0300,'tree_luck_award',8,'2023-12-09 09:38:31','2025-05-29 11:58:11');
+	(1,100001,101,'Random Credit Drop','Receive a surprise amount of bonus credits.',80000,80000,0.3000,'tree_luck_award',1,'2025-06-04 09:15:33','2025-06-04 11:02:21'),
+	(2,100001,102,'Udemy Learning Pass','Access 5 tech courses of your choice on Udemy.',10000,10000,0.2000,'tree_luck_award',2,'2025-06-04 09:15:33','2025-06-04 11:02:24'),
+	(3,100001,103,'AWS Cloud Credits','Boost your cloud app with free AWS credit.',5000,5000,0.2000,'tree_luck_award',3,'2025-06-04 09:15:33','2025-06-04 11:02:27'),
+	(4,100001,104,'GitHub Copilot Access','1-year subscription to GitHub Copilot – your AI coding partner.',4000,4000,0.1000,'tree_luck_award',4,'2025-06-04 09:15:33','2025-06-04 11:02:29'),
+	(5,100001,105,'Developer Swag Bundle','T-shirt, stickers, socks & more in a stylish dev pack.',600,600,0.1000,'tree_luck_award',5,'2025-06-04 09:15:33','2025-06-04 11:02:33'),
+	(6,100001,106,'Pro Mechanical Keyboard','Wireless mechanical keyboard loved by coders.',200,200,0.0500,'tree_luck_award',6,'2025-06-04 09:15:33','2025-06-04 11:02:36'),
+	(7,100001,107,'Noise-Canceling Headphones','Stay focused with premium over-ear noise-cancelers.',200,200,0.0400,'tree_lock_1',7,'2025-06-04 09:15:33','2025-06-04 11:02:40'),
+	(8,100001,108,'Ergonomic Desk Setup','Adjustable standing desk with accessories.',199,199,0.0078,'tree_lock_5',8,'2025-06-04 09:15:33','2025-06-04 11:03:23'),
+	(9,100001,109,'MacBook Pro','Top-tier performance MacBook for tech creators.',10,10,0.0022,'tree_lock_10',9,'2025-06-04 09:15:33','2025-06-04 11:03:26'),
+	(10,100002,110,'UI/UX Design Sprint','1-week design consultation to improve your product UX.',80000,80000,0.2000,'tree_luck_award',1,'2025-06-04 11:04:49','2025-06-04 11:06:36'),
+	(11,100002,111,'Cloud Infrastructure Review','Audit your AWS/GCP setup for performance & security.',80000,80000,0.2000,'tree_luck_award',2,'2025-06-04 11:04:49','2025-06-04 11:06:37'),
+	(12,100002,112,'SaaS Growth Strategy Session','Get expert marketing advice tailored to your product.',80000,80000,0.2000,'tree_luck_award',3,'2025-06-04 11:04:49','2025-06-04 11:07:59'),
+	(13,100002,113,'Startup Legal Consultation','One-on-one legal support for founders and startups.',80000,80000,0.2000,'tree_lock_1',4,'2025-06-04 11:04:49','2025-06-04 11:08:14'),
+	(14,100002,114,'DevOps Pipeline Checkup','Optimize your CI/CD and deployment workflow.',40000,40000,0.1000,'tree_lock_5',5,'2025-06-04 11:04:49','2025-06-04 11:08:29'),
+	(15,100002,115,'CRM Pro Plan Access','Free 1-month access to a top-tier CRM platform.',40000,40000,0.1000,'tree_lock_10',6,'2025-06-04 11:04:49','2025-06-04 11:08:43');
 
 /*!40000 ALTER TABLE `strategy_award` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -370,8 +400,10 @@ LOCK TABLES `strategy_rule` WRITE;
 
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`)
 VALUES
-	(13,100001,NULL,1,'rule_weight','4000:102,103,104,105 5000:102,103,104,105,106,107 6000:102,103,104,105,106,107,108,109','choose from designed awards based on points used','2023-12-09 10:30:43','2025-05-20 20:48:25'),
-	(14,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2023-12-09 12:59:45','2025-05-20 20:48:26');
+	(1,100001,NULL,1,'rule_weight','10:102,103,104,105,106,107 20:102,103,104,105,106,107,108 50:105,106,107,108,109','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:51:20'),
+	(2,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:48:28'),
+	(3,100002,NULL,1,'rule_weight','10:102,103,104 20:102,103,104,105 50:105,106','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:53:08'),
+	(4,100002,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:53:15');
 
 /*!40000 ALTER TABLE `strategy_rule` ENABLE KEYS */;
 UNLOCK TABLES;
