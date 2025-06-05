@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.32)
 # Database: big_market
-# Generation Time: 2025-06-04 18:09:42 +0000
+# Generation Time: 2025-06-05 18:31:57 +0000
 # ************************************************************
 
 
@@ -19,7 +19,6 @@ SET NAMES utf8mb4;
 /*!40101 SET @OLD_SQL_MODE='NO_AUTO_VALUE_ON_ZERO', SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-USE `big_market`;
 
 # Dump of table award
 # ------------------------------------------------------------
@@ -185,8 +184,8 @@ INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_i
 VALUES
 	(1,9011,100301,11101,100000,100000,300.00,'2025-06-04 09:15:33','2025-06-04 10:40:27'),
 	(2,9012,100301,11102,100000,100000,245.00,'2025-06-04 09:15:33','2025-06-04 10:39:21'),
-	(3,9013,100301,11103,100000,100000,120.00,'2025-06-04 09:15:33','2025-06-04 10:38:56'),
-	(4,9014,100301,11104,100000,100000,45.00,'2025-06-04 09:15:33','2025-06-04 10:38:43'),
+	(3,9013,100301,11103,100000,100000,120.00,'2025-06-04 09:15:33','2025-06-05 11:29:59'),
+	(4,9014,100301,11104,100000,100000,45.00,'2025-06-04 09:15:33','2025-06-05 11:30:01'),
 	(5,9015,100301,11105,100000,100000,25.00,'2025-06-04 09:15:33','2025-06-04 10:38:33'),
 	(6,9016,100302,11102,100000,100000,105.00,'2025-06-04 09:15:33','2025-06-04 10:48:44'),
 	(7,9017,100302,11103,100000,100000,60.00,'2025-06-04 09:15:33','2025-06-04 10:48:44'),
@@ -356,12 +355,12 @@ LOCK TABLES `strategy_award` WRITE;
 
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`)
 VALUES
-	(1,100001,101,'Random Credit Drop','Receive a surprise amount of bonus credits.',80000,80000,0.3000,'tree_luck_award',1,'2025-06-04 09:15:33','2025-06-04 11:02:21'),
+	(1,100001,101,'Random Credit Drop','Receive a surprise amount of bonus credits.',80000,80000,0.3000,'tree_luck_award',1,'2025-06-04 09:15:33','2025-06-05 11:31:10'),
 	(2,100001,102,'Udemy Learning Pass','Access 5 tech courses of your choice on Udemy.',10000,10000,0.2000,'tree_luck_award',2,'2025-06-04 09:15:33','2025-06-04 11:02:24'),
-	(3,100001,103,'AWS Cloud Credits','Boost your cloud app with free AWS credit.',5000,5000,0.2000,'tree_luck_award',3,'2025-06-04 09:15:33','2025-06-04 11:02:27'),
+	(3,100001,103,'AWS Cloud Credits','Boost your cloud app with free AWS credit.',5000,5000,0.2000,'tree_luck_award',3,'2025-06-04 09:15:33','2025-06-05 11:31:15'),
 	(4,100001,104,'GitHub Copilot Access','1-year subscription to GitHub Copilot – your AI coding partner.',4000,4000,0.1000,'tree_luck_award',4,'2025-06-04 09:15:33','2025-06-04 11:02:29'),
-	(5,100001,105,'Developer Swag Bundle','T-shirt, stickers, socks & more in a stylish dev pack.',600,600,0.1000,'tree_luck_award',5,'2025-06-04 09:15:33','2025-06-04 11:02:33'),
-	(6,100001,106,'Pro Mechanical Keyboard','Wireless mechanical keyboard loved by coders.',200,200,0.0500,'tree_luck_award',6,'2025-06-04 09:15:33','2025-06-04 11:02:36'),
+	(5,100001,105,'Developer Swag Bundle','T-shirt, stickers, socks & more in a stylish dev pack.',600,600,0.1000,'tree_luck_award',5,'2025-06-04 09:15:33','2025-06-05 11:31:19'),
+	(6,100001,106,'Pro Mechanical Keyboard','Wireless mechanical keyboard loved by coders.',200,200,0.0500,'tree_luck_award',6,'2025-06-04 09:15:33','2025-06-05 11:31:21'),
 	(7,100001,107,'Noise-Canceling Headphones','Stay focused with premium over-ear noise-cancelers.',200,200,0.0400,'tree_lock_1',7,'2025-06-04 09:15:33','2025-06-04 11:02:40'),
 	(8,100001,108,'Ergonomic Desk Setup','Adjustable standing desk with accessories.',199,199,0.0078,'tree_lock_5',8,'2025-06-04 09:15:33','2025-06-04 11:03:23'),
 	(9,100001,109,'MacBook Pro','Top-tier performance MacBook for tech creators.',10,10,0.0022,'tree_lock_10',9,'2025-06-04 09:15:33','2025-06-04 11:03:26'),
@@ -402,7 +401,7 @@ INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule
 VALUES
 	(1,100001,NULL,1,'rule_weight','10:102,103,104,105,106,107 20:102,103,104,105,106,107,108 50:105,106,107,108,109','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:51:20'),
 	(2,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:48:28'),
-	(3,100002,NULL,1,'rule_weight','10:102,103,104 20:102,103,104,105 50:105,106','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:53:08'),
+	(3,100002,NULL,1,'rule_weight','10:111,112,113 20:111,112,113,114 50:114,115','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-05 11:25:52'),
 	(4,100002,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:53:15');
 
 /*!40000 ALTER TABLE `strategy_rule` ENABLE KEYS */;
