@@ -3,4 +3,4 @@
 #docker build -t boboboboo/big-market-app:1.0 -f ./Dockerfile .
 
 # amd, arm manifest build
-docker buildx build --platform linux/amd64,linux/arm64 -t boboboboo/big-market-app:1.0 -f ./Dockerfile --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t boboboboo/big-market-app:2.0 -f ./Dockerfile --push .

@@ -110,6 +110,7 @@ services:
 networks:
   my-network:
     driver: bridge
+    name: my-network
 
 volumes:
   mysql_data:
