@@ -12,15 +12,17 @@ services:
       - APP_CONFIG_CROSS_ORIGIN=*
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/big_market?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&serverTimezone=America/Los_Angeles
+      - SPRING_DATASOURCE_URL=jdbc:mysql://153.92.214.250:13306/big_market?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&serverTimezone=America/Los_Angeles
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
       - SPRING_HIKARI_POOL_NAME=Retail_HikariCP
-      - REDIS_SDK_CONFIG_HOST=redis
-      - REDIS_SDK_CONFIG_PORT=6379
+      - REDIS_SDK_CONFIG_HOST=host.docker.internal
+      - REDIS_SDK_CONFIG_PORT=16379
     volumes:
       - ./log:/data/log
     networks:
       - my-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     logging:
       driver: "json-file"
       options:
@@ -35,7 +37,7 @@ services:
     ports:
       - 3000:3000
     environment:
-#      - API_HOST_URL=http://localhost:8091
+      #      - API_HOST_URL=http://localhost:8091
       - API_HOST_URL=http://luckydraw.hebo.life
       - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     healthcheck:
@@ -47,3 +49,4 @@ services:
 networks:
   my-network:
     driver: bridge
+    name: my-network
