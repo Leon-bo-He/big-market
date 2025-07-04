@@ -1,6 +1,6 @@
 services:
   big-market-app:
-    image: boboboboo/big-market-app:2.0
+    image: boboboboo/big-market-app:2.1
     container_name: big-market-app
     restart: always
     ports:
@@ -12,17 +12,18 @@ services:
       - APP_CONFIG_CROSS_ORIGIN=*
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_DATASOURCE_URL=jdbc:mysql://153.92.214.250:13306/big_market?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&serverTimezone=America/Los_Angeles
+      - SPRING_DATASOURCE_URL=jdbc:mysql://big-market-mysql:3306/big_market?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
       - SPRING_HIKARI_POOL_NAME=Retail_HikariCP
-      - REDIS_SDK_CONFIG_HOST=host.docker.internal
-      - REDIS_SDK_CONFIG_PORT=16379
+      - REDIS_SDK_CONFIG_HOST=big-market-redis
+      - REDIS_SDK_CONFIG_PORT=6379
     volumes:
       - ./log:/data/log
     networks:
-      - my-network
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - big-market-network
+    depends_on:
+      - big-market-mysql
+      - big-market-redis
     logging:
       driver: "json-file"
       options:
@@ -30,23 +31,17 @@ services:
         max-file: "3"
   big-market-front-app:
     container_name: big-market-front-app
-    image: boboboboo/big-market-front-app:2.0
+    image: boboboboo/big-market-front-app:2.1
     restart: always
     networks:
-      - my-network
+      - big-market-network
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
-      #      - API_HOST_URL=http://localhost:8091
-      - API_HOST_URL=http://luckydraw.hebo.life
+      - API_HOST_URL=http://luckydraw.hebo.life # This should be your public-facing backend URL
       - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://0.0.0.0:3000/" ]
       interval: 1m
       timeout: 10s
       retries: 3
-
-networks:
-  my-network:
-    driver: bridge
-    name: my-network

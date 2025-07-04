@@ -1,24 +1,24 @@
 # docker compose -f docker-compose-environment.yml up -d
 # docker compose -f docker-compose-environment.yml down -v
+# docker compose -f docker-compose-app.yml -f docker-compose-environment.yml down --volumes --remove-orphans --rmi all
 
 services:
-  mysql:
+  big-market-mysql:
     image: mysql:8.0.32
-    container_name: mysql
+    container_name: big-market-mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       TZ: America/Los_Angeles
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: big_market # Added to create the database on startup
     networks:
-      - my-network
-    depends_on:
-      - mysql-job-dbdata
+      - big-market-network
     ports:
       - "13306:3306"
     volumes:
       - ./mysql/sql:/docker-entrypoint-initdb.d
-      - mysql_data:/var/lib/mysql
+      - big-market-mysql-data:/var/lib/mysql
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       interval: 5s
@@ -26,76 +26,64 @@ services:
       retries: 10
       start_period: 15s
 
-  # auto load mysql data
-  mysql-job-dbdata:
-    image: alpine:3.18.2
-    container_name: mysql-job-dbdata
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  # phpmyadmin https://hub.docker.com/_/phpmyadmin
-  phpmyadmin:
+  big-market-phpmyadmin:
     image: phpmyadmin:5.2.1
-    container_name: phpmyadmin
-    hostname: phpmyadmin
+    container_name: big-market-phpmyadmin
+    hostname: big-market-phpmyadmin
     ports:
-      - 8899:80
+      - "8899:80"
     environment:
-      - PMA_HOST=mysql
+      - PMA_HOST=big-market-mysql
       - PMA_PORT=3306
       - MYSQL_ROOT_PASSWORD=password
     depends_on:
-      mysql:
+      big-market-mysql:
         condition: service_healthy
     networks:
-      - my-network
+      - big-market-network
 
-  # Redis
-  redis:
+  big-market-redis:
     image: redis:6.2
-    container_name: redis
+    container_name: big-market-redis
     restart: always
-    hostname: redis
+    hostname: big-market-redis
     privileged: true
     ports:
-      - 16379:6379
+      - "16379:6379"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
     command: redis-server /usr/local/etc/redis/redis.conf
     networks:
-      - my-network
+      - big-market-network
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
       timeout: 5s
       retries: 3
 
-  # RedisAdmin https://github.com/joeferner/redis-commander
-  redis-admin:
+  big-market-redis-admin:
     image: spryker/redis-commander:0.8.0
-    container_name: redis-admin
-    hostname: redis-commander
+    container_name: big-market-redis-admin
+    hostname: big-market-redis-commander
     restart: always
     ports:
-      - 8081:8081
+      - "18081:8081"
     environment:
-      - REDIS_HOSTS=local:redis:6379
+      - REDIS_HOSTS=local:big-market-redis:6379
       - HTTP_USER=admin
       - HTTP_PASSWORD=admin
       - LANG=C.UTF-8
       - LANGUAGE=C.UTF-8
       - LC_ALL=C.UTF-8
     networks:
-      - my-network
+      - big-market-network
     depends_on:
-      redis:
+      big-market-redis:
         condition: service_healthy
 
-  # rabbitmq
-  # rabbitmq-plugins enable rabbitmq_management
-  rabbitmq:
+  big-market-rabbitmq:
     image: rabbitmq:3.12.9
-    container_name: rabbitmq
+    container_name: big-market-rabbitmq
     restart: always
     ports:
       - "5672:5672"
@@ -107,12 +95,13 @@ services:
     volumes:
       - ./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
     networks:
-      - my-network
+      - big-market-network
 
 networks:
-  my-network:
+  big-market-network:
     driver: bridge
-    name: my-network
+    name: big-market-network
 
 volumes:
-  mysql_data:
+  big-market-mysql-data:
+    name: big-market-mysql-data

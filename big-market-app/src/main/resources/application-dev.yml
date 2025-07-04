@@ -1,10 +1,11 @@
+# Server and Tomcat Thread Pool Optimization
 server:
   port: 8091
   tomcat:
     threads:
-      max: 2000
-      min-spare: 50
-      accept-count: 10
+      max: 400   # Adjusted from 2000. A 4-core CPU can't effectively manage more.
+      min-spare: 100    # Reduced from 50 as a reasonable starting point.
+    accept-count: 100 # Increased from 10 to handle bursts of incoming requests.
 
 app:
   config:
@@ -14,21 +15,20 @@ app:
 # Spring config；rabbitmq
 spring:
   rabbitmq:
-    addresses: rabbitmq
+    addresses: big-market-rabbitmq
     port: 5672
     username: admin
     password: admin
     listener:
       simple:
-        prefetch: 1 # send n messages at a time, and send n messages after consumption
+        prefetch: 100
     topic:
       activity_sku_stock_zero: activity_sku_stock_zero
       send_award: send_award
       send_rebate: send_rebate
       credit_adjust_success: credit_adjust_success
 
-
-# thread pool configuration
+# Custom Thread Pool Optimization
 thread:
   pool:
     executor:
@@ -36,9 +36,10 @@ thread:
         core-pool-size: 20
         max-pool-size: 50
         keep-alive-time: 5000
-        block-queue-size: 5000
-        policy: CallerRunsPolicy
+        block-queue-size: 500 # Reduced from 5000 to prevent tasks from hiding in the queue.
+        policy: CallerRunsPolicy # Good policy for back-pressure.
 
+# Database Connection Pool (HikariCP) Optimization
 mini-db-router:
   jdbc:
     datasource:
@@ -49,45 +50,46 @@ mini-db-router:
       list: db01,db02
       db00:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://153.92.214.250:13306/big_market?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
+        # IMPORTANT: Use the Docker service name 'big-market-mysql', not a hardcoded IP.
+        url: jdbc:mysql://big-market-mysql:3306/big_market?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
         username: root
         password: password
         type-class-name: com.zaxxer.hikari.HikariDataSource
         pool:
           pool-name: Retail_HikariCP
-          minimum-idle: 15
-          idle-timeout: 180000
           maximum-pool-size: 25
+          minimum-idle: 25
+          idle-timeout: 180000
           auto-commit: true
           max-lifetime: 1800000
           connection-timeout: 30000
           connection-test-query: SELECT 1
       db01:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://153.92.214.250:13306/big_market_01?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
+        url: jdbc:mysql://big-market-mysql:3306/big_market_01?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
         username: root
         password: password
         type-class-name: com.zaxxer.hikari.HikariDataSource
         pool:
           pool-name: Retail_HikariCP
-          minimum-idle: 15
-          idle-timeout: 180000
           maximum-pool-size: 25
+          minimum-idle: 25
+          idle-timeout: 180000
           auto-commit: true
           max-lifetime: 1800000
           connection-timeout: 30000
           connection-test-query: SELECT 1
       db02:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://153.92.214.250:13306/big_market_02?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
+        url: jdbc:mysql://big-market-mysql:3306/big_market_02?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
         username: root
         password: password
         type-class-name: com.zaxxer.hikari.HikariDataSource
         pool:
           pool-name: Retail_HikariCP
-          minimum-idle: 15
-          idle-timeout: 180000
           maximum-pool-size: 25
+          minimum-idle: 25
+          idle-timeout: 180000
           auto-commit: true
           max-lifetime: 1800000
           connection-timeout: 30000
@@ -102,8 +104,8 @@ mybatis:
 redis:
   sdk:
     config:
-      host: ${REDIS_SDK_CONFIG_HOST:127.0.0.1}
-      port: ${REDIS_SDK_CONFIG_PORT:16379}
+      host: ${REDIS_SDK_CONFIG_HOST:big-market-redis} # Changed default to service name
+      port: ${REDIS_SDK_CONFIG_PORT:6379}
       pool-size: 10
       min-idle-size: 5
       idle-timeout: 30000
