@@ -218,10 +218,10 @@ LOCK TABLES `rule_tree` WRITE;
 
 INSERT INTO `rule_tree` (`id`, `tree_id`, `tree_name`, `tree_desc`, `tree_root_rule_key`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(1,'tree_lock_5','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 09:15:33'),
 	(2,'tree_luck_award','rule_tree_fallback_prize','rule_tree_fallback_prize','rule_stock','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(3,'tree_lock_5','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 10:44:58'),
-	(4,'tree_lock_10','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 10:45:01');
+	(3,'tree_lock_12','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 10:44:58'),
+	(4,'tree_lock_25','rule_tree','rule_tree','rule_lock','2025-06-04 09:15:33','2025-06-04 10:45:01');
 
 /*!40000 ALTER TABLE `rule_tree` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -248,17 +248,17 @@ LOCK TABLES `rule_tree_node` WRITE;
 
 INSERT INTO `rule_tree_node` (`id`, `tree_id`, `rule_key`, `rule_desc`, `rule_value`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_lock','unlock certain award as the user completes N times of lottery','1','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(2,'tree_lock_1','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(3,'tree_lock_1','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(1,'tree_lock_5','rule_lock','unlock certain award as the user completes N times of lottery','5','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(2,'tree_lock_5','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(3,'tree_lock_5','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 09:15:33'),
 	(4,'tree_luck_award','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 09:15:33'),
 	(5,'tree_luck_award','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(6,'tree_lock_5','rule_lock','unlock certain award as the user completes N times of lottery','5','2025-06-04 09:15:33','2025-06-04 10:45:13'),
-	(7,'tree_lock_5','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 10:45:09'),
-	(8,'tree_lock_5','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 10:45:11'),
-	(9,'tree_lock_10','rule_lock','unlock certain award as the user completes N times of lottery','10','2025-06-04 09:15:33','2025-06-04 10:45:55'),
-	(10,'tree_lock_10','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 10:45:50'),
-	(11,'tree_lock_10','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 10:45:52');
+	(6,'tree_lock_12','rule_lock','unlock certain award as the user completes N times of lottery','12','2025-06-04 09:15:33','2025-06-04 10:45:13'),
+	(7,'tree_lock_12','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 10:45:09'),
+	(8,'tree_lock_12','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 10:45:11'),
+	(9,'tree_lock_25','rule_lock','unlock certain award as the user completes N times of lottery','25','2025-06-04 09:15:33','2025-06-04 10:45:55'),
+	(10,'tree_lock_25','rule_luck_award','random points - fallback prize','101:1,100','2025-06-04 09:15:33','2025-06-04 10:45:50'),
+	(11,'tree_lock_25','rule_stock','stock deduction rule',NULL,'2025-06-04 09:15:33','2025-06-04 10:45:52');
 
 /*!40000 ALTER TABLE `rule_tree_node` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -286,16 +286,16 @@ LOCK TABLES `rule_tree_node_line` WRITE;
 
 INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node_to`, `rule_limit_type`, `rule_limit_value`, `create_time`, `update_time`)
 VALUES
-	(1,'tree_lock_1','rule_lock','rule_stock','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(2,'tree_lock_1','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(3,'tree_lock_1','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(1,'tree_lock_5','rule_lock','rule_stock','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(2,'tree_lock_5','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 09:15:33'),
+	(3,'tree_lock_5','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
 	(4,'tree_luck_award','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 09:15:33'),
-	(5,'tree_lock_5','rule_lock','rule_stock','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:11'),
-	(6,'tree_lock_5','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 10:46:13'),
-	(7,'tree_lock_5','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:15'),
-	(8,'tree_lock_10','rule_lock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:17'),
-	(9,'tree_lock_10','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 10:46:20'),
-	(10,'tree_lock_10','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:22');
+	(5,'tree_lock_12','rule_lock','rule_stock','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:11'),
+	(6,'tree_lock_12','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 10:46:13'),
+	(7,'tree_lock_12','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:15'),
+	(8,'tree_lock_25','rule_lock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:17'),
+	(9,'tree_lock_25','rule_lock','rule_luck_award','EQUAL','TAKE_OVER','2025-06-04 09:15:33','2025-06-04 10:46:20'),
+	(10,'tree_lock_25','rule_stock','rule_luck_award','EQUAL','ALLOW','2025-06-04 09:15:33','2025-06-04 10:46:22');
 
 /*!40000 ALTER TABLE `rule_tree_node_line` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -362,15 +362,15 @@ VALUES
 	(4,100001,104,'GitHub Copilot Access','1-year subscription to GitHub Copilot – your AI coding partner.',4000,4000,0.1000,'tree_luck_award',4,'2025-06-04 09:15:33','2025-06-04 11:02:29'),
 	(5,100001,105,'Developer Swag Bundle','T-shirt, stickers, socks & more in a stylish dev pack.',600,600,0.1000,'tree_luck_award',5,'2025-06-04 09:15:33','2025-06-05 11:31:19'),
 	(6,100001,106,'Pro Mechanical Keyboard','Wireless mechanical keyboard loved by coders.',200,200,0.0500,'tree_luck_award',6,'2025-06-04 09:15:33','2025-06-05 11:31:21'),
-	(7,100001,107,'Noise-Canceling Headphones','Stay focused with premium over-ear noise-cancelers.',200,200,0.0400,'tree_lock_1',7,'2025-06-04 09:15:33','2025-06-04 11:02:40'),
-	(8,100001,108,'Ergonomic Desk Setup','Adjustable standing desk with accessories.',199,199,0.0078,'tree_lock_5',8,'2025-06-04 09:15:33','2025-06-04 11:03:23'),
-	(9,100001,109,'MacBook Pro','Top-tier performance MacBook for tech creators.',10,10,0.0022,'tree_lock_10',9,'2025-06-04 09:15:33','2025-06-04 11:03:26'),
+	(7,100001,107,'Noise-Canceling Headphones','Stay focused with premium over-ear noise-cancelers.',200,200,0.0400,'tree_lock_5',7,'2025-06-04 09:15:33','2025-06-04 11:02:40'),
+	(8,100001,108,'Ergonomic Desk Setup','Adjustable standing desk with accessories.',199,199,0.0078,'tree_lock_12',8,'2025-06-04 09:15:33','2025-06-04 11:03:23'),
+	(9,100001,109,'MacBook Pro','Top-tier performance MacBook for tech creators.',10,10,0.0022,'tree_lock_25',9,'2025-06-04 09:15:33','2025-06-04 11:03:26'),
 	(10,100002,110,'UI/UX Design Sprint','1-week design consultation to improve your product UX.',80000,80000,0.2000,'tree_luck_award',1,'2025-06-04 11:04:49','2025-06-04 11:06:36'),
 	(11,100002,111,'Cloud Infrastructure Review','Audit your AWS/GCP setup for performance & security.',80000,80000,0.2000,'tree_luck_award',2,'2025-06-04 11:04:49','2025-06-04 11:06:37'),
 	(12,100002,112,'SaaS Growth Strategy Session','Get expert marketing advice tailored to your product.',80000,80000,0.2000,'tree_luck_award',3,'2025-06-04 11:04:49','2025-06-04 11:07:59'),
-	(13,100002,113,'Startup Legal Consultation','One-on-one legal support for founders and startups.',80000,80000,0.2000,'tree_lock_1',4,'2025-06-04 11:04:49','2025-06-04 11:08:14'),
-	(14,100002,114,'DevOps Pipeline Checkup','Optimize your CI/CD and deployment workflow.',40000,40000,0.1000,'tree_lock_5',5,'2025-06-04 11:04:49','2025-06-04 11:08:29'),
-	(15,100002,115,'CRM Pro Plan Access','Free 1-month access to a top-tier CRM platform.',40000,40000,0.1000,'tree_lock_10',6,'2025-06-04 11:04:49','2025-06-04 11:08:43');
+	(13,100002,113,'Startup Legal Consultation','One-on-one legal support for founders and startups.',80000,80000,0.2000,'tree_lock_5',4,'2025-06-04 11:04:49','2025-06-04 11:08:14'),
+	(14,100002,114,'DevOps Pipeline Checkup','Optimize your CI/CD and deployment workflow.',40000,40000,0.1000,'tree_lock_12',5,'2025-06-04 11:04:49','2025-06-04 11:08:29'),
+	(15,100002,115,'CRM Pro Plan Access','Free 1-month access to a top-tier CRM platform.',40000,40000,0.1000,'tree_lock_25',6,'2025-06-04 11:04:49','2025-06-04 11:08:43');
 
 /*!40000 ALTER TABLE `strategy_award` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -400,7 +400,7 @@ LOCK TABLES `strategy_rule` WRITE;
 
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`)
 VALUES
-	(1,100001,NULL,1,'rule_weight','10:102,103,104,105,106,107 20:102,103,104,105,106,107,108 50:105,106,107,108,109','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:51:20'),
+	(1,100001,NULL,1,'rule_weight','40:102,103,104,105,106,107 100:102,103,104,105,106,107,108 250:105,106,107,108,109','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:51:20'),
 	(2,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:48:28'),
 	(3,100002,NULL,1,'rule_weight','10:111,112,113 20:111,112,113,114 50:114,115','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-05 11:25:52'),
 	(4,100002,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:53:15');
