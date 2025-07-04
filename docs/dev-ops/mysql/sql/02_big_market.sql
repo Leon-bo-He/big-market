@@ -400,7 +400,7 @@ LOCK TABLES `strategy_rule` WRITE;
 
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`)
 VALUES
-	(1,100001,NULL,1,'rule_weight','40:102,103,104,105,106,107 100:102,103,104,105,106,107,108 250:105,106,107,108,109','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:51:20'),
+	(1,100001,NULL,1,'rule_weight','40:101,102,103,104,105,106,107 100:101,104,105,106,107,108 250:105,106,107,108,109','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-04 10:51:20'),
 	(2,100001,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:48:28'),
 	(3,100002,NULL,1,'rule_weight','10:111,112,113 20:111,112,113,114 50:114,115','choose from designed awards based on points used','2025-06-04 09:15:33','2025-06-05 11:25:52'),
 	(4,100002,NULL,1,'rule_blacklist','101:user001,user002,user003','Blacklist user, 1 point for each round','2025-06-04 09:15:33','2025-06-04 10:53:15');
