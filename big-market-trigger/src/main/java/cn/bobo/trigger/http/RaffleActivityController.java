@@ -33,12 +33,20 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author BO HE
@@ -70,36 +78,42 @@ public class RaffleActivityController implements IRaffleActivityService {
     @Resource
     private ICreditAdjustService creditAdjustService;
 
+    private ExecutorService drawExecutor;
 
-    /**
-     * <a href="http://localhost:8091/api/v1/raffle/activity/armory">/api/v1/raffle/activity/armory</a>
-     * parameters：{"activityId":100001,"userId":"bobo"}
-     *
-     * curl --request GET \
-     *   --url 'http://localhost:8091/api/v1/raffle/activity/armory?activityId=100301'
-     *
-     *
-     * @param activityId
-     * @return
-     */
+    @PostConstruct
+    public void init() {
+        // Initialize a single, reusable thread pool for the controller.
+        drawExecutor = Executors.newFixedThreadPool(10, r -> {
+            Thread thread = new Thread(r);
+            thread.setName("activity-draw-executor");
+            return thread;
+        });
+    }
+
+    @PreDestroy
+    public void destroy() {
+        // Gracefully shut down the thread pool when the application stops.
+        if (drawExecutor != null) {
+            drawExecutor.shutdown();
+        }
+    }
+
+
     @RequestMapping(value = "armory", method = RequestMethod.GET)
     @Override
     public Response<Boolean> armory(@RequestParam Long activityId) {
         try {
             log.info("activity assembly, data preheating starting; activityId:{}", activityId);
-            // 1. assemble activity
             activityArmory.assembleActivitySkuByActivityId(activityId);
-            // 2. assemble strategy
             strategyArmory.assembleLotteryStrategyByActivityId(activityId);
-            Response<Boolean> response = Response.<Boolean>builder()
+            log.info("activity assembly, data preheating completed; activityId:{}", activityId);
+            return Response.<Boolean>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())
                     .data(true)
                     .build();
-            log.info("activity assembly, data preheating completed; activityId:{}", activityId);
-            return response;
         } catch (Exception e) {
-            log.error("activity assembly, data preheating fail; activityId:{}", activityId);
+            log.error("activity assembly, data preheating fail; activityId:{}", activityId, e);
             return Response.<Boolean>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
@@ -107,66 +121,19 @@ public class RaffleActivityController implements IRaffleActivityService {
         }
     }
 
-
-    /**
-     *
-     *
-     * <a href="http://localhost:8091/api/v1/raffle/activity/draw">/api/v1/raffle/activity/draw</a>
-     * parameters：{"activityId":100001,"userId":"bobo"}
-     *
-     * curl --request POST \
-     *   --url http://localhost:8091/api/v1/raffle/activity/draw \
-     *   --header 'content-type: application/json' \
-     *   --data '{
-     *     "userId":"bobo",
-     *     "activityId": 100301
-     *     }'
-     *
-     *
-     * @param request
-     * @return
-     */
     @RequestMapping(value = "draw", method = RequestMethod.POST)
     @Override
     public Response<ActivityDrawResponseDTO> draw(@RequestBody ActivityDrawRequestDTO request) {
         try {
             log.info("activity draw start, userId:{}, activityId:{}", request.getUserId(), request.getActivityId());
-            // 1. check parameters
             if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
-            // 2. participate in activity - create participation order
-            UserRaffleOrderEntity orderEntity = raffleActivityPartakeService.createOrder(request.getUserId(), request.getActivityId());
-            log.info("activity draw order created, userId:{}, activityId:{}, orderId:{}",
-                    request.getUserId(), request.getActivityId(), orderEntity.getOrderId());
-            // 3. raffle strategy - execute raffle
-            RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(RaffleFactorEntity.builder()
-                    .userId(orderEntity.getUserId())
-                    .strategyId(orderEntity.getStrategyId())
-                    .endDateTime(orderEntity.getEndDateTime())
-                    .build());
-            // 4. store result - write winning record
-            UserAwardRecordEntity userAwardRecord = UserAwardRecordEntity.builder()
-                    .userId(orderEntity.getUserId())
-                    .activityId(orderEntity.getActivityId())
-                    .strategyId(orderEntity.getStrategyId())
-                    .orderId(orderEntity.getOrderId())
-                    .awardId(raffleAwardEntity.getAwardId())
-                    .awardTitle(raffleAwardEntity.getAwardTitle())
-                    .awardTime(new Date())
-                    .awardState(AwardStateVO.CREATE)
-                    .awardConfig(raffleAwardEntity.getAwardConfig())
-                    .build();
-            awardService.saveUserAwardRecord(userAwardRecord);
-            // 5. return result
+            ActivityDrawResponseDTO drawResult = performSingleDraw(request.getUserId(), request.getActivityId());
             return Response.<ActivityDrawResponseDTO>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())
-                    .data(ActivityDrawResponseDTO.builder()
-                            .awardId(raffleAwardEntity.getAwardId())
-                            .awardTitle(raffleAwardEntity.getAwardTitle())
-                            .awardIndex(raffleAwardEntity.getSort())
-                            .build())
+                    .data(drawResult)
                     .build();
         } catch (AppException e) {
             log.error("activity draw failed, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
@@ -183,18 +150,105 @@ public class RaffleActivityController implements IRaffleActivityService {
         }
     }
 
+    @RequestMapping(value = "draw_ten_times", method = RequestMethod.POST)
+    @Override
+    public Response<List<ActivityDrawResponseDTO>> drawTenTimes(@RequestBody ActivityDrawRequestDTO request) {
+        try {
+            log.info("activity ten draws start, userId:{}, activityId:{}", request.getUserId(), request.getActivityId());
+            if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
+                throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
+            }
+
+            // Create 10 asynchronous draw tasks using the class-level executor.
+            List<CompletableFuture<ActivityDrawResponseDTO>> futures = IntStream.range(0, 10)
+                    .mapToObj(i -> CompletableFuture.supplyAsync(() -> {
+                        try {
+                            // Each task executes the same single draw logic.
+                            return performSingleDraw(request.getUserId(), request.getActivityId());
+                        } catch (Exception e) {
+                            // IMPORTANT: This catch block is crucial. If a draw fails (e.g., due to
+                            // insufficient quota), we log the error and return null. This allows
+                            // other concurrent draws to continue without failing the entire request.
+                            log.error("Concurrent draw failed for one of the ten attempts, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
+                            return null;
+                        }
+                    }, drawExecutor))
+                    .collect(Collectors.toList());
+
+            // Wait for all 10 futures to complete.
+            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+
+            // Collect the results, filtering out any nulls from failed draws.
+            List<ActivityDrawResponseDTO> results = futures.stream()
+                    .map(CompletableFuture::join)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+
+            log.info("activity ten draws completed, userId:{}, activityId:{}, successful draws: {}", request.getUserId(), request.getActivityId(), results.size());
+
+            // Return the list of successful draw results.
+            return Response.<List<ActivityDrawResponseDTO>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(results)
+                    .build();
+
+        } catch (AppException e) {
+            log.error("activity ten draws failed, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
+            return Response.<List<ActivityDrawResponseDTO>>builder()
+                    .code(e.getCode())
+                    .info(e.getInfo())
+                    .build();
+        } catch (Exception e) {
+            log.error("activity ten draws failed, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
+            return Response.<List<ActivityDrawResponseDTO>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
 
     /**
-     * Daily check-in rebate interface
+     * Helper method to perform a single draw. This encapsulates the core draw logic
+     * to avoid code duplication and ensure consistency.
      *
-     * <a href="http://localhost:8091/api/v1/raffle/activity/daily_checkin_rebate">/api/v1/raffle/activity/daily_checkin_rebate</a>
-     * parameters：{"userId":"bobo"}
-     *
-     * curl -X POST http://localhost:8091/api/v1/raffle/activity/daily_checkin_rebate -d "userId=bobo" -H "Content-Type: application/x-www-form-urlencoded"
-     *
-     * @param userId
-     * @return
+     * @param userId     The user performing the draw.
+     * @param activityId The activity being participated in.
+     * @return The result of the draw.
      */
+    private ActivityDrawResponseDTO performSingleDraw(String userId, Long activityId) {
+        // 1. participate in activity - create participation order
+        UserRaffleOrderEntity orderEntity = raffleActivityPartakeService.createOrder(userId, activityId);
+
+        // 2. raffle strategy - execute raffle
+        RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(RaffleFactorEntity.builder()
+                .userId(orderEntity.getUserId())
+                .strategyId(orderEntity.getStrategyId())
+                .endDateTime(orderEntity.getEndDateTime())
+                .build());
+
+        // 3. store result - write winning record
+        UserAwardRecordEntity userAwardRecord = UserAwardRecordEntity.builder()
+                .userId(orderEntity.getUserId())
+                .activityId(orderEntity.getActivityId())
+                .strategyId(orderEntity.getStrategyId())
+                .orderId(orderEntity.getOrderId())
+                .awardId(raffleAwardEntity.getAwardId())
+                .awardTitle(raffleAwardEntity.getAwardTitle())
+                .awardTime(new Date())
+                .awardState(AwardStateVO.CREATE)
+                .awardConfig(raffleAwardEntity.getAwardConfig())
+                .build();
+        awardService.saveUserAwardRecord(userAwardRecord);
+
+        // 4. return result
+        return ActivityDrawResponseDTO.builder()
+                .awardId(raffleAwardEntity.getAwardId())
+                .awardTitle(raffleAwardEntity.getAwardTitle())
+                .awardIndex(raffleAwardEntity.getSort())
+                .build();
+    }
+
     @RequestMapping(value = "daily_checkin_rebate", method = RequestMethod.POST)
     @Override
     public Response<Boolean> dailyCheckinRebate(@RequestParam String userId) {
@@ -218,20 +272,15 @@ public class RaffleActivityController implements IRaffleActivityService {
                     .info(e.getInfo())
                     .build();
         } catch (Exception e) {
-            log.error("Daily check-in rebate failed. userId:{}", userId);
+            log.error("Daily check-in rebate failed. userId:{}", userId, e);
             return Response.<Boolean>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .data(false)
                     .build();
         }
-
     }
 
-    /**
-     *
-     * curl -X POST http://localhost:8091/api/v1/raffle/activity/is_daily_checkin_rebate -d "userId=bobo" -H "Content-Type: application/x-www-form-urlencoded"
-     */
     @RequestMapping(value = "is_daily_checkin_rebate", method = RequestMethod.POST)
     @Override
     public Response<Boolean> isDailyCheckinRebate(@RequestParam String userId) {
@@ -255,22 +304,11 @@ public class RaffleActivityController implements IRaffleActivityService {
         }
     }
 
-
-    /**
-     * curl --request POST \
-     * --url http://localhost:8091/api/v1/raffle/activity/query_user_activity_account \
-     * --header 'content-type: application/json' \
-     * --data '{
-     * "userId":"bobo",
-     * "activityId": 100301
-     * }'
-     */
     @RequestMapping(value = "query_user_activity_account", method = RequestMethod.POST)
     @Override
     public Response<UserActivityAccountResponseDTO> queryUserActivityAccount(@RequestBody UserActivityAccountRequestDTO request) {
         try {
             log.info("check user activity account start, userId:{}, activityId:{}", request.getUserId(), request.getActivityId());
-            // 1. check parameters
             if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
@@ -304,11 +342,9 @@ public class RaffleActivityController implements IRaffleActivityService {
     public Response<List<SkuProductResponseDTO>> querySkuProductListByActivityId(Long activityId) {
         try {
             log.info("query sku product list by activityId start, activityId:{}", activityId);
-            // 1. parameter check
             if (null == activityId) {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
-            // 2. query sku product entities by activityId
             List<SkuProductEntity> skuProductEntities = raffleActivitySkuProductService.querySkuProductEntityListByActivityId(activityId);
             List<SkuProductResponseDTO> skuProductResponseDTOS = new ArrayList<>(skuProductEntities.size());
             for (SkuProductEntity skuProductEntity : skuProductEntities) {
@@ -395,7 +431,7 @@ public class RaffleActivityController implements IRaffleActivityService {
                     .data(true)
                     .build();
         } catch (AppException e) {
-            log.error("credit redeem products failed, userId:{} activityId:{}",  request.getUserId(), request.getSku(), e);
+            log.error("credit redeem products failed, userId:{} activityId:{}", request.getUserId(), request.getSku(), e);
             return Response.<Boolean>builder()
                     .code(e.getCode())
                     .info(e.getInfo())

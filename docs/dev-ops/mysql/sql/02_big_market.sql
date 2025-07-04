@@ -86,7 +86,7 @@ LOCK TABLES `daily_behavior_rebate` WRITE;
 INSERT INTO `daily_behavior_rebate` (`id`, `behavior_type`, `rebate_desc`, `rebate_type`, `rebate_config`, `state`, `create_time`, `update_time`)
 VALUES
 	(1,'CHECK_IN','CheckIn rebate - sku quota','SKU','9014','OPEN','2025-06-04 09:15:33','2025-06-04 10:42:50'),
-	(2,'CHECK_IN','CheckIn rebate - user credits','INTEGRAL','10','OPEN','2025-06-04 09:15:33','2025-06-04 09:17:16');
+	(2,'CHECK_IN','CheckIn rebate - user credits','INTEGRAL','8','OPEN','2025-06-04 09:15:33','2025-06-04 09:17:16');
 
 /*!40000 ALTER TABLE `daily_behavior_rebate` ENABLE KEYS */;
 UNLOCK TABLES;

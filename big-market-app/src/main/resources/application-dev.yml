@@ -15,7 +15,7 @@ app:
 # Spring config；rabbitmq
 spring:
   rabbitmq:
-    addresses: big-market-rabbitmq
+    addresses: localhost
     port: 5672
     username: admin
     password: admin
@@ -51,7 +51,7 @@ mini-db-router:
       db00:
         driver-class-name: com.mysql.cj.jdbc.Driver
         # IMPORTANT: Use the Docker service name 'big-market-mysql', not a hardcoded IP.
-        url: jdbc:mysql://big-market-mysql:3306/big_market?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
+        url: jdbc:mysql://localhost:13306/big_market?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
         username: root
         password: password
         type-class-name: com.zaxxer.hikari.HikariDataSource
@@ -66,7 +66,7 @@ mini-db-router:
           connection-test-query: SELECT 1
       db01:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://big-market-mysql:3306/big_market_01?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
+        url: jdbc:mysql://localhost:13306/big_market_01?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
         username: root
         password: password
         type-class-name: com.zaxxer.hikari.HikariDataSource
@@ -81,7 +81,7 @@ mini-db-router:
           connection-test-query: SELECT 1
       db02:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://big-market-mysql:3306/big_market_02?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
+        url: jdbc:mysql://localhost:13306/big_market_02?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=false
         username: root
         password: password
         type-class-name: com.zaxxer.hikari.HikariDataSource
@@ -104,8 +104,8 @@ mybatis:
 redis:
   sdk:
     config:
-      host: ${REDIS_SDK_CONFIG_HOST:big-market-redis} # Changed default to service name
-      port: ${REDIS_SDK_CONFIG_PORT:6379}
+      host: localhost
+      port: ${REDIS_SDK_CONFIG_PORT:16379}
       pool-size: 10
       min-idle-size: 5
       idle-timeout: 30000

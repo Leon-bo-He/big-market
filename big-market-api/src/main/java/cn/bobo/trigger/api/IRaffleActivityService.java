@@ -15,6 +15,8 @@ public interface IRaffleActivityService {
 
     Response<ActivityDrawResponseDTO> draw(ActivityDrawRequestDTO request);
 
+    Response<List<ActivityDrawResponseDTO>> drawTenTimes(ActivityDrawRequestDTO request);
+
     Response<Boolean> dailyCheckinRebate(String userId);
 
     Response<Boolean> isDailyCheckinRebate(String userId);

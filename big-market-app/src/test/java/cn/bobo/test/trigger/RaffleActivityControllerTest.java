@@ -33,8 +33,19 @@ public class RaffleActivityControllerTest {
     public void test_draw() {
         ActivityDrawRequestDTO request = new ActivityDrawRequestDTO();
         request.setActivityId(100301L);
-        request.setUserId("bobo");
+        request.setUserId("BB");
         Response<ActivityDrawResponseDTO> response = raffleActivityService.draw(request);
+
+        log.info("parameters：{}", JSON.toJSONString(request));
+        log.info("Test Results：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void test_draw_ten() {
+        ActivityDrawRequestDTO request = new ActivityDrawRequestDTO();
+        request.setActivityId(100301L);
+        request.setUserId("BB");
+        Response<List<ActivityDrawResponseDTO>> response = raffleActivityService.drawTenTimes(request);
 
         log.info("parameters：{}", JSON.toJSONString(request));
         log.info("Test Results：{}", JSON.toJSONString(response));
@@ -53,7 +64,7 @@ public class RaffleActivityControllerTest {
 
     @Test
     public void test_dailyCheckinRebate(){
-        Response<Boolean> response = raffleActivityService.dailyCheckinRebate("user003");
+        Response<Boolean> response = raffleActivityService.dailyCheckinRebate("BB");
         log.info("Test Results：{}", JSON.toJSONString(response));
     }
 
