@@ -86,7 +86,7 @@ LOCK TABLES `daily_behavior_rebate` WRITE;
 INSERT INTO `daily_behavior_rebate` (`id`, `behavior_type`, `rebate_desc`, `rebate_type`, `rebate_config`, `state`, `create_time`, `update_time`)
 VALUES
 	(1,'CHECK_IN','CheckIn rebate - sku quota','SKU','9014','OPEN','2025-06-04 09:15:33','2025-06-04 10:42:50'),
-	(2,'CHECK_IN','CheckIn rebate - user credits','INTEGRAL','8','OPEN','2025-06-04 09:15:33','2025-06-04 09:17:16');
+	(2,'CHECK_IN','CheckIn rebate - user credits','INTEGRAL','10','OPEN','2025-06-04 09:15:33','2025-06-04 09:17:16');
 
 /*!40000 ALTER TABLE `daily_behavior_rebate` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -151,8 +151,8 @@ VALUES
 	(1,11101,100,100,100,'2025-06-04 09:15:33','2025-06-04 10:40:15'),
 	(2,11102,70,70,70,'2025-06-04 09:15:33','2025-06-04 10:37:24'),
 	(3,11103,30,30,30,'2025-06-04 09:15:33','2025-06-04 10:37:58'),
-	(4,11104,10,10,10,'2025-06-04 09:15:33','2025-06-04 10:38:02'),
-	(5,11105,5,5,5,'2025-06-04 09:15:33','2025-06-04 10:38:07');
+	(4,11104,8,8,8,'2025-06-04 09:15:33','2025-06-04 10:38:02'),
+	(5,11105,2,2,2,'2025-06-04 09:15:33','2025-06-04 10:38:07');
 
 /*!40000 ALTER TABLE `raffle_activity_count` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -183,11 +183,11 @@ LOCK TABLES `raffle_activity_sku` WRITE;
 
 INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `product_amount`, `create_time`, `update_time`)
 VALUES
-	(1,9011,100301,11101,100000,100000,300.00,'2025-06-04 09:15:33','2025-06-04 10:40:27'),
-	(2,9012,100301,11102,100000,100000,245.00,'2025-06-04 09:15:33','2025-06-04 10:39:21'),
-	(3,9013,100301,11103,100000,100000,120.00,'2025-06-04 09:15:33','2025-06-05 11:29:59'),
-	(4,9014,100301,11104,100000,100000,45.00,'2025-06-04 09:15:33','2025-06-05 11:30:01'),
-	(5,9015,100301,11105,100000,100000,25.00,'2025-06-04 09:15:33','2025-06-04 10:38:33'),
+	(1,9011,100301,11101,100000,100000,289.99,'2025-06-04 09:15:33','2025-06-04 10:40:27'),
+	(2,9012,100301,11102,100000,100000,245.99,'2025-06-04 09:15:33','2025-06-04 10:39:21'),
+	(3,9013,100301,11103,100000,100000,119.99,'2025-06-04 09:15:33','2025-06-05 11:29:59'),
+	(4,9014,100301,11104,100000,100000,38.99,'2025-06-04 09:15:33','2025-06-05 11:30:01'),
+	(5,9015,100301,11105,100000,100000,10.00,'2025-06-04 09:15:33','2025-06-04 10:38:33'),
 	(6,9016,100302,11102,100000,100000,105.00,'2025-06-04 09:15:33','2025-06-04 10:48:44'),
 	(7,9017,100302,11103,100000,100000,60.00,'2025-06-04 09:15:33','2025-06-04 10:48:44'),
 	(8,9018,100302,11105,100000,100000,15.00,'2025-06-04 09:15:33','2025-06-04 10:48:46');
@@ -356,9 +356,9 @@ LOCK TABLES `strategy_award` WRITE;
 
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`)
 VALUES
-	(1,100001,101,'Random Credit Drop','Receive a surprise amount of bonus credits.',80000,80000,0.3000,'tree_luck_award',1,'2025-06-04 09:15:33','2025-06-05 11:31:10'),
-	(2,100001,102,'Udemy Learning Pass','Access 5 tech courses of your choice on Udemy.',10000,10000,0.2000,'tree_luck_award',2,'2025-06-04 09:15:33','2025-06-04 11:02:24'),
-	(3,100001,103,'AWS Cloud Credits','Boost your cloud app with free AWS credit.',5000,5000,0.2000,'tree_luck_award',3,'2025-06-04 09:15:33','2025-06-05 11:31:15'),
+	(1,100001,101,'Random Credit Drop','Receive a surprise amount of bonus credits.',80000,80000,0.4000,'tree_luck_award',1,'2025-06-04 09:15:33','2025-06-05 11:31:10'),
+	(2,100001,102,'Udemy Learning Pass','Access 5 tech courses of your choice on Udemy.',10000,10000,0.1500,'tree_luck_award',2,'2025-06-04 09:15:33','2025-06-04 11:02:24'),
+	(3,100001,103,'AWS Cloud Credits','Boost your cloud app with free AWS credit.',5000,5000,0.1500,'tree_luck_award',3,'2025-06-04 09:15:33','2025-06-05 11:31:15'),
 	(4,100001,104,'GitHub Copilot Access','1-year subscription to GitHub Copilot – your AI coding partner.',4000,4000,0.1000,'tree_luck_award',4,'2025-06-04 09:15:33','2025-06-04 11:02:29'),
 	(5,100001,105,'Developer Swag Bundle','T-shirt, stickers, socks & more in a stylish dev pack.',600,600,0.1000,'tree_luck_award',5,'2025-06-04 09:15:33','2025-06-05 11:31:19'),
 	(6,100001,106,'Pro Mechanical Keyboard','Wireless mechanical keyboard loved by coders.',200,200,0.0500,'tree_luck_award',6,'2025-06-04 09:15:33','2025-06-05 11:31:21'),
