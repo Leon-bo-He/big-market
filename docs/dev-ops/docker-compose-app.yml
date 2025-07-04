@@ -1,6 +1,6 @@
 services:
   big-market-app:
-    image: boboboboo/big-market-app:2.1
+    image: boboboboo/big-market-app:2.2
     container_name: big-market-app
     restart: always
     ports:
@@ -30,8 +30,8 @@ services:
         max-size: "10m"
         max-file: "3"
   big-market-front-app:
+    image: boboboboo/big-market-front-app:2.2
     container_name: big-market-front-app
-    image: boboboboo/big-market-front-app:2.1
     restart: always
     networks:
       - big-market-network
