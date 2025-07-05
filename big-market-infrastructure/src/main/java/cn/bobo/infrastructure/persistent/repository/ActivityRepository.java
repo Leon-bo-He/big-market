@@ -587,7 +587,7 @@ public class ActivityRepository implements IActivityRepository {
 
         // if there is no created day account, then fill in the total account's daily total quota.
         if (null == raffleActivityAccountDay) {
-            activityAccountEntity.setDayCount(raffleActivityAccount.getDayCount());
+            activityAccountEntity.setDayCount(raffleActivityAccount.getDayCountSurplus());
             activityAccountEntity.setDayCountSurplus(raffleActivityAccount.getDayCountSurplus());
         } else {
             activityAccountEntity.setDayCount(raffleActivityAccountDay.getDayCount());
@@ -596,7 +596,7 @@ public class ActivityRepository implements IActivityRepository {
 
         // if there is no created month account, then fill in the total account's monthly total quota.
         if (null == raffleActivityAccountMonth) {
-            activityAccountEntity.setMonthCount(raffleActivityAccount.getMonthCount());
+            activityAccountEntity.setMonthCount(raffleActivityAccount.getMonthCountSurplus());
             activityAccountEntity.setMonthCountSurplus(raffleActivityAccount.getMonthCountSurplus());
         } else {
             activityAccountEntity.setMonthCount(raffleActivityAccountMonth.getMonthCount());
