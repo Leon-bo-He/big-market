@@ -68,7 +68,7 @@ public class RaffleActivityPartakeService extends AbstractRaffleActivityPartake 
             activityAccountMonthEntity.setActivityId(activityId);
             activityAccountMonthEntity.setMonth(month);
             activityAccountMonthEntity.setMonthCount(activityAccountEntity.getMonthCount());
-            activityAccountMonthEntity.setMonthCountSurplus(activityAccountEntity.getMonthCount());
+            activityAccountMonthEntity.setMonthCountSurplus(activityAccountEntity.getMonthCountSurplus());
         }
 
         // query daily account quota
@@ -85,7 +85,7 @@ public class RaffleActivityPartakeService extends AbstractRaffleActivityPartake 
             activityAccountDayEntity.setActivityId(activityId);
             activityAccountDayEntity.setDay(day);
             activityAccountDayEntity.setDayCount(activityAccountEntity.getDayCount());
-            activityAccountDayEntity.setDayCountSurplus(activityAccountEntity.getDayCount());
+            activityAccountDayEntity.setDayCountSurplus(activityAccountEntity.getDayCountSurplus());
         }
 
         // build object
