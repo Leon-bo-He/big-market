@@ -159,34 +159,46 @@ public class RaffleActivityController implements IRaffleActivityService {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
 
-            // Create 10 asynchronous draw tasks using the class-level executor.
-            List<CompletableFuture<ActivityDrawResponseDTO>> futures = IntStream.range(0, 10)
+            // 1. Perform the first draw synchronously to create the order and ensure the first draw is always successful.
+            ActivityDrawResponseDTO firstResult;
+            try {
+                firstResult = performSingleDraw(request.getUserId(), request.getActivityId());
+            } catch (Exception e) {
+                log.error("First draw failed, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
+                // If the first draw fails, return immediately
+                return Response.<List<ActivityDrawResponseDTO>>builder()
+                        .code(ResponseCode.UN_ERROR.getCode())
+                        .info(ResponseCode.UN_ERROR.getInfo())
+                        .build();
+            }
+
+            // 2. Perform the remaining 9 draws asynchronously
+            List<CompletableFuture<ActivityDrawResponseDTO>> futures = IntStream.range(0, 9)
                     .mapToObj(i -> CompletableFuture.supplyAsync(() -> {
                         try {
-                            // Each task executes the same single draw logic.
                             return performSingleDraw(request.getUserId(), request.getActivityId());
                         } catch (Exception e) {
-                            // IMPORTANT: This catch block is crucial. If a draw fails (e.g., due to
-                            // insufficient quota), we log the error and return null. This allows
-                            // other concurrent draws to continue without failing the entire request.
-                            log.error("Concurrent draw failed for one of the ten attempts, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
+                            log.error("Concurrent draw failed for one of the nine attempts, userId:{}, activityId:{}", request.getUserId(), request.getActivityId(), e);
                             return null;
                         }
                     }, drawExecutor))
                     .collect(Collectors.toList());
 
-            // Wait for all 10 futures to complete.
             CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
 
-            // Collect the results, filtering out any nulls from failed draws.
-            List<ActivityDrawResponseDTO> results = futures.stream()
-                    .map(CompletableFuture::join)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+            List<ActivityDrawResponseDTO> results = new ArrayList<>();
+            if (firstResult != null) {
+                results.add(firstResult);
+            }
+            results.addAll(
+                    futures.stream()
+                            .map(CompletableFuture::join)
+                            .filter(Objects::nonNull)
+                            .collect(Collectors.toList())
+            );
 
             log.info("activity ten draws completed, userId:{}, activityId:{}, successful draws: {}", request.getUserId(), request.getActivityId(), results.size());
 
-            // Return the list of successful draw results.
             return Response.<List<ActivityDrawResponseDTO>>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())
