@@ -1,7 +1,7 @@
 # Sweepstakes Marketing
 **TRY THE DEMO AT https://luckydraw.hebo.life/**
 
-**More details about this project can be found in the [Portfolio](https://docs.hebo.life/raffle-module).**
+**More details about this project can be found in the [Portfolio](https://portfolio.hebo.life/sweepstakes/).**
 
 The following is the Business Process Diagram for the project:
 
