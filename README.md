@@ -5,5 +5,5 @@
 
 The following is the Business Process Diagram for the project:
 
-![Raffle Module Business Process Diagram](https://portfolio.hebo.life/wp-content/uploads/2025/05/Business_Process_Diagram-1.png)
+![Raffle Module Business Process Diagram](https://photos.hebo.life/i/7ed4419e-40d1-43cb-8b69-62d3f20c273c.jpg)
 
